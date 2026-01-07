@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-mkdir.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-mkdir.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-download.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-download.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-update.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-update.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-patch.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-patch.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-configure.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-configure.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-build.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-build.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-install.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-install.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\510ec2d7bbeaa0b2e296176949be7959\imgui-populate-test.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\1a9c3cca5bfba9973f05589d8d6d66ba\imgui-populate-test.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\d22c43c0b208e30a9e87adbcafe102c2\imgui-populate-complete.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\da22b0f898fddba2ea67798a621544a9\imgui-populate-complete.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\a60d41ffb7b1fbfa4ff8f02185b58d39\imgui-populate.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\c504c97dcea0640f99e8ce95d0301d01\imgui-populate.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\imgui-populate" />
+    <None Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\imgui-populate" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{A9E77948-8C26-3B5E-9CED-AC161C399ACE}</UniqueIdentifier>
+      <UniqueIdentifier>{DAA4CC6E-781B-3B06-93C6-CD396FF65D64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

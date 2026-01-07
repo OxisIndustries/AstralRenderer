@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\x64\Debug\fastgltf-populate</FullPath>
+      <FullPath>C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\x64\Debug\fastgltf-populate</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

@@ -13,7 +13,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{23C8AA2C-CB15-3E61-A470-CE0F6BE7D530}</ProjectGuid>
+    <ProjectGuid>{17B95BCE-E51D-3296-A764-79EA2C711804}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -49,11 +49,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-subbuild -BC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-subbuild --check-stamp-file C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild -BC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild --check-stamp-file C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -61,8 +61,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\PatchInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\RepositoryInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\UpdateInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitclone.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitupdate.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\mkdirs.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\CMakeFiles\4.2.0\CMakeSystem.cmake;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\fastgltf-populate-prefix\tmp\fastgltf-populate-mkdirs.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\PatchInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\RepositoryInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\UpdateInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitclone.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitupdate.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\mkdirs.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\CMakeFiles\4.2.0\CMakeSystem.cmake;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\fastgltf-populate-prefix\tmp\fastgltf-populate-mkdirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
@@ -70,14 +70,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\ZERO_CHECK.vcxproj">
-      <Project>{4217C920-CD7D-32A1-9428-577D3F8D39E1}</Project>
+    <ProjectReference Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\ZERO_CHECK.vcxproj">
+      <Project>{E9178D17-E216-3747-87EA-59FDDD02C626}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-subbuild\fastgltf-populate.vcxproj">
-      <Project>{DCF6B67B-1519-3489-8CCE-01109CB2D0DB}</Project>
+    <ProjectReference Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-subbuild\fastgltf-populate.vcxproj">
+      <Project>{2C6A6CD3-A089-37A7-A6CB-BDDF50C53356}</Project>
       <Name>fastgltf-populate</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

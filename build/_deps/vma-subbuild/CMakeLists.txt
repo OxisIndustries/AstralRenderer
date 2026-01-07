@@ -28,8 +28,8 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 include(ExternalProject)
 ExternalProject_Add(vma-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v3.0.1"
-                    SOURCE_DIR          "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-src"
-                    BINARY_DIR          "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-build"
+                    SOURCE_DIR          "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-src"
+                    BINARY_DIR          "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

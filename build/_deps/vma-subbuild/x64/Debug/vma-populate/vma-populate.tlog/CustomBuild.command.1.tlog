@@ -1,8 +1,8 @@
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-MKDIR.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-MKDIR.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/tmp/vma-populate-mkdirs.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/tmp/vma-populate-mkdirs.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-mkdir
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-mkdir
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -10,15 +10,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-DOWNLOAD.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-DOWNLOAD.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/tmp/vma-populate-gitclone.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/tmp/vma-populate-gitclone.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-download
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-download
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -26,13 +26,13 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-UPDATE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-UPDATE.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-src
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/tmp/vma-populate-gitupdate.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/tmp/vma-populate-gitupdate.cmake
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -40,11 +40,11 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-PATCH.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-PATCH.RULE
 setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-patch
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-patch
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -52,31 +52,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-CONFIGURE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-CONFIGURE.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-build
-if %errorlevel% neq 0 goto :cmEnd
-C:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-configure
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-BUILD.RULE
-setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-build
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-configure
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -84,15 +68,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-INSTALL.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-BUILD.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-install
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-build
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -100,15 +84,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\05D458639A8781079B4E75E73EA48766\VMA-POPULATE-TEST.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-INSTALL.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-test
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-install
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -116,13 +100,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\0B51853B6397E79C3964291AC4991CA1\VMA-POPULATE-COMPLETE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\AADEE0AB51492B7B8187EE4EDB00D040\VMA-POPULATE-TEST.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/Debug
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-build
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/Debug/vma-populate-complete
+C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-done
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-test
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -130,7 +116,21 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\819AE18DD2F3D80F4CC6C649D646CBA0\VMA-POPULATE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\E84FB08923A3995D3B74DC46F5E10863\VMA-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/Debug/vma-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate-prefix/src/vma-populate-stamp/Debug/vma-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\8BC745F9C701347A32819437C1DE16BF\VMA-POPULATE.RULE
 setlocal
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -138,9 +138,9 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKELISTS.TXT
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild -BC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild --check-stamp-file C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild -BC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild --check-stamp-file C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

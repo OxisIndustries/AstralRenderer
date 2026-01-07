@@ -1,3 +1,3 @@
-C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/stb-populate.dir
-C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/ZERO_CHECK.dir
+C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/stb-populate.dir
+C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/ALL_BUILD.dir
+C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/ZERO_CHECK.dir

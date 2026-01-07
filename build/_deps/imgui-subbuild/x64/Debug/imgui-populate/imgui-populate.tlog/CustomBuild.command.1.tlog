@@ -1,8 +1,8 @@
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-MKDIR.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-MKDIR.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/tmp/imgui-populate-mkdirs.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/tmp/imgui-populate-mkdirs.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-mkdir
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-mkdir
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -10,15 +10,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-DOWNLOAD.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-DOWNLOAD.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/tmp/imgui-populate-gitclone.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/tmp/imgui-populate-gitclone.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-download
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-download
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -26,13 +26,13 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-UPDATE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-UPDATE.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/tmp/imgui-populate-gitupdate.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/tmp/imgui-populate-gitupdate.cmake
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -40,11 +40,11 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-PATCH.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-PATCH.RULE
 setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-patch
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-patch
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -52,31 +52,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-CONFIGURE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-CONFIGURE.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-build
-if %errorlevel% neq 0 goto :cmEnd
-C:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-configure
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-BUILD.RULE
-setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-build
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-configure
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -84,15 +68,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-INSTALL.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-BUILD.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-install
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-build
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -100,15 +84,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\510EC2D7BBEAA0B2E296176949BE7959\IMGUI-POPULATE-TEST.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-INSTALL.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-test
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-install
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -116,13 +100,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\D22C43C0B208E30A9E87ADBCAFE102C2\IMGUI-POPULATE-COMPLETE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\1A9C3CCA5BFBA9973F05589D8D6D66BA\IMGUI-POPULATE-TEST.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/CMakeFiles/Debug
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-build
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/CMakeFiles/Debug/imgui-populate-complete
+C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-done
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-test
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -130,7 +116,21 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\A60D41FFB7B1FBFA4FF8F02185B58D39\IMGUI-POPULATE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\DA22B0F898FDDBA2EA67798A621544A9\IMGUI-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/CMakeFiles/Debug/imgui-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/Debug/imgui-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKEFILES\C504C97DCEA0640F99E8CE95D0301D01\IMGUI-POPULATE.RULE
 setlocal
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -138,9 +138,9 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKELISTS.TXT
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\IMGUI-SUBBUILD\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild -BC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild --check-stamp-file C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/imgui-subbuild/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild -BC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild --check-stamp-file C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/imgui-subbuild/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

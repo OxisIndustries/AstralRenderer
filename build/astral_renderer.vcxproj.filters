@@ -1,159 +1,189 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src\imgui.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\CMakeFiles\astral_renderer.dir\cmake_pch.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src\imgui_demo.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src\imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src\imgui_draw.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src\imgui_demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src\imgui_tables.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src\imgui_widgets.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src\imgui_tables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src\backends\imgui_impl_glfw.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-src\backends\imgui_impl_vulkan.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src\backends\imgui_impl_glfw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\core\context.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-src\backends\imgui_impl_vulkan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\core\vma_implementation.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\core\context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\core\commands.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\core\vma_implementation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\platform\window.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\core\commands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\swapchain.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\descriptor_manager.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\platform\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\pipeline.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\swapchain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\render_graph.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\descriptor_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\sync.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\scene_manager.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\render_graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\model.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\sync.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\gltf_loader.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\scene_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\camera.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\compute_pipeline.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\gltf_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\environment_manager.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\renderer\ui_manager.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\compute_pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\resources\buffer.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\environment_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\resources\image.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\ui_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\resources\shader.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\renderer\renderer_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\src\resources\stb_image_impl.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\resources\buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\resources\image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\resources\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\src\resources\stb_image_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\astral.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\astral.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\core\context.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\core\context.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\core\commands.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\core\commands.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\platform\window.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\application.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\swapchain.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\platform\window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\descriptor_manager.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\swapchain.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\pipeline.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\descriptor_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\render_graph.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\pipeline.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\sync.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\render_graph.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\scene_data.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\sync.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\scene_manager.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\scene_data.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\model.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\scene_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\gltf_loader.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\model.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\camera.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\gltf_loader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\compute_pipeline.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\environment_manager.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\compute_pipeline.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\renderer\ui_manager.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\environment_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\resources\buffer.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\ui_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\resources\image.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\renderer\renderer_system.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\include\astral\resources\shader.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\resources\buffer.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\resources\image.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\include\astral\resources\shader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\CMakeFiles\astral_renderer.dir\Debug\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\CMakeFiles\astral_renderer.dir\Release\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\CMakeFiles\astral_renderer.dir\MinSizeRel\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\CMakeFiles\astral_renderer.dir\RelWithDebInfo\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{C239E43B-E182-3988-A5AA-C5773B6D8107}</UniqueIdentifier>
+      <UniqueIdentifier>{B6CA00A9-B549-3F34-A140-613069EFC015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Precompile Header File">
+      <UniqueIdentifier>{FA328BEE-2390-32A7-A2B1-E89678E03C08}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{1C57DBD8-EF8B-3294-BE69-6AE815258EA3}</UniqueIdentifier>
+      <UniqueIdentifier>{128D5C1F-01FE-3295-AE15-4FBE5E1EC6B9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

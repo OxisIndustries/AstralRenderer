@@ -11,9 +11,11 @@ struct SceneData {
     mat4 invProj;
     mat4 lightSpaceMatrix;
     mat4 cascadeViewProj[4];
+    mat4 prevViewProj;
     vec4 frustumPlanes[6];
     vec4 cascadeSplits;
     vec4 cameraPos;
+    vec2 jitter;
     int lightCount;
     int irradianceIndex;
     int prefilteredIndex;
@@ -26,7 +28,12 @@ struct SceneData {
     float shadowNormalBias;
     int pcfRange;
     float csmLambda;
-    int padding1;
+    int clusterBufferIndex;
+    int clusterGridBufferIndex;
+    int clusterLightIndexBufferIndex;
+    int gridX, gridY, gridZ;
+    float nearClip, farClip;
+    float screenWidth, screenHeight;
 };
 
 layout(std430, set = 0, binding = 1) readonly buffer SceneDataBuffer {
@@ -35,6 +42,7 @@ layout(std430, set = 0, binding = 1) readonly buffer SceneDataBuffer {
 
 layout(push_constant) uniform PushConstants {
     uint sceneDataIndex;
+    uint skyboxTextureIndex;
 } pc;
 
 void main() {

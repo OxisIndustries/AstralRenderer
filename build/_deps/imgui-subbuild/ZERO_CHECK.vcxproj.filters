@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\a60d41ffb7b1fbfa4ff8f02185b58d39\generate.stamp.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\imgui-subbuild\CMakeFiles\c504c97dcea0640f99e8ce95d0301d01\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{A9E77948-8C26-3B5E-9CED-AC161C399ACE}</UniqueIdentifier>
+      <UniqueIdentifier>{DAA4CC6E-781B-3B06-93C6-CD396FF65D64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

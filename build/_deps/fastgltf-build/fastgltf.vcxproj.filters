@@ -1,57 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\src\fastgltf.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\src\fastgltf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\src\base64.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\src\base64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\src\io.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\src\io.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\deps\simdjson\simdjson.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\deps\simdjson\simdjson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\base64.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\base64.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\core.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\dxmath_element_traits.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\dxmath_element_traits.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\glm_element_traits.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\glm_element_traits.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\tools.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\tools.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\types.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\types.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\util.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\util.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\math.hpp">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\include\fastgltf\math.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\deps\simdjson\simdjson.h">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\deps\simdjson\simdjson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\fastgltf-src\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\fastgltf-src\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{C239E43B-E182-3988-A5AA-C5773B6D8107}</UniqueIdentifier>
+      <UniqueIdentifier>{B6CA00A9-B549-3F34-A140-613069EFC015}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{1C57DBD8-EF8B-3294-BE69-6AE815258EA3}</UniqueIdentifier>
+      <UniqueIdentifier>{128D5C1F-01FE-3295-AE15-4FBE5E1EC6B9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

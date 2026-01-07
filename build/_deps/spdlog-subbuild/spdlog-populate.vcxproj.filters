@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-mkdir.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-mkdir.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-download.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-download.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-update.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-update.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-patch.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-patch.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-configure.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-configure.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-build.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-build.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-install.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-install.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\fb403d126a01864aeb98e4e6654c638b\spdlog-populate-test.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\9b5537596d1ba4c57ee5362844c2dfae\spdlog-populate-test.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\02de723bee12579c0b397eb964fe9912\spdlog-populate-complete.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\a1ce8d23217c319ad20cb2c6025eee33\spdlog-populate-complete.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\6fee92e403a043df4360c9b4b4e0bb5a\spdlog-populate.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\410bfd1dc5d6223562b052d4b055482f\spdlog-populate.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\spdlog-populate" />
+    <None Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\spdlog-subbuild\CMakeFiles\spdlog-populate" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{6FE700EC-1C68-3A5B-B41E-759AC93C77E1}</UniqueIdentifier>
+      <UniqueIdentifier>{DED655DC-FA77-38B0-BB71-F4DABC1C559E}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\FASTGLTF-SUBBUILD\CMAKELISTS.TXT
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\FASTGLTF-SUBBUILD\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-subbuild -BC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-subbuild --check-stamp-file C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild -BC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild --check-stamp-file C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

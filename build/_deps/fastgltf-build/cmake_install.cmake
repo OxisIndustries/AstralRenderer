@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src
+# Install script for directory: C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,26 +34,26 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/fastgltf" TYPE FILE FILES
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/base64.hpp"
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/core.hpp"
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/dxmath_element_traits.hpp"
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/glm_element_traits.hpp"
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/tools.hpp"
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/types.hpp"
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/util.hpp"
-    "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/math.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/base64.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/core.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/dxmath_element_traits.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/glm_element_traits.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/tools.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/types.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/util.hpp"
+    "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src/include/fastgltf/math.hpp"
     )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/lib/Debug/fastgltf.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/lib/Debug/fastgltf.lib")
   elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/lib/Release/fastgltf.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/lib/Release/fastgltf.lib")
   elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/lib/MinSizeRel/fastgltf.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/lib/MinSizeRel/fastgltf.lib")
   elseif(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/lib/RelWithDebInfo/fastgltf.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/lib/RelWithDebInfo/fastgltf.lib")
   endif()
 endif()
 
@@ -61,7 +61,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf/fastgltfConfig.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf/fastgltfConfig.cmake"
-         "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig.cmake")
+         "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf/fastgltfConfig-*.cmake")
       if(_cmake_old_config_files)
@@ -74,24 +74,24 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-debug.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-debug.cmake")
   endif()
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-minsizerel.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-minsizerel.cmake")
   endif()
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-relwithdebinfo.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-relwithdebinfo.cmake")
   endif()
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-release.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fastgltf" TYPE FILE FILES "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build/CMakeFiles/Export/14b504216a8c2b5661a6a7c88f3023ae/fastgltfConfig-release.cmake")
   endif()
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build/install_local_manifest.txt"
+  file(WRITE "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

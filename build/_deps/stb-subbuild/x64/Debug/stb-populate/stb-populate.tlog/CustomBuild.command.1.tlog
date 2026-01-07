@@ -1,8 +1,8 @@
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-MKDIR.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-MKDIR.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/tmp/stb-populate-mkdirs.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/tmp/stb-populate-mkdirs.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-mkdir
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-mkdir
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -10,15 +10,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-DOWNLOAD.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-DOWNLOAD.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/tmp/stb-populate-gitclone.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/tmp/stb-populate-gitclone.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-download
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-download
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -26,13 +26,13 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-UPDATE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-UPDATE.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\stb-src
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\stb-src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/tmp/stb-populate-gitupdate.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/tmp/stb-populate-gitupdate.cmake
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -40,11 +40,11 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-PATCH.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-PATCH.RULE
 setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-patch
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-patch
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -52,31 +52,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-CONFIGURE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-CONFIGURE.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\stb-build
-if %errorlevel% neq 0 goto :cmEnd
-C:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-configure
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-BUILD.RULE
-setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\stb-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\stb-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-build
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-configure
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -84,15 +68,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-INSTALL.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-BUILD.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\stb-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\stb-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-install
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-build
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -100,15 +84,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\061CD915BF89E5C686A205C65217E872\STB-POPULATE-TEST.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-INSTALL.RULE
 setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\stb-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\stb-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-test
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-install
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -116,13 +100,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\2F0F50284AC24FF528F1DE0C5C1ADDD4\STB-POPULATE-COMPLETE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\5E8E25646C511CE55B3B58B136CA3D33\STB-POPULATE-TEST.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/Debug
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\stb-build
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/Debug/stb-populate-complete
+C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-done
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-test
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -130,7 +116,21 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\4E5291C9EC15C686EE6D8418E2ADD7A0\STB-POPULATE.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\87E6AA36B918B7707294B93B71BAA749\STB-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/Debug/stb-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/Debug/stb-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKEFILES\870D66DD1285B6310C875C74FBA3D5E2\STB-POPULATE.RULE
 setlocal
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -138,9 +138,9 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKELISTS.TXT
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\STB-SUBBUILD\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild -BC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild --check-stamp-file C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild -BC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild --check-stamp-file C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/stb-subbuild/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

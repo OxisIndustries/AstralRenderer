@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-mkdir.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-mkdir.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-download.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-download.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-update.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-update.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-patch.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-patch.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-configure.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-configure.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-build.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-build.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-install.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-install.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\05d458639a8781079b4e75e73ea48766\vma-populate-test.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\aadee0ab51492b7b8187ee4edb00d040\vma-populate-test.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\0b51853b6397e79c3964291ac4991ca1\vma-populate-complete.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\e84fb08923a3995d3b74dc46f5e10863\vma-populate-complete.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\819ae18dd2f3d80f4cc6c649d646cba0\vma-populate.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\8bc745f9c701347a32819437c1de16bf\vma-populate.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\vma-populate" />
+    <None Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-subbuild\CMakeFiles\vma-populate" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{E3625E81-17DD-3CBC-8778-8BC0C1D3ECC8}</UniqueIdentifier>
+      <UniqueIdentifier>{E1B0A4D3-C62B-353A-9D2E-33DCFCD63BCA}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

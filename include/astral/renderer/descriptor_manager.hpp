@@ -16,6 +16,7 @@ public:
 
     uint32_t registerImage(VkImageView view, VkSampler sampler);
     uint32_t registerImageArray(VkImageView view, VkSampler sampler);
+    uint32_t registerImageCube(VkImageView view, VkSampler sampler);
     uint32_t registerStorageImage(VkImageView view);
     uint32_t registerBuffer(VkBuffer buffer, VkDeviceSize offset, VkDeviceSize range, uint32_t binding = 1);
 
@@ -30,8 +31,9 @@ private:
 
     uint32_t m_nextImageIndex = 0;
     uint32_t m_nextArrayImageIndex = 0;
+    uint32_t m_nextCubeImageIndex = 0;
     uint32_t m_nextStorageImageIndex = 0;
-    uint32_t m_nextBufferIndices[4]{0, 0, 0, 0}; // Track indices per binding
+    uint32_t m_nextBufferIndices[16]{0}; // Track indices per binding (extended for more buffer types)
     static constexpr uint32_t MAX_BINDLESS_IMAGES = 10000;
     static constexpr uint32_t MAX_BINDLESS_BUFFERS = 2000;
 };

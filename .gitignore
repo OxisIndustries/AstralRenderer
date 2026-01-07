@@ -1,0 +1,39 @@
+# CMake
+build/
+out/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+install_manifest.txt
+
+# Visual Studio / VSCode
+.vscode/
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.user
+*.suo
+*.opendb
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Binaries
+bin/
+lib/
+*.exe
+*.dll
+*.lib
+*.pdb
+
+# Local Assets (if heavy and not in repo)
+# assets/ 
+# (Keeping assets enabled for this repo as it likely contains necessary shaders/models for logic)
+
+# Tools
+.gemini/

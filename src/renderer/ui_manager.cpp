@@ -71,10 +71,10 @@ UIManager::UIManager(Context* context, VkRenderPass renderPass) : m_context(cont
 }
 
 UIManager::~UIManager() {
-    vkDestroyDescriptorPool(m_context->getDevice(), m_imguiPool, nullptr);
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
+    vkDestroyDescriptorPool(m_context->getDevice(), m_imguiPool, nullptr);
 }
 
 void UIManager::beginFrame() {

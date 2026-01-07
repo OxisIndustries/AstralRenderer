@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\CMakeFiles\d217c19624feb788f5952aec7f23ea49\INSTALL_force.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\CMakeFiles\c91d98eb2591cc15b6b9303795ed8a38\INSTALL_force.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{20868F86-BCB5-340A-8603-7905FADE5EC9}</UniqueIdentifier>
+      <UniqueIdentifier>{840059BE-EA35-3506-A920-F1D0187A9A1D}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

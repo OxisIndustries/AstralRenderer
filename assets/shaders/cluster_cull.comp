@@ -1,0 +1,106 @@
+#version 450
+#extension GL_EXT_nonuniform_qualifier : enable
+
+layout(local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
+
+struct Cluster {
+    vec4 min;
+    vec4 max;
+};
+
+struct Light {
+    vec4 position;  // w = type
+    vec4 color;     // w = intensity
+    vec4 direction; // w = range
+    vec4 params;
+};
+
+struct ClusterGrid {
+    uint offset;
+    uint count;
+};
+
+layout(set = 0, binding = 8) buffer ClusterBuffer {
+    Cluster clusters[];
+} allClusterBuffers[];
+
+layout(set = 0, binding = 3) buffer LightBuffer {
+    Light lights[];
+} allLightBuffers[];
+
+layout(set = 0, binding = 9) buffer ClusterGridBuffer {
+    ClusterGrid grids[];
+} allClusterGridBuffers[];
+
+layout(set = 0, binding = 10) buffer LightIndexBuffer {
+    uint indices[];
+} allLightIndexBuffers[];
+
+// Atomic counter for light indices
+layout(set = 0, binding = 11) buffer AtomicBuffer {
+    uint count;
+} globalIndexCount[];
+
+layout(push_constant) uniform PushConstants {
+    uint clusterBufferIndex;
+    uint lightBufferIndex;
+    uint lightIndexBufferIndex;
+    uint clusterGridBufferIndex;
+    uint atomicBufferIndex;
+    uint lightCount;
+    mat4 viewMatrix;
+} pc;
+
+bool testSphereAABB(vec3 center, float radius, vec3 minAABB, vec3 maxAABB) {
+    float sqDist = 0.0;
+    for (int i = 0; i < 3; i++) {
+        float v = center[i];
+        if (v < minAABB[i]) sqDist += (minAABB[i] - v) * (minAABB[i] - v);
+        if (v > maxAABB[i]) sqDist += (v - maxAABB[i]) * (v - maxAABB[i]);
+    }
+    return sqDist <= radius * radius;
+}
+
+void main() {
+    uint gID = gl_GlobalInvocationID.x;
+    
+    // Total clusters = GridX * GridY * GridZ (passed via some indirect means or just hardcoded/pc)
+    // For now, let's assume we dispatch enough groups.
+    
+    Cluster cluster = allClusterBuffers[nonuniformEXT(pc.clusterBufferIndex)].clusters[gID];
+    vec3 minAABB = cluster.min.xyz;
+    vec3 maxAABB = cluster.max.xyz;
+
+    uint visibleLightCount = 0;
+    uint visibleLightIndices[256]; // Max lights per cluster
+
+    for (uint i = 0; i < pc.lightCount; i++) {
+        Light light = allLightBuffers[nonuniformEXT(pc.lightBufferIndex)].lights[i];
+        
+        // Directional lights are global (added to all clusters or handled separately)
+        if (light.position.w == 1.0) {
+            visibleLightIndices[visibleLightCount++] = i;
+            continue;
+        }
+
+        // Point light in view space
+        vec3 lightPosView = (pc.viewMatrix * vec4(light.position.xyz, 1.0)).xyz;
+        float radius = light.direction.w;
+
+        if (testSphereAABB(lightPosView, radius, minAABB, maxAABB)) {
+            if (visibleLightCount < 256) {
+                visibleLightIndices[visibleLightCount++] = i;
+            }
+        }
+    }
+
+    // Assign to global index buffer
+    uint offset = atomicAdd(globalIndexCount[nonuniformEXT(pc.atomicBufferIndex)].count, visibleLightCount);
+    
+    for (uint i = 0; i < visibleLightCount; i++) {
+        allLightIndexBuffers[nonuniformEXT(pc.lightIndexBufferIndex)].indices[offset + i] = visibleLightIndices[i];
+    }
+
+    allClusterGridBuffers[nonuniformEXT(pc.clusterGridBufferIndex)].grids[gID].offset = offset;
+    allClusterGridBuffers[nonuniformEXT(pc.clusterGridBufferIndex)].grids[gID].count = visibleLightCount;
+}

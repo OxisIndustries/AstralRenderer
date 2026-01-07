@@ -5,7 +5,7 @@ events:
     kind: "message-v1"
     backtrace:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     message: |
       The system is: Windows - 10.0.26200 - AMD64
   -
@@ -16,7 +16,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     mode: "file"
     variable: "src_in"
     description: "Path to a file."
@@ -35,12 +35,7 @@ events:
     found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -109,7 +104,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
       Compiler:  
@@ -119,9 +114,9 @@ events:
       The output was:
       0
       .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-      Olu┼şturma ba┼şlat─▒ld─▒: 5.01.2026 23:50:26.
+      Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:45:54.
       
-      1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" projesi (varsay─▒lan hedefler).
+      1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" projesi (varsay─▒lan hedefler).
       PrepareForBuild:
         "Debug\\" dizini olu┼şturuluyor.
         Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
@@ -137,9 +132,9 @@ events:
         CMakeCXXCompilerId.cpp
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
-        CompilerIdCXX.vcxproj -> C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe
+        CompilerIdCXX.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -147,13 +142,13 @@ events:
       FinalizeBuildStatus:
         "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
         "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate" ├Â─şesine eri┼şiliyor.
-      "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
+      "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
       
       Olu┼şturma ba┼şar─▒l─▒ oldu.
           0 Uyar─▒
           0 Hata
       
-      Ge├ğen S├╝re 00:00:02.52
+      Ge├ğen S├╝re 00:00:03.31
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -161,7 +156,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/4.2.0/CompilerIdCXX/CompilerIdCXX.exe
+        C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/4.2.0/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "find-v1"
@@ -170,7 +165,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     mode: "program"
     variable: "_CMAKE_TOOL_WITH_PATH"
     description: "Path to a program."
@@ -186,10 +181,7 @@ events:
       - "link"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -228,12 +220,7 @@ events:
     found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/link.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -303,7 +290,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     mode: "program"
     variable: "_CMAKE_TOOL_WITH_PATH"
     description: "Path to a program."
@@ -319,10 +306,7 @@ events:
       - "lld-link"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -360,18 +344,9 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/lld-link.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/lld-link.exe"
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/lld-link"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/lld-link.com"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/lld-link.exe"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/lld-link"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/lld-link.com"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/lld-link.exe"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/lld-link"
       - "C:/Program Files/PowerShell/7/lld-link.com"
       - "C:/Program Files/PowerShell/7/lld-link.exe"
       - "C:/Program Files/PowerShell/7/lld-link"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/lld-link.com"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/lld-link.exe"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/lld-link"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link.com"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link.exe"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link"
@@ -451,12 +426,7 @@ events:
     found: "C:/Program Files/LLVM/bin/lld-link.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -524,7 +494,7 @@ events:
     backtrace:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     mode: "program"
     variable: "CMAKE_LINKER"
     description: "Path to a program."
@@ -540,10 +510,7 @@ events:
       - "link"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -582,12 +549,7 @@ events:
     found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/link.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -655,7 +617,7 @@ events:
     backtrace:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     mode: "program"
     variable: "CMAKE_MT"
     description: "Path to a program."
@@ -671,10 +633,7 @@ events:
       - "mt"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -712,18 +671,9 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/mt.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/mt.exe"
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/mt"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/mt.com"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/mt.exe"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/mt"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/mt.com"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/mt.exe"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/mt"
       - "C:/Program Files/PowerShell/7/mt.com"
       - "C:/Program Files/PowerShell/7/mt.exe"
       - "C:/Program Files/PowerShell/7/mt"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/mt.com"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/mt.exe"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/mt"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/mt.com"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/mt.exe"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/mt"
@@ -826,12 +776,7 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -899,7 +844,7 @@ events:
     backtrace:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     mode: "program"
     variable: "CMAKE_AR"
     description: "Path to a program."
@@ -915,10 +860,7 @@ events:
       - "lib"
     candidate_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -957,12 +899,7 @@ events:
     found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/Hostx64/x64/lib.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -1033,7 +970,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:553 (__windows_compiler_msvc_enable_rc)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC-CXX.cmake:6 (__windows_compiler_msvc)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCXXInformation.cmake:48 (include)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     mode: "program"
     variable: "CMAKE_RC_COMPILER"
     description: "RC compiler"
@@ -1048,10 +985,7 @@ events:
     names:
       - "rc"
     candidate_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -1098,18 +1032,9 @@ events:
       - "C:/Program Files (x86)/Astral_Renderer/sbin/"
       - "C:/Program Files (x86)/Astral_Renderer/"
     searched_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/rc.com"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/rc.exe"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/rc"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/rc.com"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/rc.exe"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/rc"
       - "C:/Program Files/PowerShell/7/rc.com"
       - "C:/Program Files/PowerShell/7/rc.exe"
       - "C:/Program Files/PowerShell/7/rc"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/rc.com"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/rc.exe"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/rc"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/rc.com"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/rc.exe"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/rc"
@@ -1248,12 +1173,7 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -1327,12 +1247,12 @@ events:
     backtrace:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-6llbs6"
-      binary: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-6llbs6"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1342,44 +1262,44 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-6llbs6'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9a55c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e7b85.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 5.01.2026 23:50:29.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:45:58.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6llbs6\\cmTC_9a55c.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\cmTC_e7b85.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6llbs6\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_9a55c.dir\\Debug\\cmTC_9a55c.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_9a55c.dir\\Debug\\cmTC_9a55c.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_9a55c.dir\\Debug\\cmTC_9a55c.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_9a55c.dir\\Debug\\\\" /Fd"cmTC_9a55c.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_e7b85.dir\\Debug\\\\" /Fd"cmTC_e7b85.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_9a55c.dir\\Debug\\\\" /Fd"cmTC_9a55c.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_e7b85.dir\\Debug\\\\" /Fd"cmTC_e7b85.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6llbs6\\Debug\\cmTC_9a55c.exe" /INCREMENTAL /ILK:"cmTC_9a55c.dir\\Debug\\cmTC_9a55c.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-6llbs6/Debug/cmTC_9a55c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-6llbs6/Debug/cmTC_9a55c.lib" /MACHINE:X64  /machine:x64 cmTC_9a55c.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_9a55c.vcxproj -> C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6llbs6\\Debug\\cmTC_9a55c.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\cmTC_e7b85.exe" /INCREMENTAL /ILK:"cmTC_e7b85.dir\\Debug\\cmTC_e7b85.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l/Debug/cmTC_e7b85.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l/Debug/cmTC_e7b85.lib" /MACHINE:X64  /machine:x64 cmTC_e7b85.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_e7b85.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\cmTC_e7b85.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6llbs6\\Debug\\cmTC_9a55c.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_9a55c.dir\\Debug\\cmTC_9a55c.tlog\\cmTC_9a55c.write.1u.tlog" "cmTC_9a55c.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\cmTC_e7b85.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\cmTC_e7b85.write.1u.tlog" "cmTC_e7b85.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          "cmTC_9a55c.dir\\Debug\\cmTC_9a55c.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
-          "cmTC_9a55c.dir\\Debug\\cmTC_9a55c.tlog\\cmTC_9a55c.lastbuildstate" ├Â─şesine eri┼şiliyor.
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6llbs6\\cmTC_9a55c.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
+          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
+          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\cmTC_e7b85.lastbuildstate" ├Â─şesine eri┼şiliyor.
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\cmTC_e7b85.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
         
         Olu┼şturma ba┼şar─▒l─▒ oldu.
             0 Uyar─▒
             0 Hata
         
-        Ge├ğen S├╝re 00:00:02.29
+        Ge├ğen S├╝re 00:00:02.01
         
       exitCode: 0
   -
@@ -1387,7 +1307,7 @@ events:
     backtrace:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
@@ -1405,7 +1325,7 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:11 (project)"
     message: |
       Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35503/bin/HostX64/x64/link.exe" "-v"
       Microsoft (R) Incremental Linker Version 14.50.35503.0
@@ -1419,7 +1339,8 @@ events:
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/FetchContent.cmake:2155:EVAL:2 (__FetchContent_doPopulation)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/FetchContent.cmake:2155 (cmake_language)"
       - "C:/Program Files/CMake/share/cmake-4.2/Modules/FetchContent.cmake:2394 (__FetchContent_Populate)"
-      - "CMakeLists.txt:30 (FetchContent_MakeAvailable)"
+      - "cmake/dependencies.cmake:19 (FetchContent_MakeAvailable)"
+      - "CMakeLists.txt:39 (include)"
     mode: "program"
     variable: "GIT_EXECUTABLE"
     description: "Git command line client"
@@ -1435,10 +1356,7 @@ events:
       - "git.cmd"
       - "git"
     candidate_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -1486,18 +1404,9 @@ events:
       - "C:/Program Files (x86)/Astral_Renderer/"
       - "C:/Users/tpoyr/AppData/Local/Atlassian/SourceTree/git_local/bin/"
     searched_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/git.cmd.com"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/git.cmd.exe"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/git.cmd"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/git.cmd.com"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/git.cmd.exe"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/git.cmd"
       - "C:/Program Files/PowerShell/7/git.cmd.com"
       - "C:/Program Files/PowerShell/7/git.cmd.exe"
       - "C:/Program Files/PowerShell/7/git.cmd"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/git.cmd.com"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/git.cmd.exe"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/git.cmd"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/git.cmd.com"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/git.cmd.exe"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/git.cmd"
@@ -1636,18 +1545,9 @@ events:
       - "C:/Users/tpoyr/AppData/Local/Atlassian/SourceTree/git_local/bin/git.cmd.com"
       - "C:/Users/tpoyr/AppData/Local/Atlassian/SourceTree/git_local/bin/git.cmd.exe"
       - "C:/Users/tpoyr/AppData/Local/Atlassian/SourceTree/git_local/bin/git.cmd"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/git.com"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/git.exe"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/git"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/git.com"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/git.exe"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/git"
       - "C:/Program Files/PowerShell/7/git.com"
       - "C:/Program Files/PowerShell/7/git.exe"
       - "C:/Program Files/PowerShell/7/git"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/git.com"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/git.exe"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/git"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/git.com"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/git.exe"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/git"
@@ -1682,12 +1582,7 @@ events:
     found: "C:/Program Files/Git/cmd/git.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -1783,12 +1678,7 @@ events:
     found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -1873,9 +1763,9 @@ events:
       The output was:
       0
       .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-      Olu┼şturma ba┼şlat─▒ld─▒: 5.01.2026 23:50:46.
+      Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:20.
       
-      1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj" projesi (varsay─▒lan hedefler).
+      1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj" projesi (varsay─▒lan hedefler).
       PrepareForBuild:
         "Debug\\" dizini olu┼şturuluyor.
         Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
@@ -1891,9 +1781,9 @@ events:
         CMakeCCompilerId.c
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe
+        CompilerIdC.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -1901,13 +1791,13 @@ events:
       FinalizeBuildStatus:
         "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
         "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate" ├Â─şesine eri┼şiliyor.
-      "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
+      "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
       
       Olu┼şturma ba┼şar─▒l─▒ oldu.
           0 Uyar─▒
           0 Hata
       
-      Ge├ğen S├╝re 00:00:01.85
+      Ge├ğen S├╝re 00:00:02.37
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -1915,7 +1805,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/4.2.0/CompilerIdC/CompilerIdC.exe
+        C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/4.2.0/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "try_compile-v1"
@@ -1926,8 +1816,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-g2o89f"
-      binary: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-g2o89f"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1936,44 +1826,44 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-g2o89f'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_bc291.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9a4c0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 5.01.2026 23:50:49.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:23.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g2o89f\\cmTC_bc291.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\cmTC_9a4c0.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g2o89f\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_bc291.dir\\Debug\\cmTC_bc291.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_bc291.dir\\Debug\\cmTC_bc291.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_bc291.dir\\Debug\\cmTC_bc291.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_bc291.dir\\Debug\\\\" /Fd"cmTC_bc291.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_9a4c0.dir\\Debug\\\\" /Fd"cmTC_9a4c0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_bc291.dir\\Debug\\\\" /Fd"cmTC_bc291.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_9a4c0.dir\\Debug\\\\" /Fd"cmTC_9a4c0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g2o89f\\Debug\\cmTC_bc291.exe" /INCREMENTAL /ILK:"cmTC_bc291.dir\\Debug\\cmTC_bc291.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-g2o89f/Debug/cmTC_bc291.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-g2o89f/Debug/cmTC_bc291.lib" /MACHINE:X64  /machine:x64 cmTC_bc291.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_bc291.vcxproj -> C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g2o89f\\Debug\\cmTC_bc291.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\cmTC_9a4c0.exe" /INCREMENTAL /ILK:"cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0/Debug/cmTC_9a4c0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0/Debug/cmTC_9a4c0.lib" /MACHINE:X64  /machine:x64 cmTC_9a4c0.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_9a4c0.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\cmTC_9a4c0.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g2o89f\\Debug\\cmTC_bc291.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_bc291.dir\\Debug\\cmTC_bc291.tlog\\cmTC_bc291.write.1u.tlog" "cmTC_bc291.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\cmTC_9a4c0.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\cmTC_9a4c0.write.1u.tlog" "cmTC_9a4c0.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          "cmTC_bc291.dir\\Debug\\cmTC_bc291.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
-          "cmTC_bc291.dir\\Debug\\cmTC_bc291.tlog\\cmTC_bc291.lastbuildstate" ├Â─şesine eri┼şiliyor.
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-g2o89f\\cmTC_bc291.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
+          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
+          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\cmTC_9a4c0.lastbuildstate" ├Â─şesine eri┼şiliyor.
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\cmTC_9a4c0.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
         
         Olu┼şturma ba┼şar─▒l─▒ oldu.
             0 Uyar─▒
             0 Hata
         
-        Ge├ğen S├╝re 00:00:02.03
+        Ge├ğen S├╝re 00:00:02.61
         
       exitCode: 0
   -
@@ -2015,53 +1905,53 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-5bjhqj"
-      binary: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-5bjhqj"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-ngajkh"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-ngajkh"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glfw-src/CMake/modules"
+      CMAKE_MODULE_PATH: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glfw-src/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-5bjhqj'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-ngajkh'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9ee2f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_3cff0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 5.01.2026 23:50:51.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:26.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\cmTC_9ee2f.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_9ee2f.dir\\Debug\\cmTC_9ee2f.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_3cff0.dir\\Debug\\cmTC_3cff0.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_9ee2f.dir\\Debug\\cmTC_9ee2f.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_9ee2f.dir\\Debug\\cmTC_9ee2f.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_3cff0.dir\\Debug\\cmTC_3cff0.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_3cff0.dir\\Debug\\cmTC_3cff0.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_9ee2f.dir\\Debug\\\\" /Fd"cmTC_9ee2f.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\src.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_3cff0.dir\\Debug\\\\" /Fd"cmTC_3cff0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_9ee2f.dir\\Debug\\\\" /Fd"cmTC_9ee2f.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\src.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_3cff0.dir\\Debug\\\\" /Fd"cmTC_3cff0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c"
           src.c
-        C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\cmTC_9ee2f.vcxproj]
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\cmTC_9ee2f.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
+        C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj]
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
         
         Olu┼şturma BA┼ŞARISIZ OLDU.
         
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\cmTC_9ee2f.vcxproj" (varsay─▒lan hedef) (1) ->
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj" (varsay─▒lan hedef) (1) ->
         (ClCompile hedefi) -> 
-          C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5bjhqj\\cmTC_9ee2f.vcxproj]
+          C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj]
         
             0 Uyar─▒
             1 Hata
         
-        Ge├ğen S├╝re 00:00:00.78
+        Ge├ğen S├╝re 00:00:00.52
         
       exitCode: 1
   -
@@ -2074,55 +1964,55 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-myvdjv"
-      binary: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-myvdjv"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glfw-src/CMake/modules"
+      CMAKE_MODULE_PATH: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glfw-src/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-myvdjv'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d31f2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1e605.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 5.01.2026 23:50:53.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:28.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\cmTC_d31f2.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_d31f2.dir\\Debug\\cmTC_d31f2.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_1e605.dir\\Debug\\cmTC_1e605.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_d31f2.dir\\Debug\\cmTC_d31f2.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_d31f2.dir\\Debug\\cmTC_d31f2.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_1e605.dir\\Debug\\cmTC_1e605.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_1e605.dir\\Debug\\cmTC_1e605.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_d31f2.dir\\Debug\\\\" /Fd"cmTC_d31f2.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_1e605.dir\\Debug\\\\" /Fd"cmTC_1e605.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\CheckFunctionExists.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_d31f2.dir\\Debug\\\\" /Fd"cmTC_d31f2.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\CheckFunctionExists.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_1e605.dir\\Debug\\\\" /Fd"cmTC_1e605.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\Debug\\cmTC_d31f2.exe" /INCREMENTAL /ILK:"cmTC_d31f2.dir\\Debug\\cmTC_d31f2.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-myvdjv/Debug/cmTC_d31f2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-myvdjv/Debug/cmTC_d31f2.lib" /MACHINE:X64  /machine:x64 cmTC_d31f2.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\cmTC_d31f2.vcxproj]
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\cmTC_d31f2.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\Debug\\cmTC_1e605.exe" /INCREMENTAL /ILK:"cmTC_1e605.dir\\Debug\\cmTC_1e605.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2/Debug/cmTC_1e605.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2/Debug/cmTC_1e605.lib" /MACHINE:X64  /machine:x64 cmTC_1e605.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj]
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
         
         Olu┼şturma BA┼ŞARISIZ OLDU.
         
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\cmTC_d31f2.vcxproj" (varsay─▒lan hedef) (1) ->
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj" (varsay─▒lan hedef) (1) ->
         (Link hedefi) -> 
-          LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-myvdjv\\cmTC_d31f2.vcxproj]
+          LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj]
         
             0 Uyar─▒
             1 Hata
         
-        Ge├ğen S├╝re 00:00:01.08
+        Ge├ğen S├╝re 00:00:00.87
         
       exitCode: 1
   -
@@ -2135,55 +2025,55 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-4gyhhj"
-      binary: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-4gyhhj"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glfw-src/CMake/modules"
+      CMAKE_MODULE_PATH: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glfw-src/CMake/modules"
     buildResult:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-4gyhhj'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_7de2f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_05aef.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 5.01.2026 23:50:54.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:29.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\cmTC_7de2f.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_7de2f.dir\\Debug\\cmTC_7de2f.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_05aef.dir\\Debug\\cmTC_05aef.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_7de2f.dir\\Debug\\cmTC_7de2f.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_7de2f.dir\\Debug\\cmTC_7de2f.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_05aef.dir\\Debug\\cmTC_05aef.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_05aef.dir\\Debug\\cmTC_05aef.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_7de2f.dir\\Debug\\\\" /Fd"cmTC_7de2f.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_05aef.dir\\Debug\\\\" /Fd"cmTC_05aef.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\CheckFunctionExists.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_7de2f.dir\\Debug\\\\" /Fd"cmTC_7de2f.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\CheckFunctionExists.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_05aef.dir\\Debug\\\\" /Fd"cmTC_05aef.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\Debug\\cmTC_7de2f.exe" /INCREMENTAL /ILK:"cmTC_7de2f.dir\\Debug\\cmTC_7de2f.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-4gyhhj/Debug/cmTC_7de2f.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-4gyhhj/Debug/cmTC_7de2f.lib" /MACHINE:X64  /machine:x64 cmTC_7de2f.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\cmTC_7de2f.vcxproj]
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\cmTC_7de2f.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\Debug\\cmTC_05aef.exe" /INCREMENTAL /ILK:"cmTC_05aef.dir\\Debug\\cmTC_05aef.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht/Debug/cmTC_05aef.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht/Debug/cmTC_05aef.lib" /MACHINE:X64  /machine:x64 cmTC_05aef.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj]
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
         
         Olu┼şturma BA┼ŞARISIZ OLDU.
         
-        "C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\cmTC_7de2f.vcxproj" (varsay─▒lan hedef) (1) ->
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj" (varsay─▒lan hedef) (1) ->
         (Link hedefi) -> 
-          LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\Documents\\trae_projects\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4gyhhj\\cmTC_7de2f.vcxproj]
+          LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj]
         
             0 Uyar─▒
             1 Hata
         
-        Ge├ğen S├╝re 00:00:00.76
+        Ge├ğen S├╝re 00:00:00.64
         
       exitCode: 1
   -
@@ -2222,11 +2112,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/pkgRedirects/simdjsonConfig.cmake"
+        path: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/pkgRedirects/simdjsonConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/CMakeFiles/pkgRedirects/simdjson-config.cmake"
+        path: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/pkgRedirects/simdjson-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2235,14 +2125,6 @@ events:
         reason: "no_exist"
       -
         path: "C:/Program Files/PowerShell/7/simdjson-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/simdjsonConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/simdjson-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2512,12 +2394,7 @@ events:
     found: null
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -2606,10 +2483,7 @@ events:
       - "vulkan/vulkan.h"
     candidate_directories:
       - "C:/VulkanSDK/1.4.321.1/include/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -2654,12 +2528,7 @@ events:
     found: "C:/VulkanSDK/1.4.321.1/include/"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -2749,10 +2618,7 @@ events:
     candidate_directories:
       - "C:/VulkanSDK/1.4.321.1/lib/"
       - "C:/VulkanSDK/1.4.321.1/bin/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -2799,12 +2665,7 @@ events:
     found: "C:/VulkanSDK/1.4.321.1/Lib/vulkan-1.lib"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -2897,10 +2758,7 @@ events:
       - "glslc"
     candidate_directories:
       - "C:/VulkanSDK/1.4.321.1/bin/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -2951,12 +2809,7 @@ events:
     found: "C:/VulkanSDK/1.4.321.1/Bin/glslc.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -3045,10 +2898,7 @@ events:
       - "glslangValidator"
     candidate_directories:
       - "C:/VulkanSDK/1.4.321.1/bin/"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -3099,12 +2949,7 @@ events:
     found: "C:/VulkanSDK/1.4.321.1/Bin/glslangValidator.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -3193,10 +3038,7 @@ events:
     names:
       - "doxygen"
     candidate_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -3248,18 +3090,9 @@ events:
       - "/Applications/Utilities/Doxygen.app/Contents/Resources/"
       - "/Applications/Utilities/Doxygen.app/Contents/MacOS/"
     searched_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/doxygen.com"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/doxygen.exe"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/doxygen"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/doxygen.com"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/doxygen.exe"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/doxygen"
       - "C:/Program Files/PowerShell/7/doxygen.com"
       - "C:/Program Files/PowerShell/7/doxygen.exe"
       - "C:/Program Files/PowerShell/7/doxygen"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/doxygen.com"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/doxygen.exe"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/doxygen"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/doxygen.com"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/doxygen.exe"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/doxygen"
@@ -3413,12 +3246,7 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"
@@ -3507,10 +3335,7 @@ events:
     names:
       - "dot"
     candidate_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/"
       - "C:/Program Files/PowerShell/7/"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
       - "C:/VulkanSDK/1.4.321.1/Bin/"
@@ -3565,18 +3390,9 @@ events:
       - "/Applications/Utilities/Doxygen.app/Contents/Resources/"
       - "/Applications/Utilities/Doxygen.app/Contents/MacOS/"
     searched_directories:
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/dot.com"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/dot.exe"
-      - "C:/Users/tpoyr/.trae/sdks/workspaces/d9d9ebfc/versions/node/current/dot"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/dot.com"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/dot.exe"
-      - "C:/Users/tpoyr/.trae/sdks/versions/node/current/dot"
       - "C:/Program Files/PowerShell/7/dot.com"
       - "C:/Program Files/PowerShell/7/dot.exe"
       - "C:/Program Files/PowerShell/7/dot"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/dot.com"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/dot.exe"
-      - "C:/Users/tpoyr/.trae/extensions/vadimcn.vscode-lldb-1.12.1/bin/dot"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/dot.com"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/dot.exe"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/dot"
@@ -3739,12 +3555,7 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\workspaces\\\\d9d9ebfc\\\\versions\\\\node\\\\current"
-        - "c:\\\\Users\\\\tpoyr\\\\.trae\\\\sdks\\\\versions\\\\node\\\\current"
         - "C:\\Program Files\\PowerShell\\7"
-        - "c:\\Users\\tpoyr\\.trae\\extensions\\vadimcn.vscode-lldb-1.12.1\\bin"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\workspaces\\d9d9ebfc\\versions\\node\\current"
-        - "c:\\Users\\tpoyr\\.trae\\sdks\\versions\\node\\current"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\VulkanSDK\\1.4.321.1\\Bin"

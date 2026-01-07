@@ -17,52 +17,60 @@ DescriptorManager::~DescriptorManager() {
 }
 
 void DescriptorManager::createLayout() {
-    std::vector<VkDescriptorSetLayoutBinding> bindings(6); // 0: Images, 1: Global Buffers, 2: Material Buffers, 3: Light Buffers, 4: Array Images, 5: Storage Images
+    std::vector<VkDescriptorSetLayoutBinding> bindings;
     
     // Binding 0: Images
-    bindings[0].binding = 0;
-    bindings[0].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-    bindings[0].descriptorCount = MAX_BINDLESS_IMAGES;
-    bindings[0].stageFlags = VK_SHADER_STAGE_ALL;
+    VkDescriptorSetLayoutBinding b0 = {};
+    b0.binding = 0;
+    b0.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+    b0.descriptorCount = MAX_BINDLESS_IMAGES;
+    b0.stageFlags = VK_SHADER_STAGE_ALL;
+    bindings.push_back(b0);
 
-    // Binding 1: Global Buffers (SceneData etc)
-    bindings[1].binding = 1;
-    bindings[1].descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
-    bindings[1].descriptorCount = MAX_BINDLESS_BUFFERS;
-    bindings[1].stageFlags = VK_SHADER_STAGE_ALL;
+    // Binding 1-3, 6-11: Storage Buffers
+    uint32_t bufferBindings[] = { 1, 2, 3, 6, 7, 8, 9, 10, 11 };
+    for (uint32_t b : bufferBindings) {
+        VkDescriptorSetLayoutBinding bind = {};
+        bind.binding = b;
+        bind.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+        bind.descriptorCount = MAX_BINDLESS_BUFFERS;
+        bind.stageFlags = VK_SHADER_STAGE_ALL;
+        bindings.push_back(bind);
+    }
 
-    // Binding 2: Material Buffers
-    bindings[2].binding = 2;
-    bindings[2].descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
-    bindings[2].descriptorCount = MAX_BINDLESS_BUFFERS;
-    bindings[2].stageFlags = VK_SHADER_STAGE_ALL;
-
-    // Binding 3: Light Buffers
-    bindings[3].binding = 3;
-    bindings[3].descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
-    bindings[3].descriptorCount = MAX_BINDLESS_BUFFERS;
-    bindings[3].stageFlags = VK_SHADER_STAGE_ALL;
+    // Binding 12: Cube Maps
+    VkDescriptorSetLayoutBinding b12 = {};
+    b12.binding = 12;
+    b12.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+    b12.descriptorCount = MAX_BINDLESS_IMAGES;
+    b12.stageFlags = VK_SHADER_STAGE_ALL;
+    bindings.push_back(b12);
 
     // Binding 4: Array Images (sampler2DArray)
-    bindings[4].binding = 4;
-    bindings[4].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-    bindings[4].descriptorCount = MAX_BINDLESS_IMAGES;
-    bindings[4].stageFlags = VK_SHADER_STAGE_ALL;
+    VkDescriptorSetLayoutBinding b4 = {};
+    b4.binding = 4;
+    b4.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+    b4.descriptorCount = MAX_BINDLESS_IMAGES;
+    b4.stageFlags = VK_SHADER_STAGE_ALL;
+    bindings.push_back(b4);
 
     // Binding 5: Storage Images
-    bindings[5].binding = 5;
-    bindings[5].descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE;
-    bindings[5].descriptorCount = MAX_BINDLESS_IMAGES;
-    bindings[5].stageFlags = VK_SHADER_STAGE_ALL;
+    VkDescriptorSetLayoutBinding b5 = {};
+    b5.binding = 5;
+    b5.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_IMAGE;
+    b5.descriptorCount = MAX_BINDLESS_IMAGES;
+    b5.stageFlags = VK_SHADER_STAGE_ALL;
+    bindings.push_back(b5);
 
-    std::vector<VkDescriptorBindingFlags> flags = {
-        VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT,
-        VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT,
-        VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT,
-        VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT,
-        VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT,
-        VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT | VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT
-    };
+    std::vector<VkDescriptorBindingFlags> flags(bindings.size(), VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT);
+
+    // Find index of binding 12 for variable count (last binding)
+    for(size_t i = 0; i < bindings.size(); ++i) {
+        if(bindings[i].binding == 12) {
+            flags[i] |= VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT;
+            break;
+        }
+    }
 
     VkDescriptorSetLayoutBindingFlagsCreateInfo flagsInfo = {VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO};
     flagsInfo.bindingCount = static_cast<uint32_t>(flags.size());
@@ -81,8 +89,8 @@ void DescriptorManager::createLayout() {
 
 void DescriptorManager::createPoolAndSet() {
     std::vector<VkDescriptorPoolSize> poolSizes = {
-        {VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, MAX_BINDLESS_IMAGES * 2}, // Binding 0 and 4
-        {VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, MAX_BINDLESS_BUFFERS * 3}, // Three buffer bindings (Scene, Material, Light)
+        {VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, MAX_BINDLESS_IMAGES * 3}, // Binding 0, 4 and 12
+        {VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, MAX_BINDLESS_BUFFERS * 10}, // More buffer bindings
         {VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, MAX_BINDLESS_IMAGES} // Binding 5
     };
 
@@ -96,10 +104,12 @@ void DescriptorManager::createPoolAndSet() {
         throw std::runtime_error("Failed to create bindless descriptor pool!");
     }
 
-    uint32_t counts[] = { MAX_BINDLESS_IMAGES, MAX_BINDLESS_BUFFERS, MAX_BINDLESS_BUFFERS, MAX_BINDLESS_BUFFERS, MAX_BINDLESS_IMAGES, MAX_BINDLESS_IMAGES };
+    // We need to find the count for the variable binding (binding 5)
+    uint32_t variableCount = MAX_BINDLESS_IMAGES;
+    
     VkDescriptorSetVariableDescriptorCountAllocateInfo variableInfo = {VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO};
     variableInfo.descriptorSetCount = 1;
-    variableInfo.pDescriptorCounts = &counts[5]; // Only the last binding (5: Storage Images) has variable count
+    variableInfo.pDescriptorCounts = &variableCount;
 
     VkDescriptorSetAllocateInfo allocInfo = {VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO};
     allocInfo.pNext = &variableInfo;
@@ -186,9 +196,34 @@ uint32_t DescriptorManager::registerStorageImage(VkImageView view) {
     return index;
 }
 
+uint32_t DescriptorManager::registerImageCube(VkImageView view, VkSampler sampler) {
+    if (m_nextCubeImageIndex >= MAX_BINDLESS_IMAGES) {
+        throw std::runtime_error("Maximum bindless cube images reached!");
+    }
+
+    uint32_t index = m_nextCubeImageIndex++;
+    
+    VkDescriptorImageInfo imageInfo = {};
+    imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+    imageInfo.imageView = view;
+    imageInfo.sampler = sampler;
+
+    VkWriteDescriptorSet write = {VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET};
+    write.dstSet = m_set;
+    write.dstBinding = 12; // Cube Maps
+    write.dstArrayElement = index;
+    write.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+    write.descriptorCount = 1;
+    write.pImageInfo = &imageInfo;
+
+    vkUpdateDescriptorSets(m_context->getDevice(), 1, &write, 0, nullptr);
+
+    return index;
+}
+
 uint32_t DescriptorManager::registerBuffer(VkBuffer buffer, VkDeviceSize offset, VkDeviceSize range, uint32_t binding) {
-    if (binding == 0 || binding > 3) {
-        throw std::runtime_error("Invalid binding index for registerBuffer! (Expected 1, 2, or 3)");
+    if (binding == 0 || binding > 15) {
+        throw std::runtime_error("Invalid binding index for registerBuffer! (Expected 1-15)");
     }
     
     if (m_nextBufferIndices[binding] >= MAX_BINDLESS_BUFFERS) {

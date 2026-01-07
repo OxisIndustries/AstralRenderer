@@ -21,9 +21,11 @@ struct SceneData {
     glm::mat4 invProj;
     glm::mat4 lightSpaceMatrix; // Primary shadow matrix
     glm::mat4 cascadeViewProj[4];
+    glm::mat4 prevViewProj; // TAA için önceki kare
     glm::vec4 frustumPlanes[6];
     glm::vec4 cascadeSplits;
     glm::vec4 cameraPos;
+    glm::vec2 jitter; // TAA jitter offset
     int lightCount;
     int irradianceIndex;
     int prefilteredIndex;
@@ -36,7 +38,12 @@ struct SceneData {
     float shadowNormalBias;
     int pcfRange;
     float csmLambda;
-    int padding1;
+    int clusterBufferIndex;      // Index to SSBO containing ClusterAABB
+    int clusterGridBufferIndex;  // Index to SSBO containing cluster light offsets/counts
+    int clusterLightIndexBufferIndex; // Index to SSBO containing light indices
+    int gridX, gridY, gridZ;     // Cluster grid dimensions
+    float nearClip, farClip;     // Camera clips for cluster calculation
+    float screenWidth, screenHeight;
 };
 
 struct MaterialMetadata {

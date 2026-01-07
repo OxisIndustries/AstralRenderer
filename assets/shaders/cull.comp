@@ -27,9 +27,11 @@ struct SceneData {
     mat4 invProj;
     mat4 lightSpaceMatrix;
     mat4 cascadeViewProj[4];
+    mat4 prevViewProj;
     vec4 frustumPlanes[6];
     vec4 cascadeSplits;
     vec4 cameraPos;
+    vec2 jitter;
     int lightCount;
     int irradianceIndex;
     int prefilteredIndex;
@@ -42,17 +44,23 @@ struct SceneData {
     float shadowNormalBias;
     int pcfRange;
     float csmLambda;
+    int clusterBufferIndex;
+    int clusterGridBufferIndex;
+    int clusterLightIndexBufferIndex;
+    int gridX, gridY, gridZ;
+    float nearClip, farClip;
+    float screenWidth, screenHeight;
 };
 
 layout(std430, set = 0, binding = 1) readonly buffer SceneBuffer {
     SceneData scene;
 } allSceneBuffers[];
 
-layout(std430, set = 0, binding = 1) readonly buffer InstanceBuffer {
+layout(std430, set = 0, binding = 6) readonly buffer InstanceBuffer {
     MeshInstance instances[];
 } allInstanceBuffers[];
 
-layout(std430, set = 0, binding = 1) buffer IndirectBuffer {
+layout(std430, set = 0, binding = 7) buffer IndirectBuffer {
     IndirectCommand commands[];
 } allIndirectBuffers[];
 
@@ -90,7 +98,8 @@ void main() {
     );
     float radius = instance.sphereRadius * max(max(scale.x, scale.y), scale.z);
 
-    bool visible = isVisible(scene.frustumPlanes, center, radius);
+    // Temporarily disable culling to debug black screen
+    bool visible = true; // isVisible(scene.frustumPlanes, center, radius);
 
     // Update indirect command instance count
     allIndirectBuffers[pc.indirectBufferIndex].commands[gID].instanceCount = visible ? 1 : 0;

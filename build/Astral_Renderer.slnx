@@ -7,7 +7,7 @@
 		<BuildType Name="RelWithDebInfo"/>
 		<Platform Name="x64"/>
 	</Configurations>
-	<Project Path="AstralSandbox.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="caaf853a-9469-3895-a087-2cc0319da03d">
+	<Project Path="AstralSandbox.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="bc59707f-0f19-3812-9aa4-af3b7cec9de8">
 		<BuildDependency Project="_deps/vma-build/src/VulkanMemoryAllocator.vcxproj"/>
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="astral_renderer.vcxproj"/>
@@ -16,10 +16,10 @@
 		<BuildDependency Project="_deps/glm-build/glm/glm.vcxproj"/>
 		<BuildDependency Project="_deps/spdlog-build/spdlog.vcxproj"/>
 	</Project>
-	<Project Path="_deps/vma-build/src/VulkanMemoryAllocator.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="8c170c7a-624c-3b35-9c61-943d4038c80f">
+	<Project Path="_deps/vma-build/src/VulkanMemoryAllocator.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="486e7c5b-34ad-371c-8145-fd56ed29b139">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="astral_renderer.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="bac0319a-ec26-30b2-86a2-c7faff2622d4">
+	<Project Path="astral_renderer.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="303c1dcc-29ed-36ff-bead-8d126fae7ef0">
 		<BuildDependency Project="_deps/vma-build/src/VulkanMemoryAllocator.vcxproj"/>
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="_deps/fastgltf-build/fastgltf.vcxproj"/>
@@ -27,17 +27,17 @@
 		<BuildDependency Project="_deps/glm-build/glm/glm.vcxproj"/>
 		<BuildDependency Project="_deps/spdlog-build/spdlog.vcxproj"/>
 	</Project>
-	<Project Path="_deps/fastgltf-build/fastgltf.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="aa759e85-7027-32b2-b1b7-5de4bc3fa26e">
+	<Project Path="_deps/fastgltf-build/fastgltf.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="3813bf0b-60ea-3a2a-b9f4-16be38ec2c43">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="_deps/glm-build/glm/glm.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="cc82584a-11f7-38ae-bd37-c88ae036720e">
+	<Project Path="_deps/glm-build/glm/glm.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="56578283-da4c-3e5c-a009-680e0c55b83f">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="_deps/spdlog-build/spdlog.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="cd9bee58-e51f-3183-82d0-8018d65a1261">
+	<Project Path="_deps/spdlog-build/spdlog.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="f9aaa1d0-315c-3abf-9c3d-6903708fae43">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
 	<Folder Name="/CMakePredefinedTargets/">
-		<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="90e15295-b9f6-3e80-a4b6-bfa5553080dc" DefaultStartup="true">
+		<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="f39ec488-d184-3716-ae5f-255f4228f817" DefaultStartup="true">
 			<BuildDependency Project="AstralSandbox.vcxproj"/>
 			<BuildDependency Project="_deps/vma-build/src/VulkanMemoryAllocator.vcxproj"/>
 			<BuildDependency Project="ZERO_CHECK.vcxproj"/>
@@ -47,7 +47,7 @@
 			<BuildDependency Project="_deps/glm-build/glm/glm.vcxproj"/>
 			<BuildDependency Project="_deps/spdlog-build/spdlog.vcxproj"/>
 		</Project>
-		<Project Path="INSTALL.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="40052ce6-9016-3253-98d6-89cb1addb3b8">
+		<Project Path="INSTALL.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="44300083-6bcf-3443-8b58-da447df49b7f">
 			<BuildDependency Project="ALL_BUILD.vcxproj"/>
 			<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 			<Build Solution="Debug|*" Project="false"/>
@@ -55,13 +55,13 @@
 			<Build Solution="MinSizeRel|*" Project="false"/>
 			<Build Solution="RelWithDebInfo|*" Project="false"/>
 		</Project>
-		<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="ef99db00-a273-3b32-a3af-c47de6dbae48"/>
+		<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="c83fcde9-4f10-30d8-9656-25ee2ebacc73"/>
 	</Folder>
 	<Folder Name="/GLFW3/">
-		<Project Path="_deps/glfw-build/src/glfw.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="dd7ec637-f575-325f-8f31-a11e85cdbc4c">
+		<Project Path="_deps/glfw-build/src/glfw.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="19f767db-11b4-3961-b7a8-ded5825485ac">
 			<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		</Project>
-		<Project Path="_deps/glfw-build/src/update_mappings.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="190cadb6-a022-3217-b233-bfb3f4817dc7">
+		<Project Path="_deps/glfw-build/src/update_mappings.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="a3d963e7-2db0-316a-a3a4-4bbb74f24c90">
 			<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 			<Build Solution="Debug|*" Project="false"/>
 			<Build Solution="Release|*" Project="false"/>

@@ -10,7 +10,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E56D4127-37D7-32F1-9FF1-D8818977EC67}</ProjectGuid>
+    <ProjectGuid>{13B9E581-69BD-3C32-BF48-6F11250E4CD4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -46,13 +46,13 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-mkdir.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-mkdir.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating directories for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/tmp/glm-populate-mkdirs.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/tmp/glm-populate-mkdirs.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-mkdir
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-mkdir
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -61,21 +61,21 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-mkdir</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-mkdir</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-download.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-download.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing download step (git clone) for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/tmp/glm-populate-gitclone.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/tmp/glm-populate-gitclone.cmake
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-download
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-download
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -83,20 +83,20 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\glm-populate-gitinfo.txt;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-download</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\glm-populate-gitinfo.txt;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-download</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-update.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-update.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing update step for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-src
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-src
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/tmp/glm-populate-gitupdate.cmake
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/tmp/glm-populate-gitupdate.cmake
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -104,19 +104,19 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\tmp\glm-populate-gitupdate.cmake;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\glm-populate-update-info.txt;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-download;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-update</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\tmp\glm-populate-gitupdate.cmake;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\glm-populate-update-info.txt;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-update</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-patch.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-patch.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No patch step for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-patch
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-patch
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -124,24 +124,24 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\glm-populate-patch-info.txt;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-update;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-patch</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\glm-populate-patch-info.txt;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-update;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-patch</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-configure.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-configure.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No configure step for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-configure
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-configure
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -149,23 +149,23 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\tmp\glm-populate-cfgcmd.txt;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-patch;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-configure</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\tmp\glm-populate-cfgcmd.txt;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-configure</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-build.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-build.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No build step for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-build
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-build
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -173,23 +173,23 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-configure;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-build</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-build</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-install.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-install.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No install step for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-install
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-install
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -197,23 +197,23 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-build;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-install</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-install</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\3a4182367d1a3f37a53645b58038f850\glm-populate-test.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\69dd69b8602dfa73aeee77512cd796f3\glm-populate-test.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No test step for 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cd C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-build
+cd C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-build
 if %errorlevel% neq 0 goto :cmEnd
 C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cmake.exe" -E echo_append
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-test
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-test
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -221,21 +221,21 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-install;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-test</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-test</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\f09d5ca1c70527a816c6ecbaaeff7858\glm-populate-complete.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\14fef784ff6e9858ea32eaaab34ee5e7\glm-populate-complete.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Completed 'glm-populate'</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/CMakeFiles/Debug
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/CMakeFiles/Debug
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/CMakeFiles/Debug/glm-populate-complete
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/CMakeFiles/Debug/glm-populate-complete
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-done
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/Debug/glm-populate-done
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -243,14 +243,14 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-install;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-mkdir;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-download;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-update;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-patch;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-configure;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-build;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-test;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\Debug\glm-populate-complete</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-install;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-mkdir;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-download;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-update;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-patch;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-configure;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-build;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\src\glm-populate-stamp\Debug\glm-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\Debug\glm-populate-complete</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\026b9d5c4beed2433a361eae7508c2ce\glm-populate.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\4fa1a6c5e3ba26be8b535b774e904a9b\glm-populate.rule">
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
@@ -260,18 +260,18 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\Debug\glm-populate-complete;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\glm-populate</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\Debug\glm-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\glm-populate</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild -BC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild --check-stamp-file C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/glm-subbuild/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild -BC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild --check-stamp-file C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/glm-subbuild/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -279,19 +279,19 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\PatchInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\RepositoryInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\UpdateInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitclone.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitupdate.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\mkdirs.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\4.2.0\CMakeSystem.cmake;C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\tmp\glm-populate-mkdirs.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\PatchInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\RepositoryInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\UpdateInfo.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitclone.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\gitupdate.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\mkdirs.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\4.2.0\CMakeSystem.cmake;C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\glm-populate-prefix\tmp\glm-populate-mkdirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\glm-populate">
+    <None Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\CMakeFiles\glm-populate">
     </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glm-subbuild\ZERO_CHECK.vcxproj">
-      <Project>{3C42D773-AC63-371B-BC70-65F00D68D967}</Project>
+    <ProjectReference Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glm-subbuild\ZERO_CHECK.vcxproj">
+      <Project>{C49A9CA1-5964-3673-A6DE-0FFF86FCF3DB}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

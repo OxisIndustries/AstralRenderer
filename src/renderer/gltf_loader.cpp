@@ -341,7 +341,7 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
                 
             mesh.primitives.push_back(primitive);
         }
-        model->meshes.push_back(std::move(mesh));
+        model->meshes.push_back(mesh);
     }
 
     // GPU Buffer'larını yarat

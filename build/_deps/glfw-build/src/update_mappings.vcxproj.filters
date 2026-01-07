@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\CMakeFiles\c65f2d38b9b89b4f5482d9fb0b69d287\update_mappings.rule">
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\CMakeFiles\c4c2d99ba5045748296bc72e96c0deba\update_mappings.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glfw-src\src\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glfw-src\src\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glfw-src\src\mappings.h.in">
+    <None Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glfw-src\src\mappings.h.in">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glfw-src\CMake\GenerateMappings.cmake" />
-    <None Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\glfw-build\src\CMakeFiles\update_mappings" />
+    <None Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glfw-src\CMake\GenerateMappings.cmake" />
+    <None Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\glfw-build\src\CMakeFiles\update_mappings" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{20868F86-BCB5-340A-8603-7905FADE5EC9}</UniqueIdentifier>
+      <UniqueIdentifier>{840059BE-EA35-3506-A920-F1D0187A9A1D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{C239E43B-E182-3988-A5AA-C5773B6D8107}</UniqueIdentifier>
+      <UniqueIdentifier>{B6CA00A9-B549-3F34-A140-613069EFC015}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

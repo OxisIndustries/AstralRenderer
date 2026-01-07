@@ -28,8 +28,8 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 include(ExternalProject)
 ExternalProject_Add(fastgltf-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/spnda/fastgltf.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v0.8.0"
-                    SOURCE_DIR          "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-src"
-                    BINARY_DIR          "C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/fastgltf-build"
+                    SOURCE_DIR          "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-src"
+                    BINARY_DIR          "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

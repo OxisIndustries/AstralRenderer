@@ -1,6 +1,6 @@
-^C:\USERS\TPOYR\DOCUMENTS\TRAE_PROJECTS\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\819AE18DD2F3D80F4CC6C649D646CBA0\GENERATE.STAMP.RULE
+^C:\USERS\TPOYR\ONEDRIVE\DESKTOP\ASTRAL_RENDERER\BUILD\_DEPS\VMA-SUBBUILD\CMAKEFILES\8BC745F9C701347A32819437C1DE16BF\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild -BC:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/tpoyr/Documents/trae_projects/Astral_Renderer/build/_deps/vma-subbuild/vma-populate.slnx
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild -BC:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/vma-populate.slnx
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

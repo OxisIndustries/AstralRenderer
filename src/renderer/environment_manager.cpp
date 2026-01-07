@@ -92,7 +92,7 @@ void EnvironmentManager::convertEquirectToCube(const std::unique_ptr<Image>& equ
     
     uint32_t equirectIdx = m_context->getDescriptorManager().registerImage(equirect->getView(), sampler);
     uint32_t cubeIdx = m_context->getDescriptorManager().registerStorageImage(m_skybox->getView());
-    m_skyboxIndex = m_context->getDescriptorManager().registerImage(m_skybox->getView(), sampler);
+    m_skyboxIndex = m_context->getDescriptorManager().registerImageCube(m_skybox->getView(), sampler);
 
     auto compShader = std::make_shared<Shader>(m_context, readFile("assets/shaders/equirect_to_cube.comp"), ShaderStage::Compute, "EquirectToCube");
     
@@ -118,6 +118,20 @@ void EnvironmentManager::convertEquirectToCube(const std::unique_ptr<Image>& equ
 
     ImmediateCommands cmd(m_context);
     VkCommandBuffer cb = cmd.getBuffer();
+
+    // Transition skybox to GENERAL for storage writing
+    {
+        VkImageMemoryBarrier barrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+        barrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+        barrier.newLayout = VK_IMAGE_LAYOUT_GENERAL;
+        barrier.srcAccessMask = 0;
+        barrier.dstAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
+        barrier.image = m_skybox->getHandle();
+        barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        barrier.subresourceRange.levelCount = 1;
+        barrier.subresourceRange.layerCount = 6;
+        vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &barrier);
+    }
 
     vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_COMPUTE, pipeline.getHandle());
     VkDescriptorSet set = m_context->getDescriptorManager().getDescriptorSet();
@@ -167,7 +181,7 @@ void EnvironmentManager::generateIrradiance() {
     vkCreateSampler(m_context->getDevice(), &samplerInfo, nullptr, &sampler);
     
     uint32_t outputIdx = m_context->getDescriptorManager().registerStorageImage(m_irradiance->getView());
-    m_irradianceIndex = m_context->getDescriptorManager().registerImage(m_irradiance->getView(), sampler);
+    m_irradianceIndex = m_context->getDescriptorManager().registerImageCube(m_irradiance->getView(), sampler);
 
     auto compShader = std::make_shared<Shader>(m_context, readFile("assets/shaders/irradiance.comp"), ShaderStage::Compute, "IrradianceMap");
     
@@ -193,6 +207,20 @@ void EnvironmentManager::generateIrradiance() {
 
     ImmediateCommands cmd(m_context);
     VkCommandBuffer cb = cmd.getBuffer();
+
+    // Transition irradiance to GENERAL for storage writing
+    {
+        VkImageMemoryBarrier barrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+        barrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+        barrier.newLayout = VK_IMAGE_LAYOUT_GENERAL;
+        barrier.srcAccessMask = 0;
+        barrier.dstAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
+        barrier.image = m_irradiance->getHandle();
+        barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        barrier.subresourceRange.levelCount = 1;
+        barrier.subresourceRange.layerCount = 6;
+        vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &barrier);
+    }
 
     vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_COMPUTE, pipeline.getHandle());
     VkDescriptorSet set = m_context->getDescriptorManager().getDescriptorSet();
@@ -246,7 +274,7 @@ void EnvironmentManager::generatePrefiltered() {
     VkSampler sampler;
     vkCreateSampler(m_context->getDevice(), &samplerInfo, nullptr, &sampler);
     
-    m_prefilteredIndex = m_context->getDescriptorManager().registerImage(m_prefiltered->getView(), sampler);
+    m_prefilteredIndex = m_context->getDescriptorManager().registerImageCube(m_prefiltered->getView(), sampler);
 
     auto compShader = std::make_shared<Shader>(m_context, readFile("assets/shaders/prefilter.comp"), ShaderStage::Compute, "PrefilterMap");
     
@@ -272,6 +300,20 @@ void EnvironmentManager::generatePrefiltered() {
 
     ImmediateCommands cmd(m_context);
     VkCommandBuffer cb = cmd.getBuffer();
+
+    // Transition prefiltered to GENERAL for storage writing
+    {
+        VkImageMemoryBarrier barrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+        barrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+        barrier.newLayout = VK_IMAGE_LAYOUT_GENERAL;
+        barrier.srcAccessMask = 0;
+        barrier.dstAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
+        barrier.image = m_prefiltered->getHandle();
+        barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        barrier.subresourceRange.levelCount = mipLevels;
+        barrier.subresourceRange.layerCount = 6;
+        vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &barrier);
+    }
 
     for (uint32_t i = 0; i < mipLevels; ++i) {
         uint32_t mipWidth = prefilteredSize >> i;
@@ -376,6 +418,20 @@ void EnvironmentManager::generateBrdfLut() {
 
     ImmediateCommands cmd(m_context);
     VkCommandBuffer cb = cmd.getBuffer();
+
+    // Transition BRDF LUT to GENERAL for storage writing
+    {
+        VkImageMemoryBarrier barrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+        barrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+        barrier.newLayout = VK_IMAGE_LAYOUT_GENERAL;
+        barrier.srcAccessMask = 0;
+        barrier.dstAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
+        barrier.image = m_brdfLut->getHandle();
+        barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        barrier.subresourceRange.levelCount = 1;
+        barrier.subresourceRange.layerCount = 1;
+        vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, 0, nullptr, 0, nullptr, 1, &barrier);
+    }
 
     vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_COMPUTE, pipeline.getHandle());
     VkDescriptorSet set = m_context->getDescriptorManager().getDescriptorSet();

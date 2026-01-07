@@ -134,23 +134,24 @@ void RenderGraph::execute(VkCommandBuffer cmd, VkExtent2D extent) {
             }
         }
 
-        VkRenderingInfo renderingInfo = {VK_STRUCTURE_TYPE_RENDERING_INFO};
         if (!pass.outputs.empty()) {
+            VkRenderingInfo renderingInfo = {VK_STRUCTURE_TYPE_RENDERING_INFO};
             const auto& firstOut = m_resources[pass.outputs[0]];
             renderingInfo.renderArea = {{0, 0}, {firstOut.width, firstOut.height}};
-        } else {
-            renderingInfo.renderArea = {{0, 0}, extent};
-        }
-        renderingInfo.layerCount = 1;
-        renderingInfo.colorAttachmentCount = static_cast<uint32_t>(colorAttachments.size());
-        renderingInfo.pColorAttachments = colorAttachments.data();
-        if (hasDepth) {
-            renderingInfo.pDepthAttachment = &depthAttachment;
-        }
+            renderingInfo.layerCount = 1;
+            renderingInfo.colorAttachmentCount = static_cast<uint32_t>(colorAttachments.size());
+            renderingInfo.pColorAttachments = colorAttachments.data();
+            if (hasDepth) {
+                renderingInfo.pDepthAttachment = &depthAttachment;
+            }
 
-        vkCmdBeginRendering(cmd, &renderingInfo);
-        pass.execute(cmd);
-        vkCmdEndRendering(cmd);
+            vkCmdBeginRendering(cmd, &renderingInfo);
+            pass.execute(cmd);
+            vkCmdEndRendering(cmd);
+        } else {
+            // Compute pass or pass with no attachments
+            pass.execute(cmd);
+        }
 
         // If it's the last pass and output is external (swapchain), transition to Present
         if (isLastPass) {

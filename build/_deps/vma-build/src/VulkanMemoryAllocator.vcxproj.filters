@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-src\src\VmaUsage.cpp">
+    <ClCompile Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-src\src\VmaUsage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-src\src\VmaUsage.h">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-src\src\VmaUsage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-src\include\vk_mem_alloc.h">
+    <ClInclude Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-src\include\vk_mem_alloc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-src\src\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-src\src\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Natvis Include="C:\Users\tpoyr\Documents\trae_projects\Astral_Renderer\build\_deps\vma-src\src\vk_mem_alloc.natvis" />
+    <Natvis Include="C:\Users\tpoyr\OneDrive\Desktop\Astral_Renderer\build\_deps\vma-src\src\vk_mem_alloc.natvis" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{C239E43B-E182-3988-A5AA-C5773B6D8107}</UniqueIdentifier>
+      <UniqueIdentifier>{B6CA00A9-B549-3F34-A140-613069EFC015}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{1C57DBD8-EF8B-3294-BE69-6AE815258EA3}</UniqueIdentifier>
+      <UniqueIdentifier>{128D5C1F-01FE-3295-AE15-4FBE5E1EC6B9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
