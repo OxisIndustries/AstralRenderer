@@ -28,7 +28,7 @@ void DescriptorManager::createLayout() {
     bindings.push_back(b0);
 
     // Binding 1-3, 6-11: Storage Buffers
-    uint32_t bufferBindings[] = { 1, 2, 3, 6, 7, 8, 9, 10, 11 };
+    uint32_t bufferBindings[] = { 1, 2, 3, 6, 7, 8, 9, 10, 11, 13 };
     for (uint32_t b : bufferBindings) {
         VkDescriptorSetLayoutBinding bind = {};
         bind.binding = b;
@@ -64,9 +64,9 @@ void DescriptorManager::createLayout() {
 
     std::vector<VkDescriptorBindingFlags> flags(bindings.size(), VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT);
 
-    // Find index of binding 12 for variable count (last binding)
+    // Find index of binding 13 for variable count (must be the HIGHEST binding number per Vulkan spec)
     for(size_t i = 0; i < bindings.size(); ++i) {
-        if(bindings[i].binding == 12) {
+        if(bindings[i].binding == 13) {
             flags[i] |= VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT;
             break;
         }
@@ -90,7 +90,7 @@ void DescriptorManager::createLayout() {
 void DescriptorManager::createPoolAndSet() {
     std::vector<VkDescriptorPoolSize> poolSizes = {
         {VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, MAX_BINDLESS_IMAGES * 3}, // Binding 0, 4 and 12
-        {VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, MAX_BINDLESS_BUFFERS * 10}, // More buffer bindings
+        {VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, MAX_BINDLESS_BUFFERS * 12}, // 10 buffer bindings + headroom
         {VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, MAX_BINDLESS_IMAGES} // Binding 5
     };
 
@@ -104,8 +104,8 @@ void DescriptorManager::createPoolAndSet() {
         throw std::runtime_error("Failed to create bindless descriptor pool!");
     }
 
-    // We need to find the count for the variable binding (binding 5)
-    uint32_t variableCount = MAX_BINDLESS_IMAGES;
+    // We need to find the count for the variable binding (binding 13 is a storage buffer)
+    uint32_t variableCount = MAX_BINDLESS_BUFFERS;
     
     VkDescriptorSetVariableDescriptorCountAllocateInfo variableInfo = {VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO};
     variableInfo.descriptorSetCount = 1;

@@ -1,17 +1,19 @@
 #include "astral/renderer/renderer_system.hpp"
-#include "astral/renderer/vertex.hpp"
+#include "astral/renderer/scene_manager.hpp"
+#include "astral/renderer/sync.hpp"
+
 #include <filesystem>
 #include <fstream>
 #include <random>
 #include <spdlog/spdlog.h>
 #include <sstream>
 
-
 namespace astral {
 
 RendererSystem::RendererSystem(Context *context, Swapchain *swapchain,
                                uint32_t width, uint32_t height)
-    : m_context(context), m_width(width), m_height(height) {}
+    : m_context(context), m_swapchainFormat(swapchain->getImageFormat()),
+      m_width(width), m_height(height) {}
 
 RendererSystem::~RendererSystem() {
   vkDestroySampler(m_context->getDevice(), m_hdrSampler, nullptr);
@@ -33,13 +35,16 @@ RendererSystem::~RendererSystem() {
 }
 
 std::string RendererSystem::readFile(const std::string &filename) {
-  std::ifstream file(filename);
+  std::ifstream file(filename, std::ios::ate | std::ios::binary);
   if (!file.is_open()) {
     throw std::runtime_error("Failed to open file: " + filename);
   }
-  std::stringstream buffer;
-  buffer << file.rdbuf();
-  return buffer.str();
+  size_t fileSize = (size_t)file.tellg();
+  std::string buffer;
+  buffer.resize(fileSize);
+  file.seekg(0);
+  file.read(buffer.data(), fileSize);
+  return buffer;
 }
 
 void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
@@ -104,7 +109,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
       m_resources.velocityImage->getView(), m_hdrSampler);
 
   ImageSpecs ldrSpecs = hdrSpecs;
-  ldrSpecs.format = VK_FORMAT_R8G8B8A8_UNORM;
+  ldrSpecs.format = m_swapchainFormat;
   m_resources.ldrImage = std::make_unique<Image>(m_context, ldrSpecs);
   m_ldrTextureIndex = m_context->getDescriptorManager().registerImage(
       m_resources.ldrImage->getView(), m_hdrSampler);
@@ -130,7 +135,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
                                        ssaoKernel.size() * sizeof(glm::vec4));
   m_ssaoKernelBufferIndex = m_context->getDescriptorManager().registerBuffer(
       m_resources.ssaoKernelBuffer->getHandle(), 0,
-      m_resources.ssaoKernelBuffer->getSize(), 2);
+      m_resources.ssaoKernelBuffer->getSize(), 13); // Changed from 2 to 13
 
   std::vector<glm::vec4> ssaoNoise;
   for (uint32_t i = 0; i < 16; ++i) {
@@ -261,54 +266,55 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
             m_resources.clusterAtomicBuffers[i]->getSize(), 11));
   }
 
-  m_vertShader =
-      std::make_shared<Shader>(m_context, readFile("assets/shaders/pbr.vert"),
-                               ShaderStage::Vertex, "PBRVert");
-  m_fragShader =
-      std::make_shared<Shader>(m_context, readFile("assets/shaders/pbr.frag"),
-                               ShaderStage::Fragment, "PBRFrag");
+  spdlog::info("Loading PBR Shaders...");
+  m_vertShader = std::make_shared<Shader>(
+      m_context, readFile("assets/shaders/pbr.vert.spv"), ShaderStage::Vertex,
+      "PBRVert");
+  m_fragShader = std::make_shared<Shader>(
+      m_context, readFile("assets/shaders/pbr.frag.spv"), ShaderStage::Fragment,
+      "PBRFrag");
   m_postVertShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/post_process.vert"),
+      m_context, readFile("assets/shaders/post_process.vert.spv"),
       ShaderStage::Vertex, "PostVert");
-  m_taaFragShader =
-      std::make_shared<Shader>(m_context, readFile("assets/shaders/taa.frag"),
-                               ShaderStage::Fragment, "TAAFrag");
-  m_ssaoFragShader =
-      std::make_shared<Shader>(m_context, readFile("assets/shaders/ssao.frag"),
-                               ShaderStage::Fragment, "SSAOFrag");
+  m_taaFragShader = std::make_shared<Shader>(
+      m_context, readFile("assets/shaders/taa.frag.spv"), ShaderStage::Fragment,
+      "TAAFrag");
+  m_ssaoFragShader = std::make_shared<Shader>(
+      m_context, readFile("assets/shaders/ssao.frag.spv"),
+      ShaderStage::Fragment, "SSAOFrag");
   m_ssaoBlurFragShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/ssao_blur.frag"),
+      m_context, readFile("assets/shaders/ssao_blur.frag.spv"),
       ShaderStage::Fragment, "SSAOBlurFrag");
   m_compositeFragShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/composite.frag"),
+      m_context, readFile("assets/shaders/composite.frag.spv"),
       ShaderStage::Fragment, "CompositeFrag");
-  m_bloomFragShader =
-      std::make_shared<Shader>(m_context, readFile("assets/shaders/bloom.frag"),
-                               ShaderStage::Fragment, "BloomFrag");
-  m_fxaaFragShader =
-      std::make_shared<Shader>(m_context, readFile("assets/shaders/fxaa.frag"),
-                               ShaderStage::Fragment, "FXAAFrag");
+  m_bloomFragShader = std::make_shared<Shader>(
+      m_context, readFile("assets/shaders/bloom.frag.spv"),
+      ShaderStage::Fragment, "BloomFrag");
+  m_fxaaFragShader = std::make_shared<Shader>(
+      m_context, readFile("assets/shaders/fxaa.frag.spv"),
+      ShaderStage::Fragment, "FXAAFrag");
   m_shadowVertShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/shadow.vert"), ShaderStage::Vertex,
-      "ShadowVert");
+      m_context, readFile("assets/shaders/shadow.vert.spv"),
+      ShaderStage::Vertex, "ShadowVert");
   m_shadowFragShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/shadow.frag"), ShaderStage::Fragment,
-      "ShadowFrag");
-  m_cullShader =
-      std::make_shared<Shader>(m_context, readFile("assets/shaders/cull.comp"),
-                               ShaderStage::Compute, "CullShader");
+      m_context, readFile("assets/shaders/shadow.frag.spv"),
+      ShaderStage::Fragment, "ShadowFrag");
+  m_cullShader = std::make_shared<Shader>(
+      m_context, readFile("assets/shaders/cull.comp.spv"), ShaderStage::Compute,
+      "CullShader");
   m_clusterBuildShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/cluster_build.comp"),
+      m_context, readFile("assets/shaders/cluster_build.comp.spv"),
       ShaderStage::Compute, "ClusterBuildShader");
   m_clusterCullShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/cluster_cull.comp"),
+      m_context, readFile("assets/shaders/cluster_cull.comp.spv"),
       ShaderStage::Compute, "ClusterCullShader");
   m_skyboxVertShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/skybox.vert"), ShaderStage::Vertex,
-      "SkyboxVert");
+      m_context, readFile("assets/shaders/skybox.vert.spv"),
+      ShaderStage::Vertex, "SkyboxVert");
   m_skyboxFragShader = std::make_shared<Shader>(
-      m_context, readFile("assets/shaders/skybox.frag"), ShaderStage::Fragment,
-      "SkyboxFrag");
+      m_context, readFile("assets/shaders/skybox.frag.spv"),
+      ShaderStage::Fragment, "SkyboxFrag");
 
   VkPushConstantRange pushConstantRange = {};
   pushConstantRange.stageFlags =
@@ -333,7 +339,9 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
                            VK_FORMAT_R16G16B16A16_SFLOAT,
                            VK_FORMAT_R16G16_SFLOAT};
   pbrSpecs.depthFormat = VK_FORMAT_D32_SFLOAT;
-  pbrSpecs.cullMode = VK_CULL_MODE_NONE;
+  // DEBUG: Disable Depth/Cull to rule out rasterizer discard
+  pbrSpecs.depthTest = true;
+  pbrSpecs.cullMode = VK_CULL_MODE_BACK_BIT;
   pbrSpecs.vertexBindings.push_back(Vertex::getBindingDescription());
   pbrSpecs.vertexAttributes = Vertex::getAttributeDescriptions();
   m_pbrPipeline = std::make_unique<GraphicsPipeline>(m_context, pbrSpecs);
@@ -375,6 +383,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   taaSpecs.colorFormats = {VK_FORMAT_R16G16B16A16_SFLOAT};
   taaSpecs.depthTest = false;
   taaSpecs.depthFormat = VK_FORMAT_UNDEFINED;
+  taaSpecs.cullMode = VK_CULL_MODE_NONE;
   m_taaPipeline = std::make_unique<GraphicsPipeline>(m_context, taaSpecs);
 
   VkPushConstantRange ssaoPushRange = {};
@@ -395,6 +404,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   ssaoSpecsP.colorFormats = {VK_FORMAT_R8_UNORM};
   ssaoSpecsP.depthTest = false;
   ssaoSpecsP.depthFormat = VK_FORMAT_UNDEFINED;
+  ssaoSpecsP.cullMode = VK_CULL_MODE_NONE;
   m_ssaoPipeline = std::make_unique<GraphicsPipeline>(m_context, ssaoSpecsP);
 
   VkPushConstantRange ssaoBlurPush = {};
@@ -415,6 +425,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   ssaoBlurSpecs.colorFormats = {VK_FORMAT_R8_UNORM};
   ssaoBlurSpecs.depthTest = false;
   ssaoBlurSpecs.depthFormat = VK_FORMAT_UNDEFINED;
+  ssaoBlurSpecs.cullMode = VK_CULL_MODE_NONE;
   m_ssaoBlurPipeline =
       std::make_unique<GraphicsPipeline>(m_context, ssaoBlurSpecs);
 
@@ -433,9 +444,10 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   compSpecs.vertexShader = m_postVertShader;
   compSpecs.fragmentShader = m_compositeFragShader;
   compSpecs.layout = m_compositeLayout;
-  compSpecs.colorFormats = {VK_FORMAT_R8G8B8A8_UNORM};
+  compSpecs.colorFormats = {m_swapchainFormat};
   compSpecs.depthTest = false;
   compSpecs.depthFormat = VK_FORMAT_UNDEFINED;
+  compSpecs.cullMode = VK_CULL_MODE_NONE;
   m_compositePipeline =
       std::make_unique<GraphicsPipeline>(m_context, compSpecs);
 
@@ -457,6 +469,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   bloomSpecsP.colorFormats = {VK_FORMAT_R16G16B16A16_SFLOAT};
   bloomSpecsP.depthTest = false;
   bloomSpecsP.depthFormat = VK_FORMAT_UNDEFINED;
+  bloomSpecsP.cullMode = VK_CULL_MODE_NONE;
   m_bloomPipeline = std::make_unique<GraphicsPipeline>(m_context, bloomSpecsP);
 
   VkPushConstantRange fxaaPush = {};
@@ -477,6 +490,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   fxaaSpecs.colorFormats = {m_resources.ldrImage->getSpecs().format};
   fxaaSpecs.depthTest = false;
   fxaaSpecs.depthFormat = VK_FORMAT_UNDEFINED;
+  fxaaSpecs.cullMode = VK_CULL_MODE_NONE;
   m_fxaaPipeline = std::make_unique<GraphicsPipeline>(m_context, fxaaSpecs);
 
   VkPushConstantRange cullPush = {};
@@ -561,12 +575,13 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
 void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
                             SceneManager &sceneManager, uint32_t currentFrame,
                             uint32_t imageIndex, const SceneData &sceneData,
-                            Swapchain *swapchain, Sync *sync,
-                            const UIParams &uiParams, const Model *model) {
+                            Swapchain *swapchain, FrameSync *sync,
+                            const UIParams &uiParams, const Model *model,
+                            uint32_t skyboxIndex) {
 
   // Update SceneData with Local Resource Indices
   SceneData sd = sceneData;
-  sd.irradianceIndex = 0;
+  // sd.irradianceIndex = 0; // REMOVED: Don't overwrite what Application set
   sd.shadowMapIndex = m_shadowMapIndex;
   sd.clusterBufferIndex = m_clusterBufferIndex;
   sd.clusterGridBufferIndex =
@@ -582,7 +597,8 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   VkFormat swapFormat = swapchain->getImageFormat();
 
   VkClearValue colorClear;
-  colorClear.color = {{0.1f, 0.2f, 0.4f, 1.0f}};
+  // DEBUG: Magenta clear color to verify RenderPass execution
+  colorClear.color = {{1.0f, 0.0f, 1.0f, 1.0f}};
   VkClearValue depthClear;
   depthClear.depthStencil = {1.0f, 0};
   VkClearValue shadowClear;
@@ -646,10 +662,11 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
     vkCmdPushConstants(cb, m_cullLayout, VK_SHADER_STAGE_COMPUTE_BIT, 0,
                        sizeof(CullPushConstants), &cpc);
     uint32_t groupCount = (cpc.instanceCount + 63) / 64;
-    if (groupCount > 0)
-      vkCmdDispatch(cb, groupCount, 1, 1);
-
+    // vkCmdDispatch(cb, groupCount, 1, 1); // DEBUG: Disabled culling dispatch
+    
     VkBufferMemoryBarrier barrier = {VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER};
+    // ... rest of barrier ...
+
     barrier.srcAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
     barrier.dstAccessMask = VK_ACCESS_INDIRECT_COMMAND_READ_BIT;
     barrier.buffer = sceneManager.getIndirectBuffer(currentFrame);
@@ -661,45 +678,51 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   });
 
   if (!m_clustersBuilt) {
-    graph.addPass("ClusterBuildPass", {}, {}, [&](VkCommandBuffer cb) {
+    // Cluster Build Pass
+  graph.addPass("ClusterBuildPass", {}, {}, [this, &sceneManager, &sd](VkCommandBuffer cb) {
+      vkCmdFillBuffer(cb, m_resources.clusterBuffer->getHandle(), 0,
+                      m_resources.clusterBuffer->getSize(), 0);
+      
+      VkBufferMemoryBarrier barrier = {VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER};
+      barrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+      barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT | VK_ACCESS_SHADER_WRITE_BIT;
+      barrier.buffer = m_resources.clusterBuffer->getHandle();
+      barrier.size = VK_WHOLE_SIZE;
+      
+      vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_TRANSFER_BIT,
+                           VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, 0, nullptr, 1,
+                           &barrier, 0, nullptr);
+
       vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_COMPUTE,
                         m_clusterBuildPipeline->getHandle());
       VkDescriptorSet globalSet =
           m_context->getDescriptorManager().getDescriptorSet();
       vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_COMPUTE,
-                              m_clusterBuildLayout, 0, 1, &globalSet, 0,
-                              nullptr);
+                              m_clusterBuildLayout, 0, 1, &globalSet, 0, nullptr);
 
       struct {
         uint32_t cbIdx;
-        uint32_t gx, gy, gz;
-        glm::mat4 invProj;
+        float v[16]; // viewInverse
+        float p[16]; // projInverse
         float n, f;
-        float pad[2];
+        float sW, sH;
       } push;
       push.cbIdx = m_clusterBufferIndex;
-      push.gx = 16;
-      push.gy = 9;
-      push.gz = 24;
-      push.invProj = sd.invProj;
+      memcpy(push.v, &sd.invView[0][0], 64); // Corrected from sd.viewInverse
+      memcpy(push.p, &sd.invProj[0][0], 64); // Corrected from sd.projInverse
       push.n = sd.nearClip;
       push.f = sd.farClip;
-
-      vkCmdPushConstants(cb, m_clusterBuildLayout, VK_SHADER_STAGE_COMPUTE_BIT,
-                         0, 96, &push);
-      vkCmdDispatch(cb, (16 * 9 * 24 + 63) / 64, 1, 1);
-
-      VkMemoryBarrier barrier = {VK_STRUCTURE_TYPE_MEMORY_BARRIER};
-      barrier.srcAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
-      barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
-      vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT,
-                           VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, 1, &barrier,
-                           0, nullptr, 0, nullptr);
-    });
+      push.sW = sd.screenWidth;
+      push.sH = sd.screenHeight;
+      vkCmdPushConstants(cb, m_clusterBuildLayout, VK_SHADER_STAGE_COMPUTE_BIT, 0,
+                         sizeof(push), &push);
+      vkCmdDispatch(cb, 16, 9, 24); // 1 thread per cluster, local size 1? or group size? assumed 1
+  });
     m_clustersBuilt = true;
   }
 
-  graph.addPass("ClusterCullPass", {}, {}, [&](VkCommandBuffer cb) {
+  // Cluster Cull Pass
+  graph.addPass("ClusterCullPass", {}, {}, [this, &sceneManager, currentFrame, sd](VkCommandBuffer cb) {
     vkCmdFillBuffer(cb,
                     m_resources.clusterAtomicBuffers[currentFrame]->getHandle(),
                     0, sizeof(uint32_t), 0);
@@ -756,7 +779,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
     graph.setResourceClearValue(resName, shadowClear);
 
     graph.addPass("ShadowPass_" + std::to_string(i), {}, {resName},
-                  [&](VkCommandBuffer cb) {
+                  [this, &sceneManager, currentFrame, i, model](VkCommandBuffer cb) {
                     vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                                       m_shadowPipeline->getHandle());
                     VkDescriptorSet globalSet =
@@ -837,7 +860,12 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   // Geometry Pass
   graph.addPass(
       "GeometryPass", {}, {"HDR_Color", "Normal", "Velocity", "Depth"},
-      [&](VkCommandBuffer cb) {
+      [this, &sceneManager, currentFrame, ext, uiParams, skyboxIndex, model](VkCommandBuffer cb) {
+        VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
+        vkCmdSetViewport(cb, 0, 1, &viewport);
+        VkRect2D scissor = {{0, 0}, {ext.width, ext.height}};
+        vkCmdSetScissor(cb, 0, 1, &scissor);
+
         if (uiParams.showSkybox) {
           vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                             m_skyboxPipeline->getHandle());
@@ -849,7 +877,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
             uint32_t sIdx, skIdx;
           } skySPC;
           skySPC.sIdx = sceneManager.getSceneBufferIndex(currentFrame);
-          skySPC.skIdx = 0; // TODO: Get from EnvManager if available
+          skySPC.skIdx = skyboxIndex;
           vkCmdPushConstants(cb, m_skyboxLayout,
                              VK_SHADER_STAGE_VERTEX_BIT |
                                  VK_SHADER_STAGE_FRAGMENT_BIT,
@@ -883,18 +911,36 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
                              VK_SHADER_STAGE_VERTEX_BIT |
                                  VK_SHADER_STAGE_FRAGMENT_BIT,
                              0, 16, &pbrSPC);
+
+          // DEBUG: FORCE UNCONDITIONAL DRAW
+          // vkCmdDraw(cb, 3, 1, 0, 0); 
+
+          // DEBUG: Use Direct Draw to test real geometry
+          
           vkCmdDrawIndexedIndirect(
-              cb, sceneManager.getIndirectBuffer(currentFrame), 0,
-              static_cast<uint32_t>(
-                  sceneManager.getMeshInstanceCount(currentFrame)),
-              sizeof(VkDrawIndexedIndirectCommand));
+             cb, sceneManager.getIndirectBuffer(currentFrame), 0,
+             static_cast<uint32_t>(
+                 sceneManager.getMeshInstanceCount(currentFrame)),
+             sizeof(VkDrawIndexedIndirectCommand));
+          
+          /*
+          if(model && !model->meshes.empty() && !model->meshes[0].primitives.empty()) {
+              const auto& prim = model->meshes[0].primitives[0];
+               vkCmdDrawIndexed(cb, prim.indexCount, 1, prim.firstIndex, 0, 0);
+          }
+          */
         }
       });
 
   if (uiParams.enableSSAO) {
     graph.addPass(
         "SSAOPass", {"Normal", "Depth"}, {"SSAO_Base"},
-        [&](VkCommandBuffer cb) {
+        [this, ext, uiParams](VkCommandBuffer cb) {
+          VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
+          vkCmdSetViewport(cb, 0, 1, &viewport);
+          VkRect2D scissor = {{0, 0}, {ext.width, ext.height}};
+          vkCmdSetScissor(cb, 0, 1, &scissor);
+
           vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                             m_ssaoPipeline->getHandle());
           VkDescriptorSet globalSet =
@@ -916,7 +962,12 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           vkCmdDraw(cb, 3, 1, 0, 0);
         });
     graph.addPass(
-        "SSAOBlurPass", {"SSAO_Base"}, {"SSAO_Blur"}, [&](VkCommandBuffer cb) {
+        "SSAOBlurPass", {"SSAO_Base"}, {"SSAO_Blur"}, [this, ext](VkCommandBuffer cb) {
+          VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
+          vkCmdSetViewport(cb, 0, 1, &viewport);
+          VkRect2D scissor = {{0, 0}, {ext.width, ext.height}};
+          vkCmdSetScissor(cb, 0, 1, &scissor);
+
           vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                             m_ssaoBlurPipeline->getHandle());
           VkDescriptorSet globalSet =
@@ -924,8 +975,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                                   m_ssaoBlurLayout, 0, 1, &globalSet, 0,
                                   nullptr);
-          int mode = 0; // vertical/horizontal? Or just single pass? Main code
-                        // had 1 pass with radius? No, just push const size=4.
+          int mode = 0; // vertical/horizontal? Or just single pass? No, just push const size=4.
           vkCmdPushConstants(cb, m_ssaoBlurLayout, VK_SHADER_STAGE_FRAGMENT_BIT,
                              0, 4, &mode);
           vkCmdDraw(cb, 3, 1, 0, 0);
@@ -934,7 +984,12 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
 
   // Bloom
   graph.addPass(
-      "BloomPass", {"HDR_Color"}, {"Bloom_Base"}, [&](VkCommandBuffer cb) {
+      "BloomPass", {"HDR_Color"}, {"Bloom_Base"}, [this, uiParams](VkCommandBuffer cb) {
+        VkViewport viewport = {0.0f, 0.0f, (float)m_width / 4.0f, (float)m_height / 4.0f, 0.0f, 1.0f};
+        vkCmdSetViewport(cb, 0, 1, &viewport);
+        VkRect2D scissor = {{0, 0}, {m_width / 4, m_height / 4}};
+        vkCmdSetScissor(cb, 0, 1, &scissor);
+
         vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                           m_bloomPipeline->getHandle());
         VkDescriptorSet set =
@@ -955,7 +1010,12 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
         vkCmdDraw(cb, 3, 1, 0, 0);
       });
   graph.addPass(
-      "BloomBlurPass", {"Bloom_Base"}, {"Bloom_Blur"}, [&](VkCommandBuffer cb) {
+      "BloomBlurPass", {"Bloom_Base"}, {"Bloom_Blur"}, [this](VkCommandBuffer cb) {
+        VkViewport viewport = {0.0f, 0.0f, (float)m_width / 4.0f, (float)m_height / 4.0f, 0.0f, 1.0f};
+        vkCmdSetViewport(cb, 0, 1, &viewport);
+        VkRect2D scissor = {{0, 0}, {m_width / 4, m_height / 4}};
+        vkCmdSetScissor(cb, 0, 1, &scissor);
+
         vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                           m_bloomPipeline->getHandle());
         VkDescriptorSet set =
@@ -979,7 +1039,12 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   // Composite
   graph.addPass(
       "CompositePass", {"HDR_Color", "Bloom_Blur", "SSAO_Blur"}, {"LDR_Color"},
-      [&](VkCommandBuffer cb) {
+      [this, ext, uiParams](VkCommandBuffer cb) {
+        VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
+        vkCmdSetViewport(cb, 0, 1, &viewport);
+        VkRect2D scissor = {{0, 0}, {ext.width, ext.height}};
+        vkCmdSetScissor(cb, 0, 1, &scissor);
+
         vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                           m_compositePipeline->getHandle());
         VkDescriptorSet set =
@@ -1006,14 +1071,6 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   // If TAA enabled: LDR -> TAA -> Swapchain
   // Else: LDR -> Swapchain (copy or FXAA)
 
-  // TAA Pass
-  // Main code reused swapchain logic or handled final blit.
-  // Here we have LDR_Color.
-  // Let's assume we output to Swapchain directly from TAA or FXAA.
-
-  std::string inputForFinal = "LDR_Color";
-  uint32_t inputIdxForFinal = m_ldrTextureIndex;
-
   // TAA Logic (Ping Pong) - simplified
   // We update history after render.
   // ...
@@ -1037,9 +1094,17 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   // For now, let's output Composite directly to Swapchain if FXAA disabled, or
   // via FXAA.
 
+  std::string inputForFinal = "LDR_Color";
+  uint32_t inputIdxForFinal = m_ldrTextureIndex;
+
   if (uiParams.enableFXAA) {
     graph.addPass(
         "FXAAPass", {inputForFinal}, {"Swapchain"}, [&](VkCommandBuffer cb) {
+          VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
+          vkCmdSetViewport(cb, 0, 1, &viewport);
+          VkRect2D scissor = {{0, 0}, {ext.width, ext.height}};
+          vkCmdSetScissor(cb, 0, 1, &scissor);
+
           vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                             m_fxaaPipeline->getHandle());
           VkDescriptorSet set =
@@ -1047,10 +1112,15 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                                   m_fxaaLayout, 0, 1, &set, 0, nullptr);
           struct {
-            uint32_t i;
-            float pad[3];
+            int32_t inputTextureIndex;
+            int32_t padding;
+            float inverseScreenWidth;
+            float inverseScreenHeight;
           } fPush;
-          fPush.i = inputIdxForFinal; // LDR
+          fPush.inputTextureIndex = static_cast<int32_t>(inputIdxForFinal); // LDR
+          fPush.padding = 0;
+          fPush.inverseScreenWidth = 1.0f / static_cast<float>(ext.width);
+          fPush.inverseScreenHeight = 1.0f / static_cast<float>(ext.height);
           vkCmdPushConstants(cb, m_fxaaLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0,
                              16, &fPush);
           vkCmdDraw(cb, 3, 1, 0, 0);
@@ -1073,10 +1143,9 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           // always run it. Or just do a BlitImage.
           vkCmdBindPipeline(
               cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
-              m_fxaaPipeline
-                  ->getHandle()); // Reusing FXAA as copy if shader allows?
-                                  // No, shader does FXAA.
-                                  // I'll blit.
+              m_fxaaPipeline->getHandle()); // Reusing FXAA as copy if shader
+                                            // allows? No, shader does FXAA.
+                                            // I'll blit.
           VkImageBlit blit = {};
           blit.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
           blit.srcSubresource.layerCount = 1;
@@ -1094,7 +1163,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
         });
   }
 
-  graph.execute(cmd);
+  // graph.execute(cmd.getHandle(), ext); // Executed by Application now to allow UI Pass injection
 }
 
 } // namespace astral

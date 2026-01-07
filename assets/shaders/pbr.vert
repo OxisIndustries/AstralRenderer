@@ -17,83 +17,108 @@ layout(location = 5) out flat uint outMaterialIndex;
 layout(location = 6) out vec4 outCurClipPos;
 layout(location = 7) out vec4 outPrevClipPos;
 
+// Structures (keeping them to compile, but unused)
 struct SceneData {
-    mat4 view;
-    mat4 proj;
-    mat4 viewProj;
-    mat4 invView;
-    mat4 invProj;
-    mat4 lightSpaceMatrix;
-    mat4 cascadeViewProj[4];
-    mat4 prevViewProj;
-    vec4 frustumPlanes[6];
-    vec4 cascadeSplits;
-    vec4 cameraPos;
-    vec2 jitter;
-    int lightCount;
-    int irradianceIndex;
-    int prefilteredIndex;
-    int brdfLutIndex;
-    int shadowMapIndex;
-    int lightBufferIndex;
-    int headlampEnabled;
-    int visualizeCascades;
-    float shadowBias;
-    float shadowNormalBias;
-    int pcfRange;
-    float csmLambda;
-    int clusterBufferIndex;
-    int clusterGridBufferIndex;
-    int clusterLightIndexBufferIndex;
-    int gridX, gridY, gridZ;
-    float nearClip, farClip;
-    float screenWidth, screenHeight;
+  mat4 view;
+  mat4 proj;
+  mat4 viewProj;
+  mat4 invView;
+  mat4 invProj;
+  mat4 lightSpaceMatrix;
+  mat4 cascadeViewProj[4];
+  mat4 prevViewProj;
+  vec4 frustumPlanes[6];
+  vec4 cascadeSplits;
+  vec4 cameraPos;
+  vec2 jitter;
+  int lightCount;
+  int irradianceIndex;
+  int prefilteredIndex;
+  int brdfLutIndex;
+  int shadowMapIndex;
+  int lightBufferIndex;
+  int headlampEnabled;
+  int visualizeCascades;
+  float shadowBias;
+  float shadowNormalBias;
+  int pcfRange;
+  float csmLambda;
+  int clusterBufferIndex;
+  int clusterGridBufferIndex;
+  int clusterLightIndexBufferIndex;
+  int gridX, gridY, gridZ;
+  float nearClip, farClip;
+  float screenWidth, screenHeight;
 };
 
 struct MeshInstance {
-    mat4 transform;
-    vec3 sphereCenter;
-    float sphereRadius;
-    uint materialIndex;
-    uint padding[3];
+  mat4 transform;
+  vec3 sphereCenter;
+  float sphereRadius;
+  uint materialIndex;
+  uint padding[3];
 };
 
-// Bindless Set #0
-layout(std430, set = 0, binding = 1) readonly buffer SceneDataBuffer {
-    SceneData scene;
-} allSceneBuffers[];
+struct Material {
+  vec4 baseColorFactor;
+  float metallicFactor;
+  float roughnessFactor;
+  int baseColorTextureIndex;
+  int metallicRoughnessTextureIndex;
+  int normalTextureIndex;
+  int occlusionTextureIndex;
+  int emissiveTextureIndex;
+  float alphaCutoff;
+  int doubleSided;
+  float padding[3];
+};
+
+layout(std430, set = 0, binding = 1) readonly buffer SceneBuffer {
+  SceneData scene;
+}
+allSceneBuffers[];
 
 layout(std430, set = 0, binding = 6) readonly buffer InstanceBuffer {
-    MeshInstance instances[];
-} allInstanceBuffers[];
+  MeshInstance instances[];
+}
+allInstanceBuffers[];
 
-// Push Constants
+layout(std430, set = 0, binding = 2) readonly buffer MaterialBuffer {
+  Material materials[];
+}
+allMaterialBuffers[];
+
 layout(push_constant) uniform PushConstants {
-    uint sceneDataIndex;
-    uint instanceBufferIndex;
-    uint materialBufferIndex;
-    uint padding;
-} pc;
+  uint sceneDataIndex;
+  uint instanceBufferIndex;
+  uint materialBufferIndex;
+}
+pc;
 
+// ... (buffer definitions)
 void main() {
-    SceneData scene = allSceneBuffers[pc.sceneDataIndex].scene;
-    MeshInstance instance = allInstanceBuffers[pc.instanceBufferIndex].instances[gl_InstanceIndex];
-    
-    mat4 model = instance.transform;
-    vec4 worldPos = model * vec4(inPos, 1.0);
-    outWorldPos = worldPos.xyz;
-    
-    // Normal matrix
-    mat3 normalMatrix = mat3(transpose(inverse(model)));
-    outNormal = normalMatrix * inNormal;
-    outTangent = vec4(normalMatrix * inTangent.xyz, inTangent.w);
-    outUV = inUV;
-    outColor = inColor;
-    outMaterialIndex = instance.materialIndex;
-    
-    gl_Position = scene.viewProj * worldPos;
-    
-    // TAA Motion Vectors
-    outCurClipPos = gl_Position;
-    outPrevClipPos = scene.prevViewProj * worldPos;
+  SceneData scene = allSceneBuffers[pc.sceneDataIndex].scene;
+
+  // STEP 2 RESTORATION: Use Instance Buffer
+  MeshInstance instance =
+      allInstanceBuffers[pc.instanceBufferIndex].instances[gl_InstanceIndex];
+  mat4 modelMatrix = instance.transform;
+  uint matIdx = instance.materialIndex;
+
+  vec4 worldPos = modelMatrix * vec4(inPos, 1.0);
+  outWorldPos = worldPos.xyz;
+
+  mat3 normalMatrix = mat3(modelMatrix);
+  outNormal = normalize(normalMatrix * inNormal);
+  outTangent = vec4(normalize(normalMatrix * inTangent.xyz), inTangent.w);
+
+  outUV = inUV;
+  outColor = inColor;
+  outMaterialIndex = matIdx; // instance.materialIndex;
+
+  gl_Position = scene.viewProj * worldPos;
+
+  // Velocity Calculation
+  outCurClipPos = gl_Position;
+  outPrevClipPos = scene.prevViewProj * worldPos;
 }

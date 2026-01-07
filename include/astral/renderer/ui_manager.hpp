@@ -10,7 +10,7 @@ namespace astral {
 
 class UIManager {
 public:
-    UIManager(Context* context, VkRenderPass renderPass = VK_NULL_HANDLE);
+    UIManager(Context* context, VkFormat swapchainFormat);
     ~UIManager();
 
     void beginFrame();

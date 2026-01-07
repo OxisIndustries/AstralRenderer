@@ -114,7 +114,7 @@ events:
       The output was:
       0
       .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-      Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:45:54.
+      Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 16:56:37.
       
       1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" projesi (varsay─▒lan hedefler).
       PrepareForBuild:
@@ -148,7 +148,7 @@ events:
           0 Uyar─▒
           0 Hata
       
-      Ge├ğen S├╝re 00:00:03.31
+      Ge├ğen S├╝re 00:00:03.55
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -1251,8 +1251,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l"
-      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-gsscfr"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-gsscfr"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1262,44 +1262,44 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-gsscfr'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e7b85.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_f1ba9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:45:58.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 16:56:41.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\cmTC_e7b85.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gsscfr\\cmTC_f1ba9.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gsscfr\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_f1ba9.dir\\Debug\\cmTC_f1ba9.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_f1ba9.dir\\Debug\\cmTC_f1ba9.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_f1ba9.dir\\Debug\\cmTC_f1ba9.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_e7b85.dir\\Debug\\\\" /Fd"cmTC_e7b85.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_f1ba9.dir\\Debug\\\\" /Fd"cmTC_f1ba9.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_e7b85.dir\\Debug\\\\" /Fd"cmTC_e7b85.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_f1ba9.dir\\Debug\\\\" /Fd"cmTC_f1ba9.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\cmTC_e7b85.exe" /INCREMENTAL /ILK:"cmTC_e7b85.dir\\Debug\\cmTC_e7b85.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l/Debug/cmTC_e7b85.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-x1po5l/Debug/cmTC_e7b85.lib" /MACHINE:X64  /machine:x64 cmTC_e7b85.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_e7b85.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\cmTC_e7b85.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gsscfr\\Debug\\cmTC_f1ba9.exe" /INCREMENTAL /ILK:"cmTC_f1ba9.dir\\Debug\\cmTC_f1ba9.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-gsscfr/Debug/cmTC_f1ba9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-gsscfr/Debug/cmTC_f1ba9.lib" /MACHINE:X64  /machine:x64 cmTC_f1ba9.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_f1ba9.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gsscfr\\Debug\\cmTC_f1ba9.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\Debug\\cmTC_e7b85.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\cmTC_e7b85.write.1u.tlog" "cmTC_e7b85.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gsscfr\\Debug\\cmTC_f1ba9.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_f1ba9.dir\\Debug\\cmTC_f1ba9.tlog\\cmTC_f1ba9.write.1u.tlog" "cmTC_f1ba9.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
-          "cmTC_e7b85.dir\\Debug\\cmTC_e7b85.tlog\\cmTC_e7b85.lastbuildstate" ├Â─şesine eri┼şiliyor.
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-x1po5l\\cmTC_e7b85.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
+          "cmTC_f1ba9.dir\\Debug\\cmTC_f1ba9.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
+          "cmTC_f1ba9.dir\\Debug\\cmTC_f1ba9.tlog\\cmTC_f1ba9.lastbuildstate" ├Â─şesine eri┼şiliyor.
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-gsscfr\\cmTC_f1ba9.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
         
         Olu┼şturma ba┼şar─▒l─▒ oldu.
             0 Uyar─▒
             0 Hata
         
-        Ge├ğen S├╝re 00:00:02.01
+        Ge├ğen S├╝re 00:00:02.96
         
       exitCode: 0
   -
@@ -1763,7 +1763,7 @@ events:
       The output was:
       0
       .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-      Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:20.
+      Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 16:57:03.
       
       1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj" projesi (varsay─▒lan hedefler).
       PrepareForBuild:
@@ -1797,7 +1797,7 @@ events:
           0 Uyar─▒
           0 Hata
       
-      Ge├ğen S├╝re 00:00:02.37
+      Ge├ğen S├╝re 00:00:03.08
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -1816,8 +1816,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0"
-      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-isavhi"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-isavhi"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1826,44 +1826,44 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-isavhi'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_9a4c0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a85b5.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:23.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 16:57:06.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\cmTC_9a4c0.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-isavhi\\cmTC_a85b5.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-isavhi\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_a85b5.dir\\Debug\\cmTC_a85b5.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_a85b5.dir\\Debug\\cmTC_a85b5.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_a85b5.dir\\Debug\\cmTC_a85b5.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_9a4c0.dir\\Debug\\\\" /Fd"cmTC_9a4c0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_a85b5.dir\\Debug\\\\" /Fd"cmTC_a85b5.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_9a4c0.dir\\Debug\\\\" /Fd"cmTC_9a4c0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_a85b5.dir\\Debug\\\\" /Fd"cmTC_a85b5.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\cmTC_9a4c0.exe" /INCREMENTAL /ILK:"cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0/Debug/cmTC_9a4c0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-b1gcc0/Debug/cmTC_9a4c0.lib" /MACHINE:X64  /machine:x64 cmTC_9a4c0.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_9a4c0.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\cmTC_9a4c0.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-isavhi\\Debug\\cmTC_a85b5.exe" /INCREMENTAL /ILK:"cmTC_a85b5.dir\\Debug\\cmTC_a85b5.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-isavhi/Debug/cmTC_a85b5.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-isavhi/Debug/cmTC_a85b5.lib" /MACHINE:X64  /machine:x64 cmTC_a85b5.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_a85b5.vcxproj -> C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-isavhi\\Debug\\cmTC_a85b5.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\Debug\\cmTC_9a4c0.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\cmTC_9a4c0.write.1u.tlog" "cmTC_9a4c0.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-isavhi\\Debug\\cmTC_a85b5.exe" "C:\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_a85b5.dir\\Debug\\cmTC_a85b5.tlog\\cmTC_a85b5.write.1u.tlog" "cmTC_a85b5.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
-          "cmTC_9a4c0.dir\\Debug\\cmTC_9a4c0.tlog\\cmTC_9a4c0.lastbuildstate" ├Â─şesine eri┼şiliyor.
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b1gcc0\\cmTC_9a4c0.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
+          "cmTC_a85b5.dir\\Debug\\cmTC_a85b5.tlog\\unsuccessfulbuild" dosyas─▒ siliniyor.
+          "cmTC_a85b5.dir\\Debug\\cmTC_a85b5.tlog\\cmTC_a85b5.lastbuildstate" ├Â─şesine eri┼şiliyor.
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-isavhi\\cmTC_a85b5.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler).
         
         Olu┼şturma ba┼şar─▒l─▒ oldu.
             0 Uyar─▒
             0 Hata
         
-        Ge├ğen S├╝re 00:00:02.61
+        Ge├ğen S├╝re 00:00:02.92
         
       exitCode: 0
   -
@@ -1905,8 +1905,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-ngajkh"
-      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-ngajkh"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-bbzt1o"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-bbzt1o"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1916,42 +1916,42 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-ngajkh'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-bbzt1o'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_3cff0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_62e28.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:26.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 16:57:10.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\cmTC_62e28.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_3cff0.dir\\Debug\\cmTC_3cff0.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_62e28.dir\\Debug\\cmTC_62e28.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_3cff0.dir\\Debug\\cmTC_3cff0.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_3cff0.dir\\Debug\\cmTC_3cff0.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_62e28.dir\\Debug\\cmTC_62e28.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_62e28.dir\\Debug\\cmTC_62e28.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_3cff0.dir\\Debug\\\\" /Fd"cmTC_3cff0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_62e28.dir\\Debug\\\\" /Fd"cmTC_62e28.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\src.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_3cff0.dir\\Debug\\\\" /Fd"cmTC_3cff0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_62e28.dir\\Debug\\\\" /Fd"cmTC_62e28.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\src.c"
           src.c
-        C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj]
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
+        C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\cmTC_62e28.vcxproj]
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\cmTC_62e28.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
         
         Olu┼şturma BA┼ŞARISIZ OLDU.
         
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj" (varsay─▒lan hedef) (1) ->
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\cmTC_62e28.vcxproj" (varsay─▒lan hedef) (1) ->
         (ClCompile hedefi) -> 
-          C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ngajkh\\cmTC_3cff0.vcxproj]
+          C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\src.c(1,10): error C1083: i├ğerme dosyas─▒ a├ğ─▒lam─▒yor: 'pthread.h': No such file or directory [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbzt1o\\cmTC_62e28.vcxproj]
         
             0 Uyar─▒
             1 Hata
         
-        Ge├ğen S├╝re 00:00:00.52
+        Ge├ğen S├╝re 00:00:00.42
         
       exitCode: 1
   -
@@ -1964,8 +1964,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2"
-      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-dfwdr7"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-dfwdr7"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1975,44 +1975,44 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-dfwdr7'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1e605.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_fb7f0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:28.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 16:57:10.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\cmTC_fb7f0.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_1e605.dir\\Debug\\cmTC_1e605.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_fb7f0.dir\\Debug\\cmTC_fb7f0.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_1e605.dir\\Debug\\cmTC_1e605.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_1e605.dir\\Debug\\cmTC_1e605.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_fb7f0.dir\\Debug\\cmTC_fb7f0.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_fb7f0.dir\\Debug\\cmTC_fb7f0.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_1e605.dir\\Debug\\\\" /Fd"cmTC_1e605.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_fb7f0.dir\\Debug\\\\" /Fd"cmTC_fb7f0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\CheckFunctionExists.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_1e605.dir\\Debug\\\\" /Fd"cmTC_1e605.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\CheckFunctionExists.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_fb7f0.dir\\Debug\\\\" /Fd"cmTC_fb7f0.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\Debug\\cmTC_1e605.exe" /INCREMENTAL /ILK:"cmTC_1e605.dir\\Debug\\cmTC_1e605.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2/Debug/cmTC_1e605.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-1xudd2/Debug/cmTC_1e605.lib" /MACHINE:X64  /machine:x64 cmTC_1e605.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj]
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\Debug\\cmTC_fb7f0.exe" /INCREMENTAL /ILK:"cmTC_fb7f0.dir\\Debug\\cmTC_fb7f0.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-dfwdr7/Debug/cmTC_fb7f0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-dfwdr7/Debug/cmTC_fb7f0.lib" /MACHINE:X64  /machine:x64 cmTC_fb7f0.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\cmTC_fb7f0.vcxproj]
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\cmTC_fb7f0.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
         
         Olu┼şturma BA┼ŞARISIZ OLDU.
         
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj" (varsay─▒lan hedef) (1) ->
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\cmTC_fb7f0.vcxproj" (varsay─▒lan hedef) (1) ->
         (Link hedefi) -> 
-          LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1xudd2\\cmTC_1e605.vcxproj]
+          LINK : fatal error LNK1104: 'pthreads.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-dfwdr7\\cmTC_fb7f0.vcxproj]
         
             0 Uyar─▒
             1 Hata
         
-        Ge├ğen S├╝re 00:00:00.87
+        Ge├ğen S├╝re 00:00:00.45
         
       exitCode: 1
   -
@@ -2025,8 +2025,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht"
-      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht"
+      source: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-euak7d"
+      binary: "C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-euak7d"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -2036,44 +2036,44 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht'
+        Change Dir: 'C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-euak7d'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_05aef.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6fadd.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         .NET Framework i├ğin MSBuild s├╝r├╝m 17.15.0-preview-25421-07+49758e5ba
-        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 00:46:29.
+        Olu┼şturma ba┼şlat─▒ld─▒: 7.01.2026 16:57:11.
         
-        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj" projesi (varsay─▒lan hedefler).
+        1 d├╝─ş├╝m├╝nde "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\cmTC_6fadd.vcxproj" projesi (varsay─▒lan hedefler).
         PrepareForBuild:
           Yap─▒land─▒r─▒lm─▒┼ş ├ğ─▒k─▒┼ş etkinle┼ştirildi. Derleyici tan─▒lamas─▒n─▒n bi├ğimlendirmesi hata hiyerar┼şisini yans─▒t─▒r. Daha fazla ayr─▒nt─▒ i├ğin bkz. https://aka.ms/cpp/structured-output.
-          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\Debug\\" dizini olu┼şturuluyor.
-          "cmTC_05aef.dir\\Debug\\cmTC_05aef.tlog\\" dizini olu┼şturuluyor.
+          "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\Debug\\" dizini olu┼şturuluyor.
+          "cmTC_6fadd.dir\\Debug\\cmTC_6fadd.tlog\\" dizini olu┼şturuluyor.
         InitializeBuildStatus:
-          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_05aef.dir\\Debug\\cmTC_05aef.tlog\\unsuccessfulbuild" olu┼şturuluyor.
-          "cmTC_05aef.dir\\Debug\\cmTC_05aef.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
+          "AlwaysCreate" belirtildi─şi i├ğin "cmTC_6fadd.dir\\Debug\\cmTC_6fadd.tlog\\unsuccessfulbuild" olu┼şturuluyor.
+          "cmTC_6fadd.dir\\Debug\\cmTC_6fadd.tlog\\unsuccessfulbuild" ├Â─şesine eri┼şiliyor.
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_05aef.dir\\Debug\\\\" /Fd"cmTC_05aef.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_6fadd.dir\\Debug\\\\" /Fd"cmTC_6fadd.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\CheckFunctionExists.c"
           x64 i├ğin Microsoft (R) C/C++ ─░yile┼ştirmeli Derleyicisi S├╝r├╝m 19.50.35503
           Telif Hakk─▒ (C) Microsoft Corporation. T├╝m haklar─▒ sakl─▒d─▒r.
-          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_05aef.dir\\Debug\\\\" /Fd"cmTC_05aef.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\CheckFunctionExists.c"
+          cl /c /I"C:\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_6fadd.dir\\Debug\\\\" /Fd"cmTC_6fadd.dir\\Debug\\vc145.pdb" /external:W1 /TC /errorReport:queue "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\Debug\\cmTC_05aef.exe" /INCREMENTAL /ILK:"cmTC_05aef.dir\\Debug\\cmTC_05aef.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht/Debug/cmTC_05aef.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-vnltht/Debug/cmTC_05aef.lib" /MACHINE:X64  /machine:x64 cmTC_05aef.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj]
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35503\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\Debug\\cmTC_6fadd.exe" /INCREMENTAL /ILK:"cmTC_6fadd.dir\\Debug\\cmTC_6fadd.ilk" /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-euak7d/Debug/cmTC_6fadd.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/CMakeFiles/CMakeScratch/TryCompile-euak7d/Debug/cmTC_6fadd.lib" /MACHINE:X64  /machine:x64 cmTC_6fadd.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\cmTC_6fadd.vcxproj]
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\cmTC_6fadd.vcxproj" Projesini Olu┼şturma ─░┼şlemi Tamamland─▒ (varsay─▒lan hedefler) -- BA┼ŞARISIZ OLDU.
         
         Olu┼şturma BA┼ŞARISIZ OLDU.
         
-        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj" (varsay─▒lan hedef) (1) ->
+        "C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\cmTC_6fadd.vcxproj" (varsay─▒lan hedef) (1) ->
         (Link hedefi) -> 
-          LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vnltht\\cmTC_05aef.vcxproj]
+          LINK : fatal error LNK1104: 'pthread.lib' dosyas─▒ a├ğ─▒lam─▒yor [C:\\Users\\tpoyr\\OneDrive\\Desktop\\Astral_Renderer\\build\\CMakeFiles\\CMakeScratch\\TryCompile-euak7d\\cmTC_6fadd.vcxproj]
         
             0 Uyar─▒
             1 Hata
         
-        Ge├ğen S├╝re 00:00:00.64
+        Ge├ğen S├╝re 00:00:00.36
         
       exitCode: 1
   -

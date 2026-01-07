@@ -14,6 +14,8 @@
 
 namespace astral {
 
+struct Model; // Forward declaration
+class FrameSync;
 class RendererSystem {
 public:
   RendererSystem(Context *context, Swapchain *swapchain, uint32_t width,
@@ -46,8 +48,8 @@ public:
   void render(CommandBuffer &cmd, RenderGraph &graph,
               SceneManager &sceneManager, uint32_t currentFrame,
               uint32_t imageIndex, const SceneData &sceneData,
-              Swapchain *swapchain, Sync *sync, const UIParams &uiParams,
-              const Model *model);
+              Swapchain *swapchain, FrameSync *sync, const UIParams &uiParams,
+              const Model *model, uint32_t skyboxIndex);
 
   // Getters for resources that might be needed by App (or maybe App shouldn't
   // know) For now, let's keep it simple.
@@ -109,6 +111,7 @@ public:
 
 private:
   Context *m_context;
+  VkFormat m_swapchainFormat;
   uint32_t m_width;
   uint32_t m_height;
 

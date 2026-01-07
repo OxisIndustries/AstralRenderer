@@ -3,7 +3,7 @@
 #include "astral/astral.hpp"
 #include "astral/core/commands.hpp"
 #include "astral/core/context.hpp"
-#include "astral/core/window.hpp"
+#include "astral/platform/window.hpp"
 #include "astral/renderer/camera.hpp"
 #include "astral/renderer/environment_manager.hpp"
 #include "astral/renderer/gltf_loader.hpp"
@@ -55,7 +55,7 @@ private:
   // Scene
   Camera m_camera;
   std::shared_ptr<Model> m_model;
-  UIParams m_uiParams;
+  RendererSystem::UIParams m_uiParams;
 
   // State
   uint32_t m_currentFrame = 0;

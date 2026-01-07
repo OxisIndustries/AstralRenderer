@@ -47,7 +47,7 @@ void Application::init() {
 
   m_sceneManager = std::make_unique<SceneManager>(m_context.get());
   m_envManager = std::make_unique<EnvironmentManager>(m_context.get());
-  m_uiManager = std::make_unique<UIManager>(m_context.get());
+  m_uiManager = std::make_unique<UIManager>(m_context.get(), m_swapchain->getImageFormat());
   m_loader = std::make_unique<GltfLoader>(m_context.get());
 
   // Renderer System Init
@@ -354,6 +354,11 @@ void Application::run() {
     // about `shadowMapIndex`. We will pass `sd` to `renderer->render(...)` and
     // let it fill the resource indices before uploading.
 
+    // Cluster grid dimensions - MUST match RendererSystem::initializePipelines
+    sd.gridX = 16;
+    sd.gridY = 9;
+    sd.gridZ = 24;
+    
     sd.nearClip = m_camera.getNear();
     sd.farClip = m_camera.getFar();
     sd.screenWidth = (float)m_window->getWidth();
@@ -400,9 +405,23 @@ void Application::run() {
       }
     }
 
+    // DEBUG: Log mesh instance count
+    spdlog::debug("Frame {}: Mesh instances: {}", m_currentFrame, 
+                  m_sceneManager->getMeshInstanceCount(m_currentFrame));
+
     m_renderer->render(*cmd.get(), graph, *m_sceneManager.get(), m_currentFrame,
                        imageIndex, sd, m_swapchain.get(), m_sync.get(),
-                       m_uiParams, m_model.get());
+                       m_uiParams, m_model.get(), m_envManager->getSkyboxIndex());
+    
+    // Inject UI Pass (Overlay)
+    // Depends on whatever the last pass wrote to "Swapchain".
+    // We don't clear outputs because we draw on top.
+    graph.addPass("UIPass", {}, {"Swapchain"}, [&](VkCommandBuffer cb){
+        m_uiManager->render(cb);
+    }, false); // clearOutputs = false
+
+    VkExtent2D ext = m_swapchain->getExtent();
+    graph.execute(cmd->getHandle(), ext);
 
     cmd->end();
 
@@ -419,8 +438,7 @@ void Application::run() {
     VkCommandBuffer buffer = cmd->getHandle();
     submitInfo.pCommandBuffers = &buffer;
     submitInfo.signalSemaphoreCount = 1;
-    submitInfo.pSignalSemaphores =
-        &m_sync->getRenderFinishedSemaphore(m_currentFrame);
+    submitInfo.pSignalSemaphores = &m_imageSemaphores[imageIndex];
 
     if (vkQueueSubmit(m_context->getGraphicsQueue(), 1, &submitInfo,
                       m_sync->getInFlightFence(m_currentFrame)) != VK_SUCCESS) {
@@ -430,8 +448,7 @@ void Application::run() {
     VkPresentInfoKHR presentInfo = {};
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
     presentInfo.waitSemaphoreCount = 1;
-    presentInfo.pWaitSemaphores =
-        &m_sync->getRenderFinishedSemaphore(m_currentFrame);
+    presentInfo.pWaitSemaphores = &m_imageSemaphores[imageIndex];
     VkSwapchainKHR swapChains[] = {m_swapchain->getHandle()};
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = swapChains;
@@ -504,25 +521,6 @@ void Application::updateUI(float deltaTime) {
   ImGui::End();
 
   m_uiManager->endFrame();
-
-  // Pass params to renderer setup via setupRenderGraph call which happens
-  // inside render()
-  m_renderer->setupRenderGraph(
-      // we might not need to pass everything if we pass the whole UIParams
-      // struct but for now, we rely on boolean flags in render() signature or
-      // similar actually `setupRenderGraph` was a helper I defined in header.
-      // It's called internally by `render` likely.
-      // I'll handle parameter passing by value or struct in `render`.
-      // Let's modify RendererSystem::render to take UIParams or specific
-      // booleans. For now I passed specific booleans. I will stick to what I
-      // defined in header for `setupRenderGraph` args. But `render` calls
-      // `setupRenderGraph`, so I need to pass them to `render`. I'll update
-      // `render` implementation to take `UIParams` or just the fields. I'll
-      // access `m_uiParams` fields in `render`. Wait, `RendererSystem::render`
-      // needs these values. I should probably add `UIParams` to `render`
-      // arguments or `RendererSystem`. I'll add `const UIParams& uiParams` to
-      // `render` in the cpp/hpp.
-  );
 }
 
 void Application::cleanup() {

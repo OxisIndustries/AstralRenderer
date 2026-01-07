@@ -67,26 +67,6 @@ SceneManager::SceneManager(Context *context) : m_context(context) {
       m_materialBuffer->getHandle(), 0,
       sizeof(MaterialMetadata) * MAX_MATERIALS, 2); // Binding 2
 
-  // Clustered Rendering Buffers (Static/Shared for now, or managed by compute
-  // shader) Note: If cluster culling is dynamic per frame, these might need
-  // double buffering too, but typically the grid is static or rebuilt per frame
-  // into a GPU-local buffer. The GPU-local buffers (VMA_MEMORY_USAGE_GPU_ONLY)
-  // are safe to write from Compute if we use barriers correctly.
-  const uint32_t clusterCount = 16 * 9 * 24;
-  m_clusterBuffer = std::make_unique<Buffer>(
-      m_context, sizeof(Cluster) * clusterCount,
-      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, VMA_MEMORY_USAGE_GPU_ONLY);
-  m_clusterBufferIndex = descriptorManager.registerBuffer(
-      m_clusterBuffer->getHandle(), 0, sizeof(Cluster) * clusterCount,
-      8); // Binding 8
-
-  m_lightIndexBuffer = std::make_unique<Buffer>(
-      m_context, sizeof(LightIndexList) * clusterCount,
-      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, VMA_MEMORY_USAGE_GPU_ONLY);
-  m_lightIndexBufferIndex = descriptorManager.registerBuffer(
-      m_lightIndexBuffer->getHandle(), 0, sizeof(LightIndexList) * clusterCount,
-      9); // Binding 9
-
   m_materials.reserve(MAX_MATERIALS);
   m_lights.reserve(MAX_LIGHTS);
 }
