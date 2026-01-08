@@ -38,6 +38,8 @@ public:
     float csmLambda = 0.95f;
     float ssaoRadius = 0.5f;
     float ssaoBias = 0.025f;
+    float gamma = 2.2f;
+    float iblIntensity = 1.0f;
     int selectedMaterial = 0;
     int selectedLight = 0;
   };

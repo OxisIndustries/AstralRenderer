@@ -37,3 +37,7 @@ lib/
 
 # Tools
 .gemini/
+
+# Temporary files
+render_debug.txt
+imgui.ini

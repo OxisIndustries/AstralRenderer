@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui.h>
+#include <cstdio>
 #include <spdlog/spdlog.h>
 
 namespace astral {
@@ -69,11 +70,16 @@ void Application::init() {
   initScene();
 
   // Input Callbacks
-  glfwSetWindowUserPointer(m_window->getNativeWindow(), &m_camera);
+  static Application* s_app = this;
+  s_app = this; // Ensure it's set
+  
+  // ImGui installs its own callbacks in m_uiManager constructor via ImGui_ImplGlfw_InitForVulkan(..., true).
+  // We MUST chain them if we want to provide our own.
+  
+  static GLFWcursorposfun s_prevCursorPosCallback = nullptr;
+  s_prevCursorPosCallback = glfwSetCursorPosCallback(m_window->getNativeWindow(), [](GLFWwindow *window, double xpos, double ypos) {
+    if (s_prevCursorPosCallback) s_prevCursorPosCallback(window, xpos, ypos);
 
-  glfwSetCursorPosCallback(m_window->getNativeWindow(), [](GLFWwindow *window,
-                                                           double xpos,
-                                                           double ypos) {
     static double lastX = 800.0, lastY = 450.0;
     static bool firstMouse = true;
     if (firstMouse) {
@@ -86,10 +92,9 @@ void Application::init() {
     lastX = xpos;
     lastY = ypos;
 
-    auto cam = static_cast<astral::Camera *>(glfwGetWindowUserPointer(window));
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
-      cam->processMouse(static_cast<float>(xoffset),
-                        static_cast<float>(yoffset));
+      s_app->m_camera.processMouse(static_cast<float>(xoffset),
+                                 static_cast<float>(yoffset));
     }
   });
 
@@ -416,9 +421,13 @@ void Application::run() {
     // Inject UI Pass (Overlay)
     // Depends on whatever the last pass wrote to "Swapchain".
     // We don't clear outputs because we draw on top.
-    graph.addPass("UIPass", {}, {"Swapchain"}, [&](VkCommandBuffer cb){
+    
+    graph.addPass("UIPass", {}, {"Swapchain"}, [this](VkCommandBuffer cb){
+        fprintf(stderr, "Application::run UIPass Lambda: Calling render. m_uiManager=%p\n", m_uiManager.get());
         m_uiManager->render(cb);
+        fprintf(stderr, "Application::run UIPass Lambda: Returned from render.\n");
     }, false); // clearOutputs = false
+    
 
     VkExtent2D ext = m_swapchain->getExtent();
     graph.execute(cmd->getHandle(), ext);
@@ -494,32 +503,152 @@ void Application::handleInput(float deltaTime) {
 void Application::updateUI(float deltaTime) {
   m_uiManager->beginFrame();
 
-  // ... Copy ImGui Logic from main.cpp ...
-  // For brevity, I will include the core controls.
+  ImGui::SetNextWindowSize(ImVec2(400, 600), ImGuiCond_FirstUseEver);
+  ImGui::Begin("Renderer Controls", nullptr, ImGuiWindowFlags_NoScrollbar);
 
-  ImGui::Begin("Renderer Controls");
-  ImGui::DragFloat("Exposure", &m_uiParams.exposure, 0.01f, 0.0f, 10.0f);
-  ImGui::DragFloat("Bloom Strength", &m_uiParams.bloomStrength, 0.001f, 0.0f,
-                   1.0f);
-  ImGui::Checkbox("Show Skybox", &m_uiParams.showSkybox);
-  ImGui::Checkbox("Enable FXAA", &m_uiParams.enableFXAA);
-  ImGui::Checkbox("Enable SSAO", &m_uiParams.enableSSAO);
-  ImGui::Checkbox("Visualize CSM", &m_uiParams.visualizeCascades);
+  if (ImGui::BeginTabBar("RendererTabs")) {
+    if (ImGui::BeginTabItem("Main")) {
+      ImGui::TextColored(ImVec4(0.0f, 1.0f, 1.0f, 1.0f), "Performance");
+      ImGui::Text("FPS: %.1f (%.3f ms)", 1.0f / deltaTime, deltaTime * 1000.0f);
+      ImGui::Separator();
 
-  if (ImGui::CollapsingHeader("Shadows & CSM")) {
-    ImGui::DragFloat("Shadow Bias", &m_uiParams.shadowBias, 0.0001f, 0.0f,
-                     0.05f, "%.4f");
-    ImGui::SliderInt("PCF Range", &m_uiParams.pcfRange, 0, 4);
-    ImGui::SliderFloat("CSM Lambda", &m_uiParams.csmLambda, 0.0f, 1.0f);
+      ImGui::TextColored(ImVec4(0.0f, 1.0f, 1.0f, 1.0f), "Camera & Tonemaping");
+      ImGui::DragFloat("Exposure", &m_uiParams.exposure, 0.01f, 0.0f, 10.0f);
+      ImGui::DragFloat("Gamma", &m_uiParams.gamma, 0.01f, 0.5f, 5.0f);
+      ImGui::DragFloat("IBL Intensity", &m_uiParams.iblIntensity, 0.01f, 0.0f, 5.0f);
+      
+      ImGui::Separator();
+      ImGui::Checkbox("Show Skybox", &m_uiParams.showSkybox);
+      ImGui::Checkbox("Enable Headlamp", &m_uiParams.enableHeadlamp);
+
+      ImGui::EndTabItem();
+    }
+
+    if (ImGui::BeginTabItem("Post-Process")) {
+      if (ImGui::CollapsingHeader("Bloom", ImGuiTreeNodeFlags_DefaultOpen)) {
+        static bool bloomEnabled = true; // Temporary toggle or we could add to UIParams
+        ImGui::Checkbox("Enable Bloom", &bloomEnabled); 
+        ImGui::DragFloat("Strength", &m_uiParams.bloomStrength, 0.001f, 0.0f, 1.0f);
+        ImGui::DragFloat("Threshold", &m_uiParams.bloomThreshold, 0.1f, 0.0f, 10.0f);
+        ImGui::DragFloat("Softness", &m_uiParams.bloomSoftness, 0.01f, 0.0f, 1.0f);
+      }
+
+      if (ImGui::CollapsingHeader("SSAO", ImGuiTreeNodeFlags_DefaultOpen)) {
+        ImGui::Checkbox("Enable SSAO", &m_uiParams.enableSSAO);
+        ImGui::DragFloat("Radius", &m_uiParams.ssaoRadius, 0.01f, 0.01f, 2.0f);
+        ImGui::DragFloat("Bias", &m_uiParams.ssaoBias, 0.001f, 0.0f, 0.1f);
+      }
+
+      if (ImGui::CollapsingHeader("Anti-Aliasing", ImGuiTreeNodeFlags_DefaultOpen)) {
+        ImGui::Checkbox("Enable FXAA", &m_uiParams.enableFXAA);
+      }
+
+      ImGui::EndTabItem();
+    }
+
+    if (ImGui::BeginTabItem("Shadows")) {
+      ImGui::Checkbox("Visualize CSM Cascades", &m_uiParams.visualizeCascades);
+      ImGui::DragFloat("Shadow Bias", &m_uiParams.shadowBias, 0.0001f, 0.0f, 0.05f, "%.4f");
+      ImGui::DragFloat("Normal Bias", &m_uiParams.shadowNormalBias, 0.0001f, 0.0f, 0.05f, "%.4f");
+      ImGui::SliderInt("PCF Range", &m_uiParams.pcfRange, 0, 4);
+      ImGui::SliderFloat("CSM Lambda", &m_uiParams.csmLambda, 0.0f, 1.0f);
+      ImGui::EndTabItem();
+    }
+
+    if (ImGui::BeginTabItem("Scene Inspector")) {
+      if (ImGui::CollapsingHeader("Lights", ImGuiTreeNodeFlags_DefaultOpen)) {
+        auto& lights = m_sceneManager->getLights();
+        std::vector<std::string> lightNames;
+        for (size_t i = 0; i < lights.size(); ++i) {
+          lightNames.push_back("Light " + std::to_string(i) + (i == 0 ? " (Sun)" : ""));
+        }
+
+        if (ImGui::BeginCombo("Select Light", lightNames[m_uiParams.selectedLight].c_str())) {
+          for (int i = 0; i < (int)lightNames.size(); ++i) {
+            bool isSelected = (m_uiParams.selectedLight == i);
+            if (ImGui::Selectable(lightNames[i].c_str(), isSelected)) {
+              m_uiParams.selectedLight = i;
+            }
+          }
+          ImGui::EndCombo();
+        }
+
+        if (m_uiParams.selectedLight < (int)lights.size()) {
+          Light& light = const_cast<Light&>(lights[m_uiParams.selectedLight]);
+          ImGui::PushID("LightEditor");
+          
+          ImGui::Text("Type: %s", light.position.w == 1.0f ? "Directional" : (light.position.w == 0.0f ? "Point" : "Spot"));
+          
+          if (light.position.w == 1.0f) {
+             float dir[3] = {light.direction.x, light.direction.y, light.direction.z};
+             if (ImGui::DragFloat3("Direction", dir, 0.01f)) {
+               light.direction = glm::vec4(glm::normalize(glm::vec3(dir[0], dir[1], dir[2])), light.direction.w);
+             }
+          } else {
+             float pos[3] = {light.position.x, light.position.y, light.position.z};
+             if (ImGui::DragFloat3("Position", pos, 0.1f)) {
+               light.position = glm::vec4(pos[0], pos[1], pos[2], light.position.w);
+             }
+          }
+
+          float color[3] = {light.color.r, light.color.g, light.color.b};
+          if (ImGui::ColorEdit3("Color", color)) {
+            light.color = glm::vec4(color[0], color[1], color[2], light.color.a);
+          }
+          ImGui::DragFloat("Intensity", &light.color.a, 0.1f, 0.0f, 100.0f);
+          
+          if (light.position.w != 1.0f) {
+            ImGui::DragFloat("Range", &light.direction.w, 0.1f, 0.0f, 100.0f);
+          }
+
+          m_sceneManager->updateLight(m_uiParams.selectedLight, light);
+          ImGui::PopID();
+        }
+      }
+
+      ImGui::Separator();
+
+      if (ImGui::CollapsingHeader("Materials", ImGuiTreeNodeFlags_DefaultOpen)) {
+        auto& materials = m_sceneManager->getMaterials();
+        std::vector<std::string> matNames;
+        for (size_t i = 0; i < materials.size(); ++i) {
+          matNames.push_back("Material " + std::to_string(i));
+        }
+
+        if (ImGui::BeginCombo("Select Material", matNames[m_uiParams.selectedMaterial].c_str())) {
+          for (int i = 0; i < (int)matNames.size(); ++i) {
+            bool isSelected = (m_uiParams.selectedMaterial == i);
+            if (ImGui::Selectable(matNames[i].c_str(), isSelected)) {
+              m_uiParams.selectedMaterial = i;
+            }
+          }
+          ImGui::EndCombo();
+        }
+
+        if (m_uiParams.selectedMaterial < (int)materials.size()) {
+          MaterialMetadata& mat = const_cast<MaterialMetadata&>(materials[m_uiParams.selectedMaterial]);
+          ImGui::PushID("MaterialEditor");
+          
+          float baseColor[4] = {mat.baseColorFactor.r, mat.baseColorFactor.g, mat.baseColorFactor.b, mat.baseColorFactor.a};
+          if (ImGui::ColorEdit4("Base Color", baseColor)) {
+            mat.baseColorFactor = glm::vec4(baseColor[0], baseColor[1], baseColor[2], baseColor[3]);
+          }
+
+          ImGui::SliderFloat("Metallic", &mat.metallicFactor, 0.0f, 1.0f);
+          ImGui::SliderFloat("Roughness", &mat.roughnessFactor, 0.0f, 1.0f);
+          ImGui::DragFloat("Alpha Cutoff", &mat.alphaCutoff, 0.01f, 0.0f, 1.0f);
+
+          m_sceneManager->updateMaterial(m_uiParams.selectedMaterial, mat);
+          ImGui::PopID();
+        }
+      }
+
+      ImGui::EndTabItem();
+    }
+    ImGui::EndTabBar();
   }
 
-  // ... Light Inspector Logic would go here ...
-  // To match production quality, we should include the full logic, but for this
-  // refactor demo, ensuring the variables are updated is key.
-
-  ImGui::Text("FPS: %.1f", 1.0f / deltaTime);
   ImGui::End();
-
   m_uiManager->endFrame();
 }
 

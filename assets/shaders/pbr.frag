@@ -52,6 +52,7 @@ struct SceneData {
   int gridX, gridY, gridZ;
   float nearClip, farClip;
   float screenWidth, screenHeight;
+  float iblIntensity;
 };
 
 struct ClusterGrid {
@@ -385,7 +386,7 @@ void main() {
                     .rg;
     vec3 specular = prefilteredColor * (F_ibl * brdf.x + brdf.y);
 
-    ambient = (kD_ibl * diffuse + specular);
+    ambient = (kD_ibl * diffuse + specular) * scene.iblIntensity;
   }
 
   if (mat.occlusionTextureIndex != -1) {

@@ -20,6 +20,7 @@ public:
 private:
     Context* m_context;
     VkDescriptorPool m_imguiPool;
+    VkFormat m_uiFormat;
 };
 
 } // namespace astral

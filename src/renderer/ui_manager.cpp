@@ -2,15 +2,14 @@
 #include "astral/platform/window.hpp"
 #include <spdlog/spdlog.h>
 #include <stdexcept>
+#include <cstdio>
+#include <fstream>
 
 namespace astral {
 
-UIManager::UIManager(Context* context, VkFormat swapchainFormat) : m_context(context) {
+UIManager::UIManager(Context* context, VkFormat swapchainFormat) : m_context(context), m_uiFormat(swapchainFormat) {
     // 1: Create descriptor pool for ImGui
     // ... (pool creation same)
-    
-    // ...
-    // ...
     
     VkDescriptorPoolSize pool_sizes[] = {
         { VK_DESCRIPTOR_TYPE_SAMPLER, 1000 },
@@ -63,7 +62,7 @@ UIManager::UIManager(Context* context, VkFormat swapchainFormat) : m_context(con
     // Dynamic rendering requires specifying formats
     VkPipelineRenderingCreateInfo renderingCreateInfo = {VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO};
     renderingCreateInfo.colorAttachmentCount = 1;
-    renderingCreateInfo.pColorAttachmentFormats = &swapchainFormat;
+    renderingCreateInfo.pColorAttachmentFormats = &m_uiFormat; // Use persistent member address
     init_info.PipelineRenderingCreateInfo = renderingCreateInfo;
 
     if (!ImGui_ImplVulkan_Init(&init_info)) {
@@ -132,8 +131,23 @@ void UIManager::endFrame() {
     ImGui::Render();
 }
 
+
+
 void UIManager::render(VkCommandBuffer cmd) {
-    ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), cmd);
+    std::ofstream log("render_debug.txt", std::ios::app);
+    log << "Entered UIManager::render. this=" << this << std::endl;
+    
+    ImDrawData* data = ImGui::GetDrawData();
+    log << "GetDrawData returned: " << data << std::endl;
+    
+    if (!data) {
+        log << "No draw data!" << std::endl;
+        return;
+    }
+    log << "CmdListsCount=" << data->CmdListsCount << std::endl;
+    log.close();
+
+    ImGui_ImplVulkan_RenderDrawData(data, cmd);
 }
 
 } // namespace astral

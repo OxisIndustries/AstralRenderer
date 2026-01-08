@@ -44,6 +44,7 @@ struct SceneData {
     int gridX, gridY, gridZ;     // Cluster grid dimensions
     float nearClip, farClip;     // Camera clips for cluster calculation
     float screenWidth, screenHeight;
+    float iblIntensity;
 };
 
 struct MaterialMetadata {

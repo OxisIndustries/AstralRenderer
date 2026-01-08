@@ -12,6 +12,7 @@ layout(push_constant) uniform PushConstants {
     int ssaoTextureIndex;
     float exposure;
     float bloomStrength;
+    float gamma;
     int enableSSAO;
 } pc;
 
@@ -44,7 +45,7 @@ void main() {
     vec3 mapped = ACESFilm(hdrColor);
 
     // Gamma correction
-    mapped = pow(mapped, vec3(1.0 / 2.2));
+    mapped = pow(mapped, vec3(1.0 / pc.gamma));
 
     outColor = vec4(mapped, 1.0);
 }

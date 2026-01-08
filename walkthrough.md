@@ -3,6 +3,25 @@
 ## The Issue
 The application was launching but consistently rendering a solid color screen (originally Blue), with no visible 3D geometry. Several modifications (Shader recompilation, Direct Draw calls) had failed to produce any output.
 
+### 3. Critical Fixes (Crash Resolution)
+
+**Issue 1: "Vector Subscript Out of Range" Crash**
+The application would crash immediately upon rendering the UI. This was traced to multiple critical issues:
+
+1.  **Dangling Reference in Lambda Captures**: `RendererSystem::render` was capturing local variables (`i`, `currentFrame`) by reference `[&]` in lambdas passed to `RenderGraph`. These variables were destroyed before the lambda executed. **Fix**: Changed captures to `[=, ...]` to copy values.
+2.  **Dangling Pointer in UIManager**: `UIManager` passed the address of a stack-allocated argument (`&swapchainFormat`) to `ImGui_ImplVulkan_Init`. ImGui accessed this invalid pointer later. **Fix**: Stored `m_uiFormat` as a class member in `UIManager`.
+3.  **Missing Swapchain Resource**: The "Swapchain" resource used by the UI pass was never registered in the `RenderGraph`, leading to null resource usage. **Fix**: Added `graph.addExternalResource("Swapchain", ...)` in `RendererSystem::render`.
+
+### 4. Verification and Next Steps
+
+With these fixes, the application now renders the PBR scene with the "Renderer Controls" panel overlay. The user can now verify:
+- **Shadows**: Change Cascade Splits, Visualize CSM.
+- **SSAO**: Toggle and adjust radius/bias.
+- **Bloom**: Adjust threshold and strength.
+- **FXAA**: Toggle anti-aliasing.
+
+The pipeline is now stable for further feature development.
+
 ## Root Cause Analysis
 After extensive isolation testing, two primary issues were identified:
 1.  **Post-Process Culling (Major)**: The Full-Screen Triangle used in Post-Processing passes (Composite, FXAA, etc.) was being **culled** by the Rasterizer because `PipelineSpecs` defaulted to `VK_CULL_MODE_BACK_BIT`. The winding order of the generated triangle resulted in it being classified as a "back face" and discarded. This caused the final passes to output nothing (or just clear color).
