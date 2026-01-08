@@ -1,3 +1,0 @@
-C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeFiles/fastgltf-populate.dir
-C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/fastgltf-subbuild/CMakeFiles/ZERO_CHECK.dir

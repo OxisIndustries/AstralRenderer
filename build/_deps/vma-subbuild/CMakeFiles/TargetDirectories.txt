@@ -1,3 +1,0 @@
-C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/vma-populate.dir
-C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/tpoyr/OneDrive/Desktop/Astral_Renderer/build/_deps/vma-subbuild/CMakeFiles/ZERO_CHECK.dir
