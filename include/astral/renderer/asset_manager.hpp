@@ -12,6 +12,14 @@
 
 namespace astral {
 
+enum class TextureType {
+    Albedo,
+    Normal,
+    MetallicRoughness,
+    Occlusion,
+    Emissive
+};
+
 class AssetManager;
 class ModelLoader {
 public:
@@ -33,7 +41,7 @@ public:
     // Uses caching to avoid reloading the same asset multiple times if requested (optional future improvement, currently direct load).
     std::unique_ptr<Model> loadModel(const std::filesystem::path& path, SceneManager* sceneManager);
 
-    std::shared_ptr<Image> getOrLoadTexture(const std::filesystem::path& path);
+    std::shared_ptr<Image> getOrLoadTexture(const std::filesystem::path& path, TextureType type = TextureType::Albedo);
     VkSampler getSampler(const SamplerSpecs& specs);
 
 private:
@@ -41,7 +49,10 @@ private:
     std::vector<std::unique_ptr<ModelLoader>> m_loaders;
     std::unordered_map<std::string, std::shared_ptr<Image>> m_textureCache;
     std::unordered_map<SamplerSpecs, std::shared_ptr<Sampler>> m_samplerCache;
-    std::shared_ptr<Image> m_errorTexture;
+    std::shared_ptr<Image> m_errorTexture; // Magenta
+    std::shared_ptr<Image> m_defaultNormalTexture; // Flat Blue
+    std::shared_ptr<Image> m_whiteTexture; // White
+    std::shared_ptr<Image> m_blackTexture; // Black
     
     // Future: Cache, Async loading queue
 };

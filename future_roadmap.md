@@ -29,7 +29,7 @@ This document outlines the strategic roadmap for the next phases of `AstralRende
         *   Bind Transparent Pipeline -> Draw Transparent List.
 
 ## 2. Enhanced Default Assets (Robustness)
-**Status:** Basic (Magenta Texture only).
+**Status:** [x] COMPLETED (Phase 3.2)
 **Goal:** Prevent visual artifacts when specific texture maps (Normal, Metallic) are missing.
 
 ### Current State Analysis
@@ -92,9 +92,9 @@ This document outlines the strategic roadmap for the next phases of `AstralRende
 ## Recommended Execution Order
 
 1.  [x] **Transparency Blending** (Fixes immediate visual correctness).
-2.  **Enhanced Default Assets** (improves developer experience).
+2.  [x] **Enhanced Default Assets** (improves developer experience).
 3.  **Shadow Improvements** (Quick visual win).
 4.  **Config System** (Quality of Life).
 5.  **GPU-Driven Rendering** (Long-term optimization).
 
-**Next Task:** Start Task 2 - Enhanced Default Assets.
+**Next Task:** Start Task 3 - Shadow Map Improvements.

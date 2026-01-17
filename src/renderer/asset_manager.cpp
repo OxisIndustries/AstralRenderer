@@ -14,9 +14,29 @@ AssetManager::AssetManager(Context* context) : m_context(context) {
     specs.format = VK_FORMAT_R8G8B8A8_SRGB;
     specs.usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
     
+    // 1. Error Color (Magenta)
     m_errorTexture = std::make_shared<Image>(m_context, specs);
-    uint8_t pixels[] = {255, 0, 255, 255};
-    m_errorTexture->upload(pixels, 4);
+    uint8_t magenta[] = {255, 0, 255, 255};
+    m_errorTexture->upload(magenta, 4);
+
+    // 2. Default Normal (Flat Blue: 128, 128, 255)
+    // Note: Normals shouldn't be SRGB, but our system currently expects SRGB for most. 
+    // Actually, Normals SHOULD be UNORM. Let's create a UNORM spec for it.
+    ImageSpecs normalSpecs = specs;
+    normalSpecs.format = VK_FORMAT_R8G8B8A8_UNORM;
+    m_defaultNormalTexture = std::make_shared<Image>(m_context, normalSpecs);
+    uint8_t flatNormal[] = {128, 128, 255, 255};
+    m_defaultNormalTexture->upload(flatNormal, 4);
+
+    // 3. White
+    m_whiteTexture = std::make_shared<Image>(m_context, specs);
+    uint8_t white[] = {255, 255, 255, 255};
+    m_whiteTexture->upload(white, 4);
+
+    // 4. Black
+    m_blackTexture = std::make_shared<Image>(m_context, specs);
+    uint8_t black[] = {0, 0, 0, 255};
+    m_blackTexture->upload(black, 4);
 }
 
 void AssetManager::registerLoader(std::unique_ptr<ModelLoader> loader) {
@@ -46,17 +66,27 @@ std::unique_ptr<Model> AssetManager::loadModel(const std::filesystem::path& path
     return nullptr;
 }
 
-std::shared_ptr<Image> AssetManager::getOrLoadTexture(const std::filesystem::path& path) {
+std::shared_ptr<Image> AssetManager::getOrLoadTexture(const std::filesystem::path& path, TextureType type) {
+    auto getFallback = [&]() -> std::shared_ptr<Image> {
+        switch (type) {
+            case TextureType::Normal: return m_defaultNormalTexture;
+            case TextureType::MetallicRoughness:
+            case TextureType::Occlusion: return m_whiteTexture;
+            case TextureType::Emissive: return m_blackTexture;
+            case TextureType::Albedo:
+            default: return m_errorTexture;
+        }
+    };
+
     if (!std::filesystem::exists(path)) {
-        spdlog::warn("Texture file not found: {}", path.string());
-        return m_errorTexture;
+        spdlog::warn("Texture file not found: {}, returning default for type", path.string());
+        return getFallback();
     }
 
     std::string pathStr = std::filesystem::absolute(path).string();
     
     // Check cache
     if (m_textureCache.find(pathStr) != m_textureCache.end()) {
-        spdlog::debug("Texture cache hit: {}", pathStr);
         return m_textureCache[pathStr];
     }
 
@@ -67,21 +97,21 @@ std::shared_ptr<Image> AssetManager::getOrLoadTexture(const std::filesystem::pat
 
     if (!pixels) {
         spdlog::error("Failed to load texture image: {}", pathStr);
-        return m_errorTexture;
+        return getFallback();
     }
 
     ImageSpecs specs;
     specs.width = static_cast<uint32_t>(width);
     specs.height = static_cast<uint32_t>(height);
-    specs.format = VK_FORMAT_R8G8B8A8_SRGB;
-    specs.usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT; // TRANSFER_SRC_BIT added by Image ctor
+    // Normals should be UNORM, others mostly SRGB.
+    specs.format = (type == TextureType::Normal) ? VK_FORMAT_R8G8B8A8_UNORM : VK_FORMAT_R8G8B8A8_SRGB;
+    specs.usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
 
     auto image = std::make_shared<Image>(m_context, specs);
     image->upload(pixels, specs.width * specs.height * 4);
     
     stbi_image_free(pixels);
 
-    // Cache it
     m_textureCache[pathStr] = image;
     return image;
 }

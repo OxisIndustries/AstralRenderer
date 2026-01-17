@@ -113,11 +113,30 @@ std::unique_ptr<Model> GltfLoader::load(const std::filesystem::path& path, Scene
     VkSampler defaultSampler = assetManager->getSampler(defaultSpecs);
 
     // 2. Image'ları Yükle (Ham veriler)
+    // 2.1 USAGE Pre-pass to determine fallback types and formats
+    std::vector<TextureType> imageTypes(asset.images.size(), TextureType::Albedo);
+    for (auto& gltfMat : asset.materials) {
+        auto checkTex = [&](auto& info, TextureType type) {
+            if (info.has_value()) {
+                auto& tex = asset.textures[info.value().textureIndex];
+                if (tex.imageIndex.has_value()) {
+                    imageTypes[tex.imageIndex.value()] = type;
+                }
+            }
+        };
+        checkTex(gltfMat.pbrData.baseColorTexture, TextureType::Albedo);
+        checkTex(gltfMat.pbrData.metallicRoughnessTexture, TextureType::MetallicRoughness);
+        checkTex(gltfMat.normalTexture, TextureType::Normal);
+        checkTex(gltfMat.occlusionTexture, TextureType::Occlusion);
+        checkTex(gltfMat.emissiveTexture, TextureType::Emissive);
+    }
+
     std::vector<std::shared_ptr<Image>> loadedImages;
     loadedImages.reserve(asset.images.size());
     for (size_t i = 0; i < asset.images.size(); ++i) {
         auto& gltfImage = asset.images[i];
         std::shared_ptr<Image> image;
+        TextureType type = imageTypes[i];
         
         std::visit(fastgltf::visitor {
             [&](fastgltf::sources::URI& uri) {
@@ -136,8 +155,8 @@ std::unique_ptr<Model> GltfLoader::load(const std::filesystem::path& path, Scene
                     return;
                 }
 
-                // Use AssetManager for caching!
-                image = assetManager->getOrLoadTexture(imagePath);
+                // Use AssetManager for caching with Type awareness!
+                image = assetManager->getOrLoadTexture(imagePath, type);
             },
             [&](fastgltf::sources::BufferView& view) {
                 auto& bufferView = asset.bufferViews[view.bufferViewIndex];
@@ -156,13 +175,17 @@ std::unique_ptr<Model> GltfLoader::load(const std::filesystem::path& path, Scene
                             ImageSpecs specs;
                             specs.width = static_cast<uint32_t>(width);
                             specs.height = static_cast<uint32_t>(height);
-                            specs.format = VK_FORMAT_R8G8B8A8_SRGB;
+                            // Set format based on type
+                            specs.format = (type == TextureType::Normal) ? 
+                                VK_FORMAT_R8G8B8A8_UNORM : VK_FORMAT_R8G8B8A8_SRGB;
+                                
                             specs.usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
                             
                             image = std::make_shared<Image>(m_context, specs);
                             image->upload(pixels, specs.width * specs.height * 4);
                             stbi_image_free(pixels);
-                            spdlog::info("Loaded image from BufferView ({}x{})", width, height);
+                            spdlog::info("Loaded image from BufferView ({}x{}) as {}", width, height, 
+                                (type == TextureType::Normal ? "UNORM" : "SRGB"));
                         }
                     },
                     [&](auto&) {}
