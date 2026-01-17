@@ -36,7 +36,7 @@ public:
     bool visualizeCascades = false;
     float shadowBias = 0.002f;
     float shadowNormalBias = 0.005f;
-    int pcfRange = 1;
+    int pcfRange = 2;
     float csmLambda = 0.95f;
     float ssaoRadius = 0.5f;
     float ssaoBias = 0.025f;

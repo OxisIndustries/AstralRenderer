@@ -178,12 +178,71 @@ vec3 getNormalFromMap() {
   return normalize(TBN * tangentNormal);
 }
 
+const vec2 poissonDisk[16] = vec2[](
+   vec2( -0.94201624, -0.39906216 ),
+   vec2( 0.94558609, -0.76890725 ),
+   vec2( -0.094184101, -0.92938870 ),
+   vec2( 0.34495938, 0.29387760 ),
+   vec2( -0.91588581, 0.45771432 ),
+   vec2( -0.81544232, -0.87169214 ),
+   vec2( 0.91046627, 0.72447952 ),
+   vec2( 0.21045446, -0.82531383 ),
+   vec2( 0.12543931, 0.22333204 ),
+   vec2( 0.40100315, 0.82544100 ),
+   vec2( -0.16132043, 0.73030273 ),
+   vec2( -0.53305847, 0.28113706 ),
+   vec2( 0.33842401, -0.61365885 ),
+   vec2( -0.67615139, -0.44620702 ),
+   vec2( 0.59793335, -0.51231192 ),
+   vec2( 0.73946448, -0.18511059 )
+);
+
+float InterleavedGradientNoise(vec2 fragCoord) {
+    vec3 magic = vec3(0.06711056f, 0.00583715f, 52.9829189f);
+    return fract(magic.z * fract(dot(fragCoord, magic.xy)));
+}
+
+float sampleShadow(vec3 worldPos, vec3 normal, vec3 lightDir, int cascadeIndex, float nDotL, float angle) {
+  SceneData scene = allSceneBuffers[pc.sceneDataIndex].scene;
+  
+  float normalBiasScale = clamp(1.0 - nDotL, 0.0, 1.0);
+  vec3 offsetPos = worldPos + normal * scene.shadowNormalBias * normalBiasScale * (1.0 / (1.0 + float(cascadeIndex)));
+  
+  vec4 lightSpacePos = scene.cascadeViewProj[cascadeIndex] * vec4(offsetPos, 1.0);
+  vec3 projCoords = lightSpacePos.xyz / lightSpacePos.w;
+  projCoords.xy = projCoords.xy * 0.5 + 0.5;
+
+  if (projCoords.z > 1.0) return 0.0;
+  
+  float currentDepth = projCoords.z;
+  float bias = max(scene.shadowBias * (1.0 - nDotL), scene.shadowBias * 0.1);
+  bias *= 1.0 / (1.0 + float(cascadeIndex));
+
+  float shadow = 0.0;
+  vec2 texelSize = 1.0 / textureSize(arrayTextures[nonuniformEXT(scene.shadowMapIndex)], 0).xy;
+  
+  float s = sin(angle);
+  float c = cos(angle);
+  mat2 rotationMatrix = mat2(c, -s, s, c);
+  float spread = float(scene.pcfRange);
+
+  for (int i = 0; i < 16; i++) {
+    vec2 offset = (rotationMatrix * poissonDisk[i]) * texelSize * spread;
+    float pcfDepth = texture(arrayTextures[nonuniformEXT(scene.shadowMapIndex)], 
+                             vec3(projCoords.xy + offset, cascadeIndex)).r;
+    shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
+  }
+  return shadow / 16.0;
+}
+
 float calculateShadow(vec3 worldPos, vec3 normal, vec3 lightPos) {
   SceneData scene = allSceneBuffers[pc.sceneDataIndex].scene;
   if (scene.shadowMapIndex == -1)
     return 0.0;
 
-  // Determine cascade based on view-space depth
+  vec3 lightDir = normalize(lightPos - worldPos);
+  float nDotL = dot(normal, lightDir);
+
   vec4 viewPos = scene.view * vec4(worldPos, 1.0);
   float depth = abs(viewPos.z);
 
@@ -195,47 +254,21 @@ float calculateShadow(vec3 worldPos, vec3 normal, vec3 lightPos) {
     }
   }
 
-  // Normal bias to further reduce acne
-  vec3 offsetPos =
-      worldPos + normal * scene.shadowNormalBias * (1.0 / (1.0 + cascadeIndex));
-  vec4 lightSpacePos =
-      scene.cascadeViewProj[cascadeIndex] * vec4(offsetPos, 1.0);
+  float angle = InterleavedGradientNoise(gl_FragCoord.xy) * 2.0 * PI;
+  float shadow = sampleShadow(worldPos, normal, lightDir, cascadeIndex, nDotL, angle);
 
-  // Perspective divide
-  vec3 projCoords = lightSpacePos.xyz / lightSpacePos.w;
-
-  // Transform to [0,1] range
-  projCoords.xy = projCoords.xy * 0.5 + 0.5;
-
-  if (projCoords.z > 1.0)
-    return 0.0;
-
-  float currentDepth = projCoords.z;
-
-  // Bias to prevent shadow acne
-  vec3 lightDir = normalize(lightPos - worldPos);
-  float bias = max(scene.shadowBias * (1.0 - dot(normal, lightDir)),
-                   scene.shadowBias * 0.1);
-  // Adjust bias based on cascade (tighter bias for closer cascades)
-  bias *= 1.0 / (1.0 + cascadeIndex);
-
-  // PCF
-  float shadow = 0.0;
-  vec2 texelSize =
-      1.0 /
-      textureSize(arrayTextures[nonuniformEXT(scene.shadowMapIndex)], 0).xy;
-  int range = scene.pcfRange;
-  for (int x = -range; x <= range; ++x) {
-    for (int y = -range; y <= range; ++y) {
-      float pcfDepth =
-          texture(arrayTextures[nonuniformEXT(scene.shadowMapIndex)],
-                  vec3(projCoords.xy + vec2(x, y) * texelSize, cascadeIndex))
-              .r;
-      shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
+  // Transition smoothing
+  if (cascadeIndex < 3) {
+    float nextSplit = scene.cascadeSplits[cascadeIndex];
+    float cascadeWidth = nextSplit - (cascadeIndex > 0 ? scene.cascadeSplits[cascadeIndex - 1] : scene.nearClip);
+    float transitionRange = cascadeWidth * 0.1; // 10% transition
+    float diff = nextSplit - depth;
+    
+    if (diff < transitionRange) {
+      float nextShadow = sampleShadow(worldPos, normal, lightDir, cascadeIndex + 1, nDotL, angle);
+      shadow = mix(nextShadow, shadow, diff / transitionRange);
     }
   }
-  float samples = (range * 2 + 1) * (range * 2 + 1);
-  shadow /= samples;
 
   return shadow;
 }

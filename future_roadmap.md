@@ -66,7 +66,7 @@ This document outlines the strategic roadmap for the next phases of `AstralRende
     *   Sort `VisibleInstancesBuffer` by distance.
 
 ## 4. Shadow Map Improvements (Visual Quality)
-**Status:** Basic PCF (Percentage Closer Filtering).
+**Status:** [x] COMPLETED (Phase 3.3)
 **Goal:** Softer, more realistic shadows.
 
 ### Technical Implementation Plan
@@ -93,8 +93,8 @@ This document outlines the strategic roadmap for the next phases of `AstralRende
 
 1.  [x] **Transparency Blending** (Fixes immediate visual correctness).
 2.  [x] **Enhanced Default Assets** (improves developer experience).
-3.  **Shadow Improvements** (Quick visual win).
+3.  [x] **Shadow Improvements** (Quick visual win).
 4.  **Config System** (Quality of Life).
 5.  **GPU-Driven Rendering** (Long-term optimization).
 
-**Next Task:** Start Task 3 - Shadow Map Improvements.
+**Next Task:** Start Task 4 - Config System (Quality of Life).
