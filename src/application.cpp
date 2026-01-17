@@ -6,6 +6,7 @@
 #include <spdlog/spdlog.h>
 #include "astral/renderer/gltf_loader.hpp"
 #include "astral/renderer/assimp_loader.hpp"
+#include "astral/core/config.hpp"
 
 namespace astral {
 
@@ -20,10 +21,12 @@ void AstralApp::init() {
   spdlog::set_level(spdlog::level::debug);
   spdlog::info("Starting Astral Renderer...");
 
+  Config::get().load(); // Load from file
+
   WindowSpecs specs;
   specs.title = "Astral Renderer";
-  specs.width = 1600;
-  specs.height = 900;
+  specs.width = Config::get().general.windowWidth;
+  specs.height = Config::get().general.windowHeight;
 
   m_window = std::make_unique<Window>(specs);
   m_context = std::make_unique<Context>(m_window.get());
@@ -73,6 +76,7 @@ void AstralApp::init() {
   m_camera.setPosition(glm::vec3(0.0f, 0.0f, 5.0f));
 
   initScene(); // Virtual call
+  Config::get().applyTo(m_uiParams); // Apply loaded renderer settings
 
   // Input Callbacks
   static AstralApp* s_app = this;
@@ -474,6 +478,15 @@ void AstralApp::updateUI(float deltaTime) {
       ImGui::Separator();
       ImGui::Checkbox("Show Skybox", &m_uiParams.showSkybox);
       ImGui::Checkbox("Enable Headlamp", &m_uiParams.enableHeadlamp);
+      
+      ImGui::Separator();
+      if (ImGui::Button("Save Current Configuration")) {
+          Config::get().general.windowWidth = m_window->getWidth();
+          Config::get().general.windowHeight = m_window->getHeight();
+          Config::get().updateFrom(m_uiParams);
+          Config::get().save();
+          spdlog::info("Configuration saved manually.");
+      }
 
       ImGui::EndTabItem();
     }
@@ -506,6 +519,7 @@ void AstralApp::updateUI(float deltaTime) {
       ImGui::DragFloat("Normal Bias", &m_uiParams.shadowNormalBias, 0.0001f, 0.0f, 0.05f, "%.4f");
       ImGui::SliderInt("PCF Range", &m_uiParams.pcfRange, 0, 4);
       ImGui::SliderFloat("CSM Lambda", &m_uiParams.csmLambda, 0.0f, 1.0f);
+
       ImGui::EndTabItem();
     }
 
@@ -631,6 +645,12 @@ void AstralApp::updateUI(float deltaTime) {
 }
 
 void AstralApp::cleanup() {
+  // Save current settings to config before exit
+  Config::get().general.windowWidth = m_window->getWidth();
+  Config::get().general.windowHeight = m_window->getHeight();
+  Config::get().updateFrom(m_uiParams);
+  Config::get().save();
+
   vkDeviceWaitIdle(m_context->getDevice());
   for (auto &sem : m_imageSemaphores) {
     vkDestroySemaphore(m_context->getDevice(), sem, nullptr);

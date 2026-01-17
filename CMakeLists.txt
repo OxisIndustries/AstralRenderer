@@ -56,6 +56,7 @@ set(ASTRAL_IMGUI_SOURCES
 # Core sources
 set(ASTRAL_CORE_SOURCES
     src/core/context.cpp
+    src/core/config.cpp
     src/core/vma_implementation.cpp
     src/core/commands.cpp
     src/application.cpp
@@ -159,6 +160,7 @@ target_link_libraries(astral_renderer
         glm::glm
         spdlog::spdlog
         fastgltf::fastgltf
+        nlohmann_json::nlohmann_json
         VulkanMemoryAllocator
         assimp::assimp
     PRIVATE

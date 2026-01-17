@@ -94,7 +94,7 @@ This document outlines the strategic roadmap for the next phases of `AstralRende
 1.  [x] **Transparency Blending** (Fixes immediate visual correctness).
 2.  [x] **Enhanced Default Assets** (improves developer experience).
 3.  [x] **Shadow Improvements** (Quick visual win).
-4.  **Config System** (Quality of Life).
+4.  [x] **Config System** (Quality of Life).
 5.  **GPU-Driven Rendering** (Long-term optimization).
 
-**Next Task:** Start Task 4 - Config System (Quality of Life).
+**Next Task:** Start Task 5 - GPU-Driven Rendering (Long-term optimization).

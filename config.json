@@ -1,0 +1,19 @@
+{
+    "general": {
+        "fullscreen": false,
+        "lastModelPath": "",
+        "windowHeight": 720,
+        "windowWidth": 1280
+    },
+    "renderer": {
+        "bloomStrength": 0.03999999910593033,
+        "enableFXAA": true,
+        "enableSSAO": true,
+        "exposure": 1.0,
+        "gamma": 2.200000047683716,
+        "iblIntensity": 1.0,
+        "pcfRange": 2,
+        "shadowBias": 0.0020000000949949026,
+        "shadowNormalBias": 0.004999999888241291
+    }
+}
