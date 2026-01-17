@@ -70,10 +70,10 @@ struct Material {
   int occlusionTextureIndex;
   int emissiveTextureIndex;
   float alphaCutoff;
+  int doubleSided;
   float padding1;
   float padding2;
   float padding3;
-  float padding4;
 };
 
 // Bindless Set #0
@@ -153,6 +153,9 @@ vec3 getNormalFromMap() {
   Material mat =
       allMaterialBuffers[pc.materialBufferIndex].materials[inMaterialIndex];
   if (mat.normalTextureIndex == -1) {
+    if (mat.doubleSided == 1 && !gl_FrontFacing) {
+        return normalize(-inNormal);
+    }
     return normalize(inNormal);
   }
 
@@ -163,6 +166,9 @@ vec3 getNormalFromMap() {
       1.0;
 
   vec3 N = normalize(inNormal);
+  if (mat.doubleSided == 1 && !gl_FrontFacing) {
+      N = -N;
+  }
   vec3 T = normalize(inTangent.xyz);
   vec3 B = cross(N, T) * inTangent.w;
   mat3 TBN = mat3(T, B, N);

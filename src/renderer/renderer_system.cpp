@@ -1,6 +1,9 @@
+#include "astral/renderer/swapchain.hpp"
+#include "astral/renderer/descriptor_manager.hpp"
 #include "astral/renderer/renderer_system.hpp"
 #include "astral/renderer/scene_manager.hpp"
 #include "astral/renderer/sync.hpp"
+#include "astral/core/commands.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -341,7 +344,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   pbrSpecs.depthFormat = VK_FORMAT_D32_SFLOAT;
   // DEBUG: Disable Depth/Cull to rule out rasterizer discard
   pbrSpecs.depthTest = true;
-  pbrSpecs.cullMode = VK_CULL_MODE_BACK_BIT;
+  pbrSpecs.cullMode = VK_CULL_MODE_NONE;
   pbrSpecs.vertexBindings.push_back(Vertex::getBindingDescription());
   pbrSpecs.vertexAttributes = Vertex::getAttributeDescriptions();
   m_pbrPipeline = std::make_unique<GraphicsPipeline>(m_context, pbrSpecs);

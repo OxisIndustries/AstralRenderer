@@ -195,7 +195,7 @@ endif()
 #===============================================================================
 # Installation
 #===============================================================================
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/install-config.cmake)
+# include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/install-config.cmake)
 
 # Print configuration summary
 message(STATUS "")

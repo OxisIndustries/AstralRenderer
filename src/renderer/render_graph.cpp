@@ -145,7 +145,7 @@ void RenderGraph::execute(VkCommandBuffer cmd, VkExtent2D extent) {
                 renderingInfo.pDepthAttachment = &depthAttachment;
             }
 
-            spdlog::debug("RenderGraph: Executing pass '{}' with {} color attachments, hasDepth={}",
+            spdlog::trace("RenderGraph: Executing pass '{}' with {} color attachments, hasDepth={}",
                           pass.name, colorAttachments.size(), hasDepth);
 
             vkCmdBeginRendering(cmd, &renderingInfo);

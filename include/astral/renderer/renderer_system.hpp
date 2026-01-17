@@ -15,6 +15,8 @@
 namespace astral {
 
 struct Model; // Forward declaration
+class Swapchain;
+class CommandBuffer;
 class FrameSync;
 class RendererSystem {
 public:

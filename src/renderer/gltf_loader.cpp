@@ -103,7 +103,7 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
         return nullptr;
     }
 
-    fastgltf::Asset& asset = expectedAsset.get();
+    auto& asset = expectedAsset.get();
     auto model = std::make_unique<Model>();
     
     // 1. Sampler'ları Yükle
@@ -255,6 +255,8 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
         mat.occlusionTextureIndex = gltfMat.occlusionTexture.has_value() ? 
             model->textureIndices[gltfMat.occlusionTexture->textureIndex] : -1;
 
+        mat.doubleSided = gltfMat.doubleSided ? 1 : 0;
+
         materialIndices.push_back(sceneManager->addMaterial(mat));
     }
 
@@ -281,63 +283,75 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
 
             // Index verilerini oku
             if (gltfPrimitive.indicesAccessor.has_value()) {
-                auto& accessor = asset.accessors[gltfPrimitive.indicesAccessor.value()];
-                indices.reserve(indices.size() + accessor.count);
+                size_t accIdx = gltfPrimitive.indicesAccessor.value();
+                indices.reserve(indices.size() + asset.accessors[accIdx].count);
                 
-                fastgltf::iterateAccessor<uint32_t>(asset, accessor, [&](uint32_t index) {
+                fastgltf::iterateAccessor<uint32_t>(asset, asset.accessors[accIdx], [&](uint32_t index) {
                     indices.push_back(vertexStart + index);
                 });
-                primitive.indexCount = static_cast<uint32_t>(accessor.count);
+                primitive.indexCount = static_cast<uint32_t>(asset.accessors[accIdx].count);
             }
 
             // POSITION
-            auto posAttr = gltfPrimitive.findAttribute("POSITION");
-            if (posAttr != gltfPrimitive.attributes.end()) {
-                auto& accessor = asset.accessors[posAttr->accessorIndex];
-                vertices.resize(vertexStart + accessor.count);
-                
-                glm::vec3 minPos(std::numeric_limits<float>::max());
-                glm::vec3 maxPos(std::numeric_limits<float>::lowest());
-
-                fastgltf::iterateAccessorWithIndex<glm::vec3>(asset, accessor, [&](glm::vec3 pos, size_t idx) {
-                    vertices[vertexStart + idx].position = pos;
-                    minPos = glm::min(minPos, pos);
-                    maxPos = glm::max(maxPos, pos);
-                });
-
-                primitive.boundingCenter = (minPos + maxPos) * 0.5f;
-                primitive.boundingRadius = glm::distance(maxPos, primitive.boundingCenter);
+            {
+                auto posIt = gltfPrimitive.findAttribute("POSITION");
+                if (posIt != gltfPrimitive.attributes.end()) {
+                    size_t accIdx = posIt->accessorIndex;
+                    vertices.resize(vertexStart + asset.accessors[accIdx].count);
+                    
+                    glm::vec3 minPos(std::numeric_limits<float>::max());
+                    glm::vec3 maxPos(std::numeric_limits<float>::lowest());
+    
+                    fastgltf::iterateAccessorWithIndex<glm::vec3>(asset, asset.accessors[accIdx], [&](glm::vec3 pos, size_t idx) {
+                        vertices[vertexStart + idx].position = pos;
+                        minPos = glm::min(minPos, pos);
+                        maxPos = glm::max(maxPos, pos);
+                    });
+    
+                    primitive.boundingCenter = (minPos + maxPos) * 0.5f;
+                    primitive.boundingRadius = glm::distance(maxPos, primitive.boundingCenter);
+                }
             }
-
+ 
             // NORMAL
-            auto normAttr = gltfPrimitive.findAttribute("NORMAL");
-            if (normAttr != gltfPrimitive.attributes.end()) {
-                auto& accessor = asset.accessors[normAttr->accessorIndex];
-                fastgltf::iterateAccessorWithIndex<glm::vec3>(asset, accessor, [&](glm::vec3 norm, size_t idx) {
-                    vertices[vertexStart + idx].normal = norm;
-                });
+            {
+                auto normIt = gltfPrimitive.findAttribute("NORMAL");
+                if (normIt != gltfPrimitive.attributes.end()) {
+                    size_t accIdx = normIt->accessorIndex;
+                    fastgltf::iterateAccessorWithIndex<glm::vec3>(asset, asset.accessors[accIdx], [&](glm::vec3 norm, size_t idx) {
+                        vertices[vertexStart + idx].normal = norm;
+                    });
+                }
             }
-
+ 
             // TEXCOORD_0
-            auto uvAttr = gltfPrimitive.findAttribute("TEXCOORD_0");
-            if (uvAttr != gltfPrimitive.attributes.end()) {
-                auto& accessor = asset.accessors[uvAttr->accessorIndex];
-                fastgltf::iterateAccessorWithIndex<glm::vec2>(asset, accessor, [&](glm::vec2 uv, size_t idx) {
-                    vertices[vertexStart + idx].uv = uv;
-                });
+            {
+                auto uvIt = gltfPrimitive.findAttribute("TEXCOORD_0");
+                if (uvIt != gltfPrimitive.attributes.end()) {
+                    size_t accIdx = uvIt->accessorIndex;
+                    fastgltf::iterateAccessorWithIndex<glm::vec2>(asset, asset.accessors[accIdx], [&](glm::vec2 uv, size_t idx) {
+                        vertices[vertexStart + idx].uv = uv;
+                    });
+                }
             }
-
+ 
             // TANGENT
-            auto tangAttr = gltfPrimitive.findAttribute("TANGENT");
-            if (tangAttr != gltfPrimitive.attributes.end()) {
-                auto& accessor = asset.accessors[tangAttr->accessorIndex];
-                fastgltf::iterateAccessorWithIndex<glm::vec4>(asset, accessor, [&](glm::vec4 tang, size_t idx) {
-                    vertices[vertexStart + idx].tangent = tang;
-                });
+            {
+                auto tangIt = gltfPrimitive.findAttribute("TANGENT");
+                if (tangIt != gltfPrimitive.attributes.end()) {
+                    size_t accIdx = tangIt->accessorIndex;
+                    fastgltf::iterateAccessorWithIndex<glm::vec4>(asset, asset.accessors[accIdx], [&](glm::vec4 tang, size_t idx) {
+                        vertices[vertexStart + idx].tangent = tang;
+                    });
+                }
             }
 
-            primitive.materialIndex = gltfPrimitive.materialIndex.has_value() ? 
-                materialIndices[gltfPrimitive.materialIndex.value()] : materialIndices[0];
+            if (gltfPrimitive.materialIndex.has_value()) {
+                size_t matIdx = gltfPrimitive.materialIndex.value();
+                primitive.materialIndex = materialIndices[matIdx];
+            } else {
+                primitive.materialIndex = materialIndices[0];
+            }
                 
             mesh.primitives.push_back(primitive);
         }

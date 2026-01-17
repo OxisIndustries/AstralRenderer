@@ -57,10 +57,10 @@ struct MaterialMetadata {
     int occlusionTextureIndex;
     int emissiveTextureIndex;
     float alphaCutoff;
+    int doubleSided;
     float padding1;
     float padding2;
     float padding3;
-    float padding4;
 };
 
 } // namespace astral

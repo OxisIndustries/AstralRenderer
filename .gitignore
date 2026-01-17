@@ -4,7 +4,7 @@ out/
 cmake-build-*/
 CMakeCache.txt
 CMakeFiles/
-*.cmake
+cmake_install.cmake
 install_manifest.txt
 
 # Visual Studio / VSCode

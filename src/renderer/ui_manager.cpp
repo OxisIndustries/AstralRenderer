@@ -56,62 +56,19 @@ UIManager::UIManager(Context* context, VkFormat swapchainFormat) : m_context(con
     init_info.DescriptorPool = m_imguiPool;
     init_info.MinImageCount = 3;
     init_info.ImageCount = 3;
-    init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+    init_info.PipelineInfoMain.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
     init_info.UseDynamicRendering = true;
     
     // Dynamic rendering requires specifying formats
     VkPipelineRenderingCreateInfo renderingCreateInfo = {VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO};
     renderingCreateInfo.colorAttachmentCount = 1;
     renderingCreateInfo.pColorAttachmentFormats = &m_uiFormat; // Use persistent member address
-    init_info.PipelineRenderingCreateInfo = renderingCreateInfo;
+    init_info.PipelineInfoMain.PipelineRenderingCreateInfo = renderingCreateInfo;
 
     if (!ImGui_ImplVulkan_Init(&init_info)) {
         throw std::runtime_error("failed to initialize imgui vulkan backend");
     }
 
-    // Upload fonts immediately
-    {
-        // Create a temporary command pool
-        VkCommandPoolCreateInfo poolInfo = {};
-        poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-        poolInfo.flags = VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;
-        poolInfo.queueFamilyIndex = m_context->getQueueFamilyIndices().graphicsFamily.value();
-
-        VkCommandPool commandPool;
-        if (vkCreateCommandPool(m_context->getDevice(), &poolInfo, nullptr, &commandPool) != VK_SUCCESS) {
-             throw std::runtime_error("Failed to create transient command pool for ImGui font upload!");
-        }
-
-        VkCommandBufferAllocateInfo allocInfo = {};
-        allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-        allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-        allocInfo.commandPool = commandPool;
-        allocInfo.commandBufferCount = 1;
-
-        VkCommandBuffer commandBuffer;
-        vkAllocateCommandBuffers(m_context->getDevice(), &allocInfo, &commandBuffer);
-
-        VkCommandBufferBeginInfo beginInfo = {};
-        beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-        beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-
-        vkBeginCommandBuffer(commandBuffer, &beginInfo);
-        
-        ImGui_ImplVulkan_CreateFontsTexture(); // Record font upload commands
-
-        vkEndCommandBuffer(commandBuffer);
-
-        VkSubmitInfo submitInfo = {};
-        submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-        submitInfo.commandBufferCount = 1;
-        submitInfo.pCommandBuffers = &commandBuffer;
-
-        vkQueueSubmit(m_context->getGraphicsQueue(), 1, &submitInfo, VK_NULL_HANDLE);
-        vkQueueWaitIdle(m_context->getGraphicsQueue()); // Wait for upload
-
-        vkFreeCommandBuffers(m_context->getDevice(), commandPool, 1, &commandBuffer);
-        vkDestroyCommandPool(m_context->getDevice(), commandPool, nullptr);
-    }
 }
 
 UIManager::~UIManager() {
