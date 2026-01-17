@@ -112,3 +112,18 @@ FetchContent_Declare(
     GIT_TAG        master
 )
 FetchContent_MakeAvailable(stb)
+
+#===============================================================================
+# Assimp
+#===============================================================================
+set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_ZLIB ON CACHE BOOL "" FORCE)
+set(ASSIMP_INSTALL_PDB OFF CACHE BOOL "" FORCE)
+set(ASSIMP_NO_EXPORT ON CACHE BOOL "" FORCE)
+
+FetchContent_Declare(
+    assimp
+    GIT_REPOSITORY https://github.com/assimp/assimp.git
+    GIT_TAG        v5.3.1
+)
+FetchContent_MakeAvailable(assimp)

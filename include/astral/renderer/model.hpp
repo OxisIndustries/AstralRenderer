@@ -40,7 +40,8 @@ struct Model {
     std::unique_ptr<Buffer> indexBuffer;
     
     // Model içindeki tüm dokular (bindless sisteme kayıtlı)
-    std::vector<std::unique_ptr<Image>> images;
+    // Model içindeki tüm dokular (bindless sisteme kayıtlı)
+    std::vector<std::shared_ptr<Image>> images;
     std::vector<uint32_t> textureIndices; 
 
     struct Node {

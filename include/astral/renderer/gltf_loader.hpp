@@ -1,6 +1,7 @@
 #pragma once
 
 #include "astral/renderer/model.hpp"
+#include "astral/renderer/asset_manager.hpp"
 #include <filesystem>
 
 namespace astral {
@@ -8,18 +9,17 @@ namespace astral {
 class Context;
 class SceneManager;
 
-class GltfLoader {
+class GltfLoader : public ModelLoader {
 public:
     explicit GltfLoader(Context* context);
-    ~GltfLoader();
+    ~GltfLoader() override;
 
-    std::unique_ptr<Model> loadFromFile(const std::filesystem::path& path, SceneManager* sceneManager);
+    std::unique_ptr<Model> load(const std::filesystem::path& path, SceneManager* sceneManager, AssetManager* assetManager) override;
+    bool supportsExtension(const std::string& extension) const override;
 
 private:
     Context* m_context;
-    VkSampler m_defaultSampler;
-    std::vector<VkSampler> m_samplers;
-    void createDefaultSampler();
+
 };
 
 } // namespace astral

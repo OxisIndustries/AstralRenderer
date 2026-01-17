@@ -4,20 +4,24 @@
 #include <imgui.h>
 #include <cstdio>
 #include <spdlog/spdlog.h>
+#include "astral/renderer/gltf_loader.hpp"
+#include "astral/renderer/assimp_loader.hpp"
 
 namespace astral {
 
-Application::Application() { init(); }
+AstralApp::AstralApp() { 
+    // Init deferred to run() to allow virtual initScene
+}
 
-Application::~Application() { cleanup(); }
+AstralApp::~AstralApp() { cleanup(); }
 
-void Application::init() {
+void AstralApp::init() {
   spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%^%l%$] %v");
   spdlog::set_level(spdlog::level::debug);
-  spdlog::info("Starting Astral Renderer Sandbox (Refactored)...");
+  spdlog::info("Starting Astral Renderer...");
 
   WindowSpecs specs;
-  specs.title = "Astral Renderer - glTF PBR Sandbox";
+  specs.title = "Astral Renderer";
   specs.width = 1600;
   specs.height = 900;
 
@@ -49,32 +53,30 @@ void Application::init() {
   m_sceneManager = std::make_unique<SceneManager>(m_context.get());
   m_envManager = std::make_unique<EnvironmentManager>(m_context.get());
   m_uiManager = std::make_unique<UIManager>(m_context.get(), m_swapchain->getImageFormat());
-  m_loader = std::make_unique<GltfLoader>(m_context.get());
+  
+  m_assetManager = std::make_unique<AssetManager>(m_context.get());
+  m_assetManager->registerLoader(std::make_unique<GltfLoader>(m_context.get()));
+  m_assetManager->registerLoader(std::make_unique<AssimpLoader>(m_context.get()));
 
   // Renderer System Init
   m_renderer = std::make_unique<RendererSystem>(
       m_context.get(), m_swapchain.get(), specs.width, specs.height);
 
-  // Initialize Resources
-  // Descriptors are registered inside RendererSystem::initializePipelines or
-  // via separate register call Note: In current main.cpp, descriptor layouts
-  // were needed for pipeline creation. So RendererSystem likely does this in
-  // its ctor or init.
-
-  // In the original code, the Layout was retrieved via
-  // context.getDescriptorManager().getLayout()
   VkDescriptorSetLayout setLayouts[] = {
       m_context->getDescriptorManager().getLayout()};
   m_renderer->initializePipelines(setLayouts, 1);
 
-  initScene();
+   // Camera Defaults
+  m_camera.setPerspective(
+      45.0f, (float)m_window->getWidth() / (float)m_window->getHeight(), 0.1f,
+      1000.0f);
+  m_camera.setPosition(glm::vec3(0.0f, 0.0f, 5.0f));
+
+  initScene(); // Virtual call
 
   // Input Callbacks
-  static Application* s_app = this;
+  static AstralApp* s_app = this;
   s_app = this; // Ensure it's set
-  
-  // ImGui installs its own callbacks in m_uiManager constructor via ImGui_ImplGlfw_InitForVulkan(..., true).
-  // We MUST chain them if we want to provide our own.
   
   static GLFWcursorposfun s_prevCursorPosCallback = nullptr;
   s_prevCursorPosCallback = glfwSetCursorPosCallback(m_window->getNativeWindow(), [](GLFWwindow *window, double xpos, double ypos) {
@@ -104,58 +106,8 @@ void Application::init() {
   spdlog::info("Application Initialized.");
 }
 
-void Application::initScene() {
-  // Load Skybox
-  std::string hdrPath = "assets/textures/skybox.hdr";
-  if (std::filesystem::exists(hdrPath)) {
-    m_envManager->loadHDR(hdrPath);
-  } else {
-    spdlog::warn("Skybox HDR not found at: {}. IBL will be disabled.", hdrPath);
-  }
-
-  MaterialMetadata defaultMat;
-  defaultMat.baseColorFactor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-  defaultMat.metallicFactor = 0.5f;
-  defaultMat.roughnessFactor = 0.5f;
-  defaultMat.baseColorTextureIndex = -1;
-  defaultMat.metallicRoughnessTextureIndex = -1;
-  defaultMat.normalTextureIndex = -1;
-  defaultMat.occlusionTextureIndex = -1;
-  defaultMat.emissiveTextureIndex = -1;
-  defaultMat.alphaCutoff = 0.5f;
-  m_sceneManager->addMaterial(defaultMat);
-
-  // Camera
-  m_camera.setPerspective(
-      45.0f, (float)m_window->getWidth() / (float)m_window->getHeight(), 0.1f,
-      1000.0f);
-  m_camera.setPosition(glm::vec3(0.0f, 0.0f, 5.0f));
-
-  // Load Model
-  m_model = m_loader->loadFromFile("assets/models/damaged_helmet/scene.gltf",
-                                   m_sceneManager.get());
-  if (!m_model) {
-    spdlog::warn("Model not found, creating fallback (empty)...");
-  }
-
-  // Default Lights
-  {
-    astral::Light sun;
-    sun.position = glm::vec4(5.0f, 8.0f, 5.0f, 1.0f); // Point light
-    sun.color = glm::vec4(1.0f, 1.0f, 1.0f, 10.0f);
-    sun.direction = glm::vec4(0.0f, -1.0f, 0.0f, 20.0f);
-    sun.params = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-    m_sceneManager->addLight(sun);
-
-    astral::Light blueLight;
-    blueLight.position = glm::vec4(-5.0f, 2.0f, -5.0f, 0.0f);
-    blueLight.color = glm::vec4(0.2f, 0.4f, 1.0f, 5.0f);
-    blueLight.direction = glm::vec4(0.0f, 0.0f, 0.0f, 15.0f);
-    m_sceneManager->addLight(blueLight);
-  }
-}
-
-void Application::run() {
+void AstralApp::run() {
+  init(); // Call init here
   RenderGraph graph(m_context.get());
   m_lastFrameTime = (float)glfwGetTime();
 
@@ -373,6 +325,7 @@ void Application::run() {
 
     // Update Buffers
     m_sceneManager->updateLightsBuffer(m_currentFrame);
+    m_sceneManager->updateMaterialBuffer();
     // sceneData update is finalized in renderer? No, we need to upload it.
     // The issue is `shadowMapIndex` etc. are in Renderer.
     // Let's defer `updateSceneData` call to inside `renderer.render`?
@@ -410,6 +363,9 @@ void Application::run() {
       }
     }
 
+    // Sort and Upload Instances (Transparency Sorting)
+    m_sceneManager->sortAndUploadInstances(m_currentFrame, m_camera.getPosition());
+
     // DEBUG: Log mesh instance count
     spdlog::debug("Frame {}: Mesh instances: {}", m_currentFrame, 
                   m_sceneManager->getMeshInstanceCount(m_currentFrame));
@@ -423,9 +379,7 @@ void Application::run() {
     // We don't clear outputs because we draw on top.
     
     graph.addPass("UIPass", {}, {"Swapchain"}, [this](VkCommandBuffer cb){
-        fprintf(stderr, "Application::run UIPass Lambda: Calling render. m_uiManager=%p\n", m_uiManager.get());
         m_uiManager->render(cb);
-        fprintf(stderr, "Application::run UIPass Lambda: Returned from render.\n");
     }, false); // clearOutputs = false
     
 
@@ -471,7 +425,7 @@ void Application::run() {
   vkDeviceWaitIdle(m_context->getDevice());
 }
 
-void Application::handleInput(float deltaTime) {
+void AstralApp::handleInput(float deltaTime) {
   if (glfwGetKey(m_window->getNativeWindow(), GLFW_KEY_W) == GLFW_PRESS)
     m_camera.processKeyboard(GLFW_KEY_W, true);
   else
@@ -500,7 +454,7 @@ void Application::handleInput(float deltaTime) {
   m_camera.update(deltaTime);
 }
 
-void Application::updateUI(float deltaTime) {
+void AstralApp::updateUI(float deltaTime) {
   m_uiManager->beginFrame();
 
   ImGui::SetNextWindowSize(ImVec2(400, 600), ImGuiCond_FirstUseEver);
@@ -626,17 +580,41 @@ void Application::updateUI(float deltaTime) {
         }
 
         if (m_uiParams.selectedMaterial < (int)materials.size()) {
-          MaterialMetadata& mat = const_cast<MaterialMetadata&>(materials[m_uiParams.selectedMaterial]);
+          Material mat = materials[m_uiParams.selectedMaterial]; // Copy so we can modify and push back
           ImGui::PushID("MaterialEditor");
           
-          float baseColor[4] = {mat.baseColorFactor.r, mat.baseColorFactor.g, mat.baseColorFactor.b, mat.baseColorFactor.a};
+          // if (ImGui::InputText("Name", &mat.name)) {
+          //     // Name updated
+          // }
+          
+          float baseColor[4] = {mat.gpuData.baseColorFactor.r, mat.gpuData.baseColorFactor.g, mat.gpuData.baseColorFactor.b, mat.gpuData.baseColorFactor.a};
           if (ImGui::ColorEdit4("Base Color", baseColor)) {
-            mat.baseColorFactor = glm::vec4(baseColor[0], baseColor[1], baseColor[2], baseColor[3]);
+            mat.gpuData.baseColorFactor = glm::vec4(baseColor[0], baseColor[1], baseColor[2], baseColor[3]);
           }
 
-          ImGui::SliderFloat("Metallic", &mat.metallicFactor, 0.0f, 1.0f);
-          ImGui::SliderFloat("Roughness", &mat.roughnessFactor, 0.0f, 1.0f);
-          ImGui::DragFloat("Alpha Cutoff", &mat.alphaCutoff, 0.01f, 0.0f, 1.0f);
+          ImGui::SliderFloat("Metallic", &mat.gpuData.metallicFactor, 0.0f, 1.0f);
+          ImGui::SliderFloat("Roughness", &mat.gpuData.roughnessFactor, 0.0f, 1.0f);
+          ImGui::DragFloat("Alpha Cutoff", &mat.gpuData.alphaCutoff, 0.01f, 0.0f, 1.0f);
+          float emissiveColor[3] = {mat.gpuData.emissiveFactor.r, mat.gpuData.emissiveFactor.g, mat.gpuData.emissiveFactor.b};
+          if (ImGui::ColorEdit3("Emissive Color", emissiveColor)) {
+            mat.gpuData.emissiveFactor.r = emissiveColor[0];
+            mat.gpuData.emissiveFactor.g = emissiveColor[1];
+            mat.gpuData.emissiveFactor.b = emissiveColor[2];
+          }
+          ImGui::DragFloat("Emissive Strength", &mat.gpuData.emissiveFactor.a, 0.1f, 0.0f, 100.0f);
+          
+          // Alpha Mode
+          const char* alphaModes[] = { "Opaque", "Mask", "Blend" };
+          int currentMode = (int)mat.gpuData.alphaMode;
+          if (ImGui::Combo("Alpha Mode", &currentMode, alphaModes, IM_ARRAYSIZE(alphaModes))) {
+              mat.gpuData.alphaMode = (uint32_t)currentMode;
+          }
+          
+          // Double Sided
+          bool doubleSided = (mat.gpuData.doubleSided == 1);
+          if (ImGui::Checkbox("Double Sided", &doubleSided)) {
+              mat.gpuData.doubleSided = doubleSided ? 1 : 0;
+          }
 
           m_sceneManager->updateMaterial(m_uiParams.selectedMaterial, mat);
           ImGui::PopID();
@@ -652,7 +630,7 @@ void Application::updateUI(float deltaTime) {
   m_uiManager->endFrame();
 }
 
-void Application::cleanup() {
+void AstralApp::cleanup() {
   vkDeviceWaitIdle(m_context->getDevice());
   for (auto &sem : m_imageSemaphores) {
     vkDestroySemaphore(m_context->getDevice(), sem, nullptr);

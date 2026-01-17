@@ -138,7 +138,8 @@ private:
   std::shared_ptr<Shader> m_skyboxFragShader;
 
   // Pipelines
-  std::unique_ptr<GraphicsPipeline> m_pbrPipeline;
+  std::unique_ptr<GraphicsPipeline> m_pbrPipeline; // Opaque
+  std::unique_ptr<GraphicsPipeline> m_pbrTransparentPipeline; // Transparent
   std::unique_ptr<GraphicsPipeline> m_taaPipeline;
   std::unique_ptr<GraphicsPipeline> m_ssaoPipeline;
   std::unique_ptr<GraphicsPipeline> m_ssaoBlurPipeline;

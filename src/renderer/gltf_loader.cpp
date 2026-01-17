@@ -1,4 +1,5 @@
 #include "astral/renderer/gltf_loader.hpp"
+#include "astral/renderer/asset_manager.hpp"
 #include "astral/core/context.hpp"
 #include "astral/renderer/scene_manager.hpp"
 #include "astral/renderer/descriptor_manager.hpp"
@@ -9,18 +10,22 @@
 #include <stb_image.h>
 #include <spdlog/spdlog.h>
 #include <fstream>
+#include <memory>
+#include <vulkan/vulkan.h>
+#include "astral/resources/image.hpp"
 
 namespace astral {
 
 GltfLoader::GltfLoader(Context* context) : m_context(context) {
-    createDefaultSampler();
+    // No default sampler creation
 }
 
 GltfLoader::~GltfLoader() {
-    for (auto sampler : m_samplers) {
-        vkDestroySampler(m_context->getDevice(), sampler, nullptr);
-    }
-    vkDestroySampler(m_context->getDevice(), m_defaultSampler, nullptr);
+    // Samplers managed by AssetManager
+}
+
+bool GltfLoader::supportsExtension(const std::string& extension) const {
+    return extension == ".gltf" || extension == ".glb";
 }
 
 static VkFilter getVkFilter(fastgltf::Filter filter) {
@@ -58,30 +63,9 @@ static VkSamplerAddressMode getVkWrapMode(fastgltf::Wrap wrap) {
     }
 }
 
-void GltfLoader::createDefaultSampler() {
-    VkSamplerCreateInfo samplerInfo = {VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO};
-    samplerInfo.magFilter = VK_FILTER_LINEAR;
-    samplerInfo.minFilter = VK_FILTER_LINEAR;
-    samplerInfo.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    samplerInfo.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    samplerInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    samplerInfo.anisotropyEnable = VK_TRUE;
-    samplerInfo.maxAnisotropy = 16.0f;
-    samplerInfo.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
-    samplerInfo.unnormalizedCoordinates = VK_FALSE;
-    samplerInfo.compareEnable = VK_FALSE;
-    samplerInfo.compareOp = VK_COMPARE_OP_ALWAYS;
-    samplerInfo.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
-    samplerInfo.mipLodBias = 0.0f;
-    samplerInfo.minLod = 0.0f;
-    samplerInfo.maxLod = 0.0f;
+// createDefaultSampler removed
 
-    if (vkCreateSampler(m_context->getDevice(), &samplerInfo, nullptr, &m_defaultSampler) != VK_SUCCESS) {
-        throw std::runtime_error("Failed to create default sampler!");
-    }
-}
-
-std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& path, SceneManager* sceneManager) {
+std::unique_ptr<Model> GltfLoader::load(const std::filesystem::path& path, SceneManager* sceneManager, AssetManager* assetManager) {
     if (!std::filesystem::exists(path)) {
         spdlog::error("glTF file not found: {}", path.string());
         return nullptr;
@@ -107,32 +91,33 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
     auto model = std::make_unique<Model>();
     
     // 1. Sampler'ları Yükle
+    // 1. Sampler'ları Yükle
+    std::vector<VkSampler> loadedSamplers;
+    loadedSamplers.reserve(asset.samplers.size());
+    
     for (auto& gltfSampler : asset.samplers) {
-        VkSamplerCreateInfo samplerInfo = {VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO};
-        samplerInfo.magFilter = gltfSampler.magFilter.has_value() ? getVkFilter(gltfSampler.magFilter.value()) : VK_FILTER_LINEAR;
-        samplerInfo.minFilter = gltfSampler.minFilter.has_value() ? getVkFilter(gltfSampler.minFilter.value()) : VK_FILTER_LINEAR;
-        samplerInfo.mipmapMode = gltfSampler.minFilter.has_value() ? getVkMipmapMode(gltfSampler.minFilter.value()) : VK_SAMPLER_MIPMAP_MODE_LINEAR;
-        samplerInfo.addressModeU = getVkWrapMode(gltfSampler.wrapS);
-        samplerInfo.addressModeV = getVkWrapMode(gltfSampler.wrapT);
-        samplerInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-        samplerInfo.anisotropyEnable = VK_TRUE;
-        samplerInfo.maxAnisotropy = 16.0f;
-        samplerInfo.maxLod = VK_LOD_CLAMP_NONE;
+        SamplerSpecs specs;
+        specs.magFilter = gltfSampler.magFilter.has_value() ? getVkFilter(gltfSampler.magFilter.value()) : VK_FILTER_LINEAR;
+        specs.minFilter = gltfSampler.minFilter.has_value() ? getVkFilter(gltfSampler.minFilter.value()) : VK_FILTER_LINEAR;
+        specs.mipmapMode = gltfSampler.minFilter.has_value() ? getVkMipmapMode(gltfSampler.minFilter.value()) : VK_SAMPLER_MIPMAP_MODE_LINEAR;
+        specs.addressModeU = getVkWrapMode(gltfSampler.wrapS);
+        specs.addressModeV = getVkWrapMode(gltfSampler.wrapT);
+        specs.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+        specs.anisotropyEnable = true;
+        specs.maxAnisotropy = 16.0f;
 
-        VkSampler sampler;
-        if (vkCreateSampler(m_context->getDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS) {
-            spdlog::error("Failed to create glTF sampler!");
-            continue;
-        }
-        m_samplers.push_back(sampler);
+        loadedSamplers.push_back(assetManager->getSampler(specs));
     }
+    
+    SamplerSpecs defaultSpecs;
+    VkSampler defaultSampler = assetManager->getSampler(defaultSpecs);
 
     // 2. Image'ları Yükle (Ham veriler)
-    std::vector<std::unique_ptr<Image>> loadedImages;
+    std::vector<std::shared_ptr<Image>> loadedImages;
     loadedImages.reserve(asset.images.size());
     for (size_t i = 0; i < asset.images.size(); ++i) {
         auto& gltfImage = asset.images[i];
-        std::unique_ptr<Image> image;
+        std::shared_ptr<Image> image;
         
         std::visit(fastgltf::visitor {
             [&](fastgltf::sources::URI& uri) {
@@ -150,22 +135,9 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
                     spdlog::warn("Unsupported URI scheme: {} for image index {}", uri.uri.scheme(), i);
                     return;
                 }
-                
-                int width, height, channels;
-                stbi_uc* pixels = stbi_load(imagePath.string().c_str(), &width, &height, &channels, STBI_rgb_alpha);
-                
-                if (pixels) {
-                    ImageSpecs specs;
-                    specs.width = static_cast<uint32_t>(width);
-                    specs.height = static_cast<uint32_t>(height);
-                    specs.format = VK_FORMAT_R8G8B8A8_SRGB; 
-                    specs.usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
-                    
-                    image = std::make_unique<Image>(m_context, specs);
-                    image->upload(pixels, specs.width * specs.height * 4);
-                    stbi_image_free(pixels);
-                    spdlog::info("Loaded image: {} ({}x{})", imagePath.string(), width, height);
-                }
+
+                // Use AssetManager for caching!
+                image = assetManager->getOrLoadTexture(imagePath);
             },
             [&](fastgltf::sources::BufferView& view) {
                 auto& bufferView = asset.bufferViews[view.bufferViewIndex];
@@ -187,7 +159,7 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
                             specs.format = VK_FORMAT_R8G8B8A8_SRGB;
                             specs.usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
                             
-                            image = std::make_unique<Image>(m_context, specs);
+                            image = std::make_shared<Image>(m_context, specs);
                             image->upload(pixels, specs.width * specs.height * 4);
                             stbi_image_free(pixels);
                             spdlog::info("Loaded image from BufferView ({}x{})", width, height);
@@ -213,7 +185,7 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
 
         uint32_t imgIdx = static_cast<uint32_t>(gltfTex.imageIndex.value());
         VkSampler sampler = gltfTex.samplerIndex.has_value() ? 
-            m_samplers[gltfTex.samplerIndex.value()] : m_defaultSampler;
+            loadedSamplers[gltfTex.samplerIndex.value()] : defaultSampler;
 
         if (imgIdx < loadedImages.size() && loadedImages[imgIdx]) {
             uint32_t texIdx = m_context->getDescriptorManager().registerImage(loadedImages[imgIdx]->getView(), sampler);
@@ -228,41 +200,109 @@ std::unique_ptr<Model> GltfLoader::loadFromFile(const std::filesystem::path& pat
     // Move images to model at the very end
     for (auto& img : loadedImages) {
         if (img) {
-            model->images.push_back(std::move(img));
+            model->images.push_back(img); // Shared ptr copy
         }
     }
 
     // 4. Materyal Yükleme
-    std::vector<uint32_t> materialIndices;
+    std::vector<int32_t> materialIndices;
     for (auto& gltfMat : asset.materials) {
-        MaterialMetadata mat;
-        mat.baseColorFactor = glm::make_vec4(gltfMat.pbrData.baseColorFactor.data());
-        mat.metallicFactor = gltfMat.pbrData.metallicFactor;
-        mat.roughnessFactor = gltfMat.pbrData.roughnessFactor;
+        Material material;
+        material.name = gltfMat.name.c_str();
+
+        // Base Color
+        material.gpuData.baseColorFactor = glm::make_vec4(gltfMat.pbrData.baseColorFactor.data());
+        if (gltfMat.pbrData.baseColorTexture.has_value()) {
+            size_t texIdx = gltfMat.pbrData.baseColorTexture->textureIndex;
+            material.gpuData.baseColorIndex = model->textureIndices[texIdx];
+            // Keep ref
+            if (model->images.size() > texIdx) {
+                // Warning: model->images might not index 1:1 with textures map in gltf if some textures failed
+                // But generally model->images corresponds to loadedImages which maps to unique images.
+                // gltfMat textures index into asset.textures. 
+                // We populated model->textureIndices from asset.textures.
+                // We need the corresponding Image pointer to store in Material host struct.
+                // The gltfTex ref has imageIndex. 
+                auto& gltfTex = asset.textures[texIdx];
+                 if (gltfTex.imageIndex.has_value()) {
+                     size_t imgIdx = gltfTex.imageIndex.value();
+                     if (imgIdx < loadedImages.size()) {
+                         material.baseColorTexture = loadedImages[imgIdx];
+                     }
+                 }
+            }
+        }
+
+        // Metallic Roughness
+        material.gpuData.metallicFactor = gltfMat.pbrData.metallicFactor;
+        material.gpuData.roughnessFactor = gltfMat.pbrData.roughnessFactor;
+        if (gltfMat.pbrData.metallicRoughnessTexture.has_value()) {
+            size_t texIdx = gltfMat.pbrData.metallicRoughnessTexture->textureIndex;
+            material.gpuData.metallicRoughnessIndex = model->textureIndices[texIdx];
+            
+             auto& gltfTex = asset.textures[texIdx];
+             if (gltfTex.imageIndex.has_value()) {
+                 size_t imgIdx = gltfTex.imageIndex.value();
+                 if (imgIdx < loadedImages.size()) material.metallicRoughnessTexture = loadedImages[imgIdx];
+             }
+        }
+
+        // Normal
+        if (gltfMat.normalTexture.has_value()) {
+            size_t texIdx = gltfMat.normalTexture->textureIndex;
+            material.gpuData.normalIndex = model->textureIndices[texIdx];
+            
+             auto& gltfTex = asset.textures[texIdx];
+             if (gltfTex.imageIndex.has_value()) {
+                 size_t imgIdx = gltfTex.imageIndex.value();
+                 if (imgIdx < loadedImages.size()) material.normalTexture = loadedImages[imgIdx];
+             }
+        }
+
+        // Emissive
+        material.gpuData.emissiveFactor = glm::vec4(gltfMat.emissiveFactor[0], gltfMat.emissiveFactor[1], gltfMat.emissiveFactor[2], 1.0f);
         
-        mat.baseColorTextureIndex = gltfMat.pbrData.baseColorTexture.has_value() ? 
-            model->textureIndices[gltfMat.pbrData.baseColorTexture->textureIndex] : -1;
+        if (gltfMat.emissiveTexture.has_value()) {
+            size_t texIdx = gltfMat.emissiveTexture->textureIndex;
+            material.gpuData.emissiveIndex = model->textureIndices[texIdx];
             
-        mat.metallicRoughnessTextureIndex = gltfMat.pbrData.metallicRoughnessTexture.has_value() ? 
-            model->textureIndices[gltfMat.pbrData.metallicRoughnessTexture->textureIndex] : -1;
+             auto& gltfTex = asset.textures[texIdx];
+             if (gltfTex.imageIndex.has_value()) {
+                 size_t imgIdx = gltfTex.imageIndex.value();
+                 if (imgIdx < loadedImages.size()) material.emissiveTexture = loadedImages[imgIdx];
+             }
+        }
+        
+        // Occlusion
+        if (gltfMat.occlusionTexture.has_value()) {
+            size_t texIdx = gltfMat.occlusionTexture->textureIndex;
+            material.gpuData.occlusionIndex = model->textureIndices[texIdx];
             
-        mat.normalTextureIndex = gltfMat.normalTexture.has_value() ? 
-            model->textureIndices[gltfMat.normalTexture->textureIndex] : -1;
-            
-        mat.emissiveTextureIndex = gltfMat.emissiveTexture.has_value() ? 
-            model->textureIndices[gltfMat.emissiveTexture->textureIndex] : -1;
-            
-        mat.occlusionTextureIndex = gltfMat.occlusionTexture.has_value() ? 
-            model->textureIndices[gltfMat.occlusionTexture->textureIndex] : -1;
+             auto& gltfTex = asset.textures[texIdx];
+             if (gltfTex.imageIndex.has_value()) {
+                 size_t imgIdx = gltfTex.imageIndex.value();
+                 if (imgIdx < loadedImages.size()) material.occlusionTexture = loadedImages[imgIdx];
+             }
+        }
 
-        mat.doubleSided = gltfMat.doubleSided ? 1 : 0;
+        if (gltfMat.alphaMode == fastgltf::AlphaMode::Mask) {
+            material.gpuData.alphaMode = static_cast<uint32_t>(AlphaMode::Mask);
+            material.gpuData.alphaCutoff = gltfMat.alphaCutoff;
+        } else if (gltfMat.alphaMode == fastgltf::AlphaMode::Blend) {
+            material.gpuData.alphaMode = static_cast<uint32_t>(AlphaMode::Blend);
+        } else {
+            material.gpuData.alphaMode = static_cast<uint32_t>(AlphaMode::Opaque);
+        }
+        
+        material.gpuData.doubleSided = gltfMat.doubleSided ? 1 : 0;
 
-        materialIndices.push_back(sceneManager->addMaterial(mat));
+        materialIndices.push_back(sceneManager->addMaterial(material));
     }
 
     // Default material if none exist
     if (materialIndices.empty()) {
-        MaterialMetadata defaultMat;
+        Material defaultMat;
+        defaultMat.name = "Default";
         materialIndices.push_back(sceneManager->addMaterial(defaultMat));
     }
 

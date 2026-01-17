@@ -61,16 +61,20 @@ struct MeshInstance {
 
 struct Material {
   vec4 baseColorFactor;
+  vec4 emissiveFactor;
   float metallicFactor;
   float roughnessFactor;
-  int baseColorTextureIndex;
-  int metallicRoughnessTextureIndex;
-  int normalTextureIndex;
-  int occlusionTextureIndex;
-  int emissiveTextureIndex;
   float alphaCutoff;
-  int doubleSided;
-  float padding[3];
+  uint alphaMode;
+  
+  int baseColorTextureIndex;
+  int normalTextureIndex;
+  int metallicRoughnessTextureIndex;
+  int emissiveTextureIndex;
+  int occlusionTextureIndex;
+
+  uint doubleSided;
+  uint padding[2];
 };
 
 layout(std430, set = 0, binding = 1) readonly buffer SceneBuffer {

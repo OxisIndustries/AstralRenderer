@@ -23,6 +23,12 @@ struct PipelineSpecs {
     VkCompareOp depthCompareOp = VK_COMPARE_OP_LESS;
     VkCullModeFlags cullMode = VK_CULL_MODE_BACK_BIT;
     VkPolygonMode polygonMode = VK_POLYGON_MODE_FILL;
+
+    bool enableBlending = false;
+    VkBlendFactor srcColorBlendFactor = VK_BLEND_FACTOR_ONE;
+    VkBlendFactor dstColorBlendFactor = VK_BLEND_FACTOR_ZERO;
+    VkBlendFactor srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;
+    VkBlendFactor dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
 };
 
 class GraphicsPipeline {

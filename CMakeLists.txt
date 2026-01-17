@@ -80,6 +80,8 @@ set(ASTRAL_RENDERER_SOURCES
     src/renderer/compute_pipeline.cpp
     src/renderer/environment_manager.cpp
     src/renderer/ui_manager.cpp
+    src/renderer/asset_manager.cpp
+    src/renderer/assimp_loader.cpp
     src/renderer/renderer_system.cpp
 )
 
@@ -88,6 +90,7 @@ set(ASTRAL_RESOURCES_SOURCES
     src/resources/buffer.cpp
     src/resources/image.cpp
     src/resources/shader.cpp
+    src/resources/sampler.cpp
     src/resources/stb_image_impl.cpp
 )
 
@@ -123,6 +126,7 @@ set(ASTRAL_PUBLIC_HEADERS
     include/astral/renderer/renderer_system.hpp
     include/astral/resources/buffer.hpp
     include/astral/resources/image.hpp
+    include/astral/resources/sampler.hpp
     include/astral/resources/shader.hpp
 )
 
@@ -156,6 +160,7 @@ target_link_libraries(astral_renderer
         spdlog::spdlog
         fastgltf::fastgltf
         VulkanMemoryAllocator
+        assimp::assimp
     PRIVATE
         ${ASTRAL_SHADERC_TARGET}
 )
@@ -171,17 +176,28 @@ set_target_properties(astral_renderer PROPERTIES
 # Example Application
 #===============================================================================
 if(ASTRAL_BUILD_EXAMPLES)
-    add_executable(AstralSandbox src/main.cpp)
-    target_link_libraries(AstralSandbox PRIVATE astral_renderer)
-
-    # Copy assets to build directory
+    # glTF Viewer Example
+    add_executable(AstralGltf examples/gltf_viewer.cpp)
+    target_link_libraries(AstralGltf PRIVATE astral_renderer)
+    
     add_custom_command(
-        TARGET AstralSandbox POST_BUILD
+        TARGET AstralGltf POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_CURRENT_SOURCE_DIR}/assets
-            $<TARGET_FILE_DIR:AstralSandbox>/assets
+            $<TARGET_FILE_DIR:AstralGltf>/assets
+        COMMENT "Copying assets for AstralGltf"
+    )
 
-        COMMENT "Copying assets to build directory"
+    # FBX Viewer Example
+    add_executable(AstralFbx examples/fbx_viewer.cpp)
+    target_link_libraries(AstralFbx PRIVATE astral_renderer)
+
+    add_custom_command(
+        TARGET AstralFbx POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_CURRENT_SOURCE_DIR}/assets
+            $<TARGET_FILE_DIR:AstralFbx>/assets
+        COMMENT "Copying assets for AstralFbx"
     )
 endif()
 

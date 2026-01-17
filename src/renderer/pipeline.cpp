@@ -47,7 +47,16 @@ GraphicsPipeline::GraphicsPipeline(Context* context, const PipelineSpecs& specs)
     for (const auto& format : specs.colorFormats) {
         VkPipelineColorBlendAttachmentState attachment = {};
         attachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
-        attachment.blendEnable = VK_FALSE;
+        attachment.blendEnable = specs.enableBlending ? VK_TRUE : VK_FALSE;
+        
+        attachment.srcColorBlendFactor = specs.srcColorBlendFactor;
+        attachment.dstColorBlendFactor = specs.dstColorBlendFactor;
+        attachment.colorBlendOp = VK_BLEND_OP_ADD;
+        
+        attachment.srcAlphaBlendFactor = specs.srcAlphaBlendFactor;
+        attachment.dstAlphaBlendFactor = specs.dstAlphaBlendFactor;
+        attachment.alphaBlendOp = VK_BLEND_OP_ADD;
+        
         colorBlendAttachments.push_back(attachment);
     }
 

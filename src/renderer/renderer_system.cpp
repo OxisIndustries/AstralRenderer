@@ -349,6 +349,21 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   pbrSpecs.vertexAttributes = Vertex::getAttributeDescriptions();
   m_pbrPipeline = std::make_unique<GraphicsPipeline>(m_context, pbrSpecs);
 
+  PipelineSpecs pbrTransparentSpecs = pbrSpecs;
+  // Transparent Pipeline Settings
+  pbrTransparentSpecs.enableBlending = true;
+  pbrTransparentSpecs.srcColorBlendFactor = VK_BLEND_FACTOR_SRC_ALPHA;
+  pbrTransparentSpecs.dstColorBlendFactor = VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA;
+  pbrTransparentSpecs.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;
+  pbrTransparentSpecs.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
+  // Depth write ideally false for transparents to let objects behind show up if sorted correctly,
+  // but for basic cases keep it true or false depending on preference. 
+  // Standard PBR: Write Depth = True if sorting is perfect, or False to avoid occlusion. 
+  // Let's set it to false as is common for transparent pass.
+  pbrTransparentSpecs.depthWrite = false; 
+
+  m_pbrTransparentPipeline = std::make_unique<GraphicsPipeline>(m_context, pbrTransparentSpecs);
+
   PipelineSpecs shadowSpecsP;
   shadowSpecsP.vertexShader = m_shadowVertShader;
   shadowSpecsP.fragmentShader = m_shadowFragShader;
@@ -931,11 +946,33 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
                                  VK_SHADER_STAGE_FRAGMENT_BIT,
                              0, 16, &pbrSPC);
 
-          vkCmdDrawIndexedIndirect(
-             cb, sceneManager.getIndirectBuffer(currentFrame), 0,
-             static_cast<uint32_t>(
-                 sceneManager.getMeshInstanceCount(currentFrame)),
-             sizeof(VkDrawIndexedIndirectCommand));
+          size_t opaqueCount = sceneManager.getOpaqueMeshInstanceCount(currentFrame);
+          size_t totalCount = sceneManager.getMeshInstanceCount(currentFrame);
+          size_t transparentCount = totalCount - opaqueCount;
+
+          // 1. Opaque Pass
+          if (opaqueCount > 0) {
+              vkCmdDrawIndexedIndirect(
+                 cb, sceneManager.getIndirectBuffer(currentFrame), 0,
+                 static_cast<uint32_t>(opaqueCount),
+                 sizeof(VkDrawIndexedIndirectCommand));
+          }
+
+          // 2. Transparent Pass
+          if (transparentCount > 0) {
+              vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
+                                m_pbrTransparentPipeline->getHandle());
+              
+              // Bind descriptors again if needed (usually persist, but pipeline switch might require it if layouts differ slightly, 
+              // here they share layout so strict Vulkan might effectively keep it, but safe to rebind or rely on compatibility.
+              // Since we are using same layout, it's compatible.)
+              
+              VkDeviceSize offset = opaqueCount * sizeof(VkDrawIndexedIndirectCommand);
+              vkCmdDrawIndexedIndirect(
+                 cb, sceneManager.getIndirectBuffer(currentFrame), offset,
+                 static_cast<uint32_t>(transparentCount),
+                 sizeof(VkDrawIndexedIndirectCommand));
+          }
         }
       });
 

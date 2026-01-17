@@ -6,7 +6,7 @@
 #include "astral/platform/window.hpp"
 #include "astral/renderer/camera.hpp"
 #include "astral/renderer/environment_manager.hpp"
-#include "astral/renderer/gltf_loader.hpp"
+#include "astral/renderer/asset_manager.hpp"
 #include "astral/renderer/renderer_system.hpp"
 #include "astral/renderer/scene_manager.hpp"
 #include "astral/renderer/swapchain.hpp"
@@ -20,17 +20,24 @@ namespace astral {
 
 // UIParams is defined in renderer_system.hpp
 
-class Application {
+class AstralApp {
 public:
-  Application();
-  ~Application();
+  AstralApp();
+  virtual ~AstralApp();
 
   void run();
 
-private:
+protected:
+  virtual void initScene() = 0; // Pure virtual
+
+  // Getters for derived classes
+  SceneManager* getSceneManager() { return m_sceneManager.get(); }
+  AssetManager* getAssetManager() { return m_assetManager.get(); }
+  EnvironmentManager* getEnvironmentManager() { return m_envManager.get(); }
+  Camera& getCamera() { return m_camera; }
+
   void init();
   void cleanup();
-  void initScene();
   void handleInput(float deltaTime);
   void updateUI(float deltaTime);
 
@@ -47,7 +54,7 @@ private:
   std::unique_ptr<SceneManager> m_sceneManager;
   std::unique_ptr<EnvironmentManager> m_envManager;
   std::unique_ptr<UIManager> m_uiManager;
-  std::unique_ptr<GltfLoader> m_loader;
+  std::unique_ptr<AssetManager> m_assetManager;
 
   // Renderer
   std::unique_ptr<RendererSystem> m_renderer;

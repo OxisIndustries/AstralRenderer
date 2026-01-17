@@ -1,7 +1,9 @@
 #pragma once
 
 #include "astral/core/context.hpp"
+#include "astral/renderer/model.hpp"
 #include "astral/renderer/scene_data.hpp"
+#include "astral/renderer/material.hpp"
 #include "astral/resources/buffer.hpp"
 #include <memory>
 #include <vector>
@@ -44,27 +46,26 @@ public:
     return m_lightBufferIndices[frameIndex];
   }
 
-  // Material management
-  uint32_t addMaterial(const MaterialMetadata &material);
-  void updateMaterial(uint32_t index, const MaterialMetadata &material);
-
-  const std::vector<MaterialMetadata> &getMaterials() const {
-    return m_materials;
-  }
-  size_t getMaterialCount() const { return m_materials.size(); }
-  const MaterialMetadata &getMaterial(uint32_t index) const {
-    return m_materials[index];
-  }
+  void addModel(std::unique_ptr<Model> model);
+  
+  // Material Management
+  int32_t addMaterial(const Material& material);
+  void updateMaterialBuffer();
+  
+  const std::vector<std::unique_ptr<Model>>& getModels() const { return m_models; }
+  const Buffer& getMaterialBuffer() const { return *m_materialBuffer; }
+  uint32_t getMaterialBufferIndex() const { return m_materialBufferIndex; }
+  uint32_t getMaterialCount() const { return static_cast<uint32_t>(m_materials.size()); }
+  const std::vector<Material>& getMaterials() const { return m_materials; }
+  
+  void updateMaterial(uint32_t index, const Material& material);
 
   VkBuffer getSceneBuffer(uint32_t frameIndex) const {
     return m_sceneBuffers[frameIndex]->getHandle();
   }
-  VkBuffer getMaterialBuffer() const { return m_materialBuffer->getHandle(); }
-
   uint32_t getSceneBufferIndex(uint32_t frameIndex) const {
     return m_sceneBufferIndices[frameIndex];
   }
-  uint32_t getMaterialBufferIndex() const { return m_materialBufferIndex; }
   uint32_t getMeshInstanceBufferIndex(uint32_t frameIndex) const {
     return m_meshInstanceBufferIndices[frameIndex];
   }
@@ -81,8 +82,14 @@ public:
   void prepareIndirectCommands();
   void clearMeshInstances(uint32_t frameIndex);
 
+  void sortAndUploadInstances(uint32_t frameIndex, const glm::vec3& cameraPos);
+
   size_t getMeshInstanceCount(uint32_t frameIndex) const {
-    return m_meshInstancesPerFrame[frameIndex].size();
+    return m_frameInstances[frameIndex].size();
+  }
+  
+  size_t getOpaqueMeshInstanceCount(uint32_t frameIndex) const {
+      return m_opaqueInstanceCounts[frameIndex];
   }
 
   VkBuffer getMeshInstanceBuffer(uint32_t frameIndex) const {
@@ -106,7 +113,6 @@ private:
   std::vector<std::unique_ptr<Buffer>> m_lightBuffers;
 
   // Static buffers (update rarely or handled differently)
-  std::unique_ptr<Buffer> m_materialBuffer;
   std::unique_ptr<Buffer> m_clusterBuffer;
   std::unique_ptr<Buffer> m_lightIndexBuffer;
 
@@ -114,19 +120,35 @@ private:
   std::vector<uint32_t> m_meshInstanceBufferIndices;
   std::vector<uint32_t> m_indirectBufferIndices;
   std::vector<uint32_t> m_lightBufferIndices;
-
+  
   uint32_t m_materialBufferIndex;
   uint32_t m_clusterBufferIndex;
   uint32_t m_lightIndexBufferIndex;
 
-  std::vector<MaterialMetadata> m_materials;
   std::vector<Light> m_lights;
 
-  // Per frame instance data
-  std::vector<std::vector<MeshInstance>>
-      m_meshInstancesPerFrame; // [frame][instance]
+    // Helper struct for per-frame processing before upload
+    struct FrameMeshInstance {
+        MeshInstance meshInstance;
+        uint32_t indexCount;
+        uint32_t firstIndex;
+        int32_t vertexOffset;
+    };
 
-  static constexpr uint32_t MAX_MATERIALS = 1000;
+  // Per frame instance data
+  std::vector<std::vector<FrameMeshInstance>> m_frameInstances; // [frame][instance]
+  std::vector<uint32_t> m_opaqueInstanceCounts;
+
+  std::vector<std::unique_ptr<Model>> m_models;
+
+  // Materials
+  std::vector<Material> m_materials;
+  std::vector<MaterialGPU> m_gpuMaterials; // Flattened for upload
+  std::unique_ptr<Buffer> m_materialBuffer;
+  bool m_materialsDirty = false;
+  
+  // Limits
+  static constexpr uint32_t MAX_MATERIALS = 10000;
   static constexpr uint32_t MAX_LIGHTS = 256;
   static constexpr uint32_t MAX_MESH_INSTANCES = 10000;
 };

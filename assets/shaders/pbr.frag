@@ -62,18 +62,20 @@ struct ClusterGrid {
 
 struct Material {
   vec4 baseColorFactor;
+  vec4 emissiveFactor;
   float metallicFactor;
   float roughnessFactor;
-  int baseColorTextureIndex;
-  int metallicRoughnessTextureIndex;
-  int normalTextureIndex;
-  int occlusionTextureIndex;
-  int emissiveTextureIndex;
   float alphaCutoff;
-  int doubleSided;
-  float padding1;
-  float padding2;
-  float padding3;
+  uint alphaMode;
+  
+  int baseColorTextureIndex;
+  int normalTextureIndex;
+  int metallicRoughnessTextureIndex;
+  int emissiveTextureIndex;
+  int occlusionTextureIndex;
+
+  uint doubleSided;
+  uint padding[2];
 };
 
 // Bindless Set #0
@@ -246,11 +248,30 @@ void main() {
   SceneData scene = allSceneBuffers[pc.sceneDataIndex].scene;
 
   vec3 baseColor = mat.baseColorFactor.rgb;
+  float alpha = mat.baseColorFactor.a;
+  
   if (mat.baseColorTextureIndex != -1) {
-    baseColor *= textureLod(textures[nonuniformEXT(mat.baseColorTextureIndex)],
-                            inUV, 0.0)
-                     .rgb;
+    vec4 texColor = textureLod(textures[nonuniformEXT(mat.baseColorTextureIndex)], inUV, 0.0);
+    baseColor *= texColor.rgb;
+    alpha *= texColor.a;
   }
+  
+  // Alpha Masking
+  if (mat.alphaMode == 1) { // MASK
+      if (alpha < mat.alphaCutoff) {
+          discard;
+      }
+  }
+
+  // Alpha Blending logic (if supported) not really possible in deferred/forward without sorting, 
+  // but for forward we just use alpha.
+  // Assuming Forward pipeline if we are writing to outFragColor directly? 
+  // Or is it Deferred G-Buffer? 
+  // outputs: 0=Color, 1=Normal, 2=Velocity. Looks like Forward with G-Buffer output (Hybrid) or simple Forward.
+  // Actually existing shader writes `outFragColor = vec4(color, 1.0);` at line 434 (old line).
+  // So it's opaque forward. 
+  // We can't do real transparency without setting alpha output or sorting.
+  // But let's at least support MASK.
 
   float metallic = mat.metallicFactor;
   float roughness = mat.roughnessFactor;
@@ -401,12 +422,13 @@ void main() {
                    .r;
   }
 
-  vec3 emissive = vec3(0.0);
+  vec3 emissive = mat.emissiveFactor.rgb;
   if (mat.emissiveTextureIndex != -1) {
-    emissive =
+    emissive *=
         textureLod(textures[nonuniformEXT(mat.emissiveTextureIndex)], inUV, 0.0)
             .rgb;
   }
+  emissive *= mat.emissiveFactor.a;
 
   // HDR and Tonemapping
   vec3 color = ambient + lo + emissive;

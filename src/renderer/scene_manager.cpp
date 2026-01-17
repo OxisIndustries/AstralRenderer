@@ -2,6 +2,7 @@
 #include "astral/renderer/descriptor_manager.hpp"
 #include <spdlog/spdlog.h>
 #include <stdexcept>
+#include <algorithm>
 
 namespace astral {
 
@@ -19,7 +20,7 @@ SceneManager::SceneManager(Context *context) : m_context(context) {
   m_indirectBufferIndices.resize(MAX_FRAMES_IN_FLIGHT);
   m_lightBufferIndices.resize(MAX_FRAMES_IN_FLIGHT);
 
-  m_meshInstancesPerFrame.resize(MAX_FRAMES_IN_FLIGHT);
+  m_frameInstances.resize(MAX_FRAMES_IN_FLIGHT);
 
   for (int i = 0; i < MAX_FRAMES_IN_FLIGHT; ++i) {
     // Scene Data Buffer
@@ -56,18 +57,22 @@ SceneManager::SceneManager(Context *context) : m_context(context) {
         sizeof(VkDrawIndexedIndirectCommand) * MAX_MESH_INSTANCES,
         7); // Binding 7
 
-    m_meshInstancesPerFrame[i].reserve(MAX_MESH_INSTANCES);
+    m_frameInstances[i].reserve(MAX_MESH_INSTANCES);
   }
 
-  // Material Metadata Buffer (Static/Shared)
+  // Material Buffer (Static/Shared/Bindless-indexed)
+  // Using binding 2 for now, should match shader logic.
   m_materialBuffer = std::make_unique<Buffer>(
-      m_context, sizeof(MaterialMetadata) * MAX_MATERIALS,
+      m_context, sizeof(MaterialGPU) * MAX_MATERIALS,
       VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, VMA_MEMORY_USAGE_CPU_TO_GPU);
-  m_materialBufferIndex = descriptorManager.registerBuffer(
-      m_materialBuffer->getHandle(), 0,
-      sizeof(MaterialMetadata) * MAX_MATERIALS, 2); // Binding 2
 
+  m_materialBufferIndex = descriptorManager.registerBuffer(
+       m_materialBuffer->getHandle(), 0,
+       sizeof(MaterialGPU) * MAX_MATERIALS, 2); 
+  // m_materialBufferIndex = 0; // Dummy value
+       
   m_materials.reserve(MAX_MATERIALS);
+  m_gpuMaterials.reserve(MAX_MATERIALS);
   m_lights.reserve(MAX_LIGHTS);
 }
 
@@ -76,7 +81,7 @@ void SceneManager::addMeshInstance(uint32_t frameIndex,
                                    uint32_t materialIndex, uint32_t indexCount,
                                    uint32_t firstIndex, int vertexOffset,
                                    const glm::vec3 &center, float radius) {
-  auto &instances = m_meshInstancesPerFrame[frameIndex];
+  auto &instances = m_frameInstances[frameIndex];
   if (instances.size() >= MAX_MESH_INSTANCES) {
     spdlog::warn("Maximum mesh instances reached for frame {}!", frameIndex);
     return;
@@ -87,28 +92,18 @@ void SceneManager::addMeshInstance(uint32_t frameIndex,
   instance.sphereCenter = center;
   instance.sphereRadius = radius;
   instance.materialIndex = materialIndex;
-  instances.push_back(instance);
+  
+  FrameMeshInstance fmi;
+  fmi.meshInstance = instance;
+  fmi.indexCount = indexCount;
+  fmi.firstIndex = firstIndex;
+  fmi.vertexOffset = vertexOffset;
 
-  // Upload instance data to current frame's buffer
-  m_meshInstanceBuffers[frameIndex]->upload(&instance, sizeof(MeshInstance),
-                                            sizeof(MeshInstance) *
-                                                (instances.size() - 1));
-
-  VkDrawIndexedIndirectCommand cmd = {};
-  cmd.indexCount = indexCount;
-  cmd.instanceCount = 1; // Initially visible
-  cmd.firstIndex = firstIndex;
-  cmd.vertexOffset = vertexOffset;
-  cmd.firstInstance = static_cast<uint32_t>(instances.size() - 1);
-
-  // Upload indirect command to current frame's buffer
-  m_indirectBuffers[frameIndex]->upload(
-      &cmd, sizeof(VkDrawIndexedIndirectCommand),
-      sizeof(VkDrawIndexedIndirectCommand) * (instances.size() - 1));
+  instances.push_back(fmi);
 }
 
 void SceneManager::clearMeshInstances(uint32_t frameIndex) {
-  m_meshInstancesPerFrame[frameIndex].clear();
+  m_frameInstances[frameIndex].clear();
 }
 
 void SceneManager::prepareIndirectCommands() {
@@ -150,26 +145,111 @@ void SceneManager::removeLight(uint32_t index) {
 
 void SceneManager::clearLights() { m_lights.clear(); }
 
-uint32_t SceneManager::addMaterial(const MaterialMetadata &material) {
-  if (m_materials.size() >= MAX_MATERIALS) {
-    throw std::runtime_error("Maximum materials reached in SceneManager!");
-  }
 
-  uint32_t index = static_cast<uint32_t>(m_materials.size());
-  m_materials.push_back(material);
-
-  updateMaterial(index, material); // Uses static buffer
-  return index;
+void SceneManager::addModel(std::unique_ptr<Model> model) {
+    m_models.push_back(std::move(model));
 }
 
-void SceneManager::updateMaterial(uint32_t index,
-                                  const MaterialMetadata &material) {
-  if (index >= m_materials.size())
-    return;
+int32_t SceneManager::addMaterial(const Material& material) {
+    if (m_materials.size() >= MAX_MATERIALS) {
+        spdlog::warn("Maximum materials reached!");
+        return -1;
+    }
+    
+    int32_t index = static_cast<int32_t>(m_materials.size());
+    m_materials.push_back(material);
+    m_gpuMaterials.push_back(material.gpuData);
+    
+    m_materialsDirty = true;
+    return index;
+}
 
-  m_materials[index] = material;
-  m_materialBuffer->upload(&material, sizeof(MaterialMetadata),
-                           sizeof(MaterialMetadata) * index);
+void SceneManager::updateMaterialBuffer() {
+  if (m_materialsDirty) {
+    if (m_gpuMaterials.size() > 0) {
+       m_materialBuffer->upload(m_gpuMaterials.data(), m_gpuMaterials.size() * sizeof(MaterialGPU));
+    }
+    m_materialsDirty = false;
+  }
+}
+
+void SceneManager::updateMaterial(uint32_t index, const Material& material) {
+    if (index < m_materials.size()) {
+        m_materials[index] = material;
+        // Update GPU copy
+        m_gpuMaterials[index] = material.gpuData;
+        
+        m_materialsDirty = true;
+    }
+}
+
+void SceneManager::sortAndUploadInstances(uint32_t frameIndex, const glm::vec3& cameraPos) {
+    auto& instances = m_frameInstances[frameIndex];
+    if (instances.empty()) return;
+
+    // 1. Separate Opaque and Transparent
+    std::vector<FrameMeshInstance> opaque;
+    std::vector<FrameMeshInstance> transparent;
+    opaque.reserve(instances.size());
+    transparent.reserve(instances.size()); 
+
+    for (const auto& inst : instances) {
+        if (inst.meshInstance.materialIndex < m_gpuMaterials.size()) {
+             if (m_gpuMaterials[inst.meshInstance.materialIndex].alphaMode == static_cast<uint32_t>(AlphaMode::Blend)) {
+                 transparent.push_back(inst);
+             } else {
+                 opaque.push_back(inst);
+             }
+        } else {
+            opaque.push_back(inst);
+        }
+    }
+
+    // 2. Sort Opaque (Front to Back)
+    std::sort(opaque.begin(), opaque.end(), [&](const FrameMeshInstance& a, const FrameMeshInstance& b) {
+        float distA = glm::distance(a.meshInstance.sphereCenter, cameraPos);
+        float distB = glm::distance(b.meshInstance.sphereCenter, cameraPos);
+        return distA < distB;
+    });
+
+    // 3. Sort Transparent (Back to Front)
+    std::sort(transparent.begin(), transparent.end(), [&](const FrameMeshInstance& a, const FrameMeshInstance& b) {
+        float distA = glm::distance(a.meshInstance.sphereCenter, cameraPos);
+        float distB = glm::distance(b.meshInstance.sphereCenter, cameraPos);
+        return distA > distB;
+    });
+
+    // 4. Merge back to instances
+    instances.clear();
+    instances.insert(instances.end(), opaque.begin(), opaque.end());
+    instances.insert(instances.end(), transparent.begin(), transparent.end());
+    
+    // Store Opaque Count
+    if (m_opaqueInstanceCounts.size() < MAX_FRAMES_IN_FLIGHT) {
+        m_opaqueInstanceCounts.resize(MAX_FRAMES_IN_FLIGHT);
+    }
+    m_opaqueInstanceCounts[frameIndex] = static_cast<uint32_t>(opaque.size());
+
+    // 5. Upload to GPU
+    std::vector<MeshInstance> gpuInstances;
+    std::vector<VkDrawIndexedIndirectCommand> commands;
+    gpuInstances.reserve(instances.size());
+    commands.reserve(instances.size());
+
+    for (size_t i = 0; i < instances.size(); ++i) {
+        gpuInstances.push_back(instances[i].meshInstance);
+        
+        VkDrawIndexedIndirectCommand cmd{};
+        cmd.indexCount = instances[i].indexCount;
+        cmd.instanceCount = 1;
+        cmd.firstIndex = instances[i].firstIndex;
+        cmd.vertexOffset = instances[i].vertexOffset;
+        cmd.firstInstance = static_cast<uint32_t>(i);
+        commands.push_back(cmd);
+    }
+
+    m_meshInstanceBuffers[frameIndex]->upload(gpuInstances.data(), gpuInstances.size() * sizeof(MeshInstance));
+    m_indirectBuffers[frameIndex]->upload(commands.data(), commands.size() * sizeof(VkDrawIndexedIndirectCommand));
 }
 
 } // namespace astral

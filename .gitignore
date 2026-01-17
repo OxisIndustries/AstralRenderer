@@ -34,7 +34,7 @@ lib/
 # Local Assets (if heavy and not in repo)
 # assets/ 
 # (Keeping assets enabled for this repo as it likely contains necessary shaders/models for logic)
-
+assets/models/Bistro_v5_2
 # Tools
 .gemini/
 

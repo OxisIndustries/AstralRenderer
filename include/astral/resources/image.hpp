@@ -43,6 +43,7 @@ private:
     VkImageView m_view;
 
     void createView();
+    void generateMipmaps(VkCommandBuffer cmd);
 };
 
 } // namespace astral
