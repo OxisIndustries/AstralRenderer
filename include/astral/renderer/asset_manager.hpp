@@ -17,7 +17,9 @@ enum class TextureType {
     Normal,
     MetallicRoughness,
     Occlusion,
-    Emissive
+    Emissive,
+    Transmission,
+    Thickness
 };
 
 class AssetManager;

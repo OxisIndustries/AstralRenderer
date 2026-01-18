@@ -38,6 +38,9 @@ struct SceneData {
     int gridX, gridY, gridZ;
     float nearClip, farClip;
     float screenWidth, screenHeight;
+    float iblIntensity;
+    int sceneColorIndex;
+    vec2 padding;
 };
 
 struct MeshInstance {

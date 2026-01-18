@@ -8,7 +8,7 @@ layout(set = 0, binding = 0) uniform sampler2D textures[];
 
 layout(push_constant) uniform PushConstants {
     int inputTextureIndex;
-    int padding;
+    int enabled; // was padding
     vec2 inverseScreenSize;
 } pc;
 
@@ -17,6 +17,12 @@ layout(push_constant) uniform PushConstants {
 #define FXAA_REDUCE_MIN (1.0/128.0)
 
 void main() {
+    if (pc.enabled == 0) {
+        // Bypass FXAA, just sample
+        outColor = textureLod(textures[nonuniformEXT(pc.inputTextureIndex)], inUV, 0.0);
+        return;
+    }
+
     vec3 rgbNW = textureLod(textures[nonuniformEXT(pc.inputTextureIndex)], inUV + (vec2(-1.0, -1.0) * pc.inverseScreenSize), 0.0).xyz;
     vec3 rgbNE = textureLod(textures[nonuniformEXT(pc.inputTextureIndex)], inUV + (vec2(1.0, -1.0) * pc.inverseScreenSize), 0.0).xyz;
     vec3 rgbSW = textureLod(textures[nonuniformEXT(pc.inputTextureIndex)], inUV + (vec2(-1.0, 1.0) * pc.inverseScreenSize), 0.0).xyz;

@@ -49,6 +49,9 @@ struct SceneData {
   int gridX, gridY, gridZ;
   float nearClip, farClip;
   float screenWidth, screenHeight;
+  float iblIntensity;
+  int sceneColorIndex;
+  vec2 padding;
 };
 
 struct MeshInstance {
@@ -67,14 +70,20 @@ struct Material {
   float alphaCutoff;
   uint alphaMode;
   
+  float transmissionFactor;
+  float ior;
+  float thicknessFactor;
+  uint doubleSided;
+  
   int baseColorTextureIndex;
   int normalTextureIndex;
   int metallicRoughnessTextureIndex;
   int emissiveTextureIndex;
+  
   int occlusionTextureIndex;
-
-  uint doubleSided;
-  uint padding[2];
+  int transmissionTextureIndex;
+  int thicknessTextureIndex;
+  uint padding;
 };
 
 layout(std430, set = 0, binding = 1) readonly buffer SceneBuffer {

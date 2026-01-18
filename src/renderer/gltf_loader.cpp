@@ -129,6 +129,13 @@ std::unique_ptr<Model> GltfLoader::load(const std::filesystem::path& path, Scene
         checkTex(gltfMat.normalTexture, TextureType::Normal);
         checkTex(gltfMat.occlusionTexture, TextureType::Occlusion);
         checkTex(gltfMat.emissiveTexture, TextureType::Emissive);
+        
+        if (gltfMat.transmission) {
+            checkTex(gltfMat.transmission->transmissionTexture, TextureType::Transmission);
+        }
+        if (gltfMat.volume) {
+            checkTex(gltfMat.volume->thicknessTexture, TextureType::Thickness);
+        }
     }
 
     std::vector<std::shared_ptr<Image>> loadedImages;
@@ -306,6 +313,47 @@ std::unique_ptr<Model> GltfLoader::load(const std::filesystem::path& path, Scene
                  size_t imgIdx = gltfTex.imageIndex.value();
                  if (imgIdx < loadedImages.size()) material.occlusionTexture = loadedImages[imgIdx];
              }
+        }
+        
+        // Transmission
+        if (gltfMat.transmission) {
+            auto& trans = *gltfMat.transmission;
+            material.gpuData.transmissionFactor = trans.transmissionFactor;
+            
+            if (trans.transmissionTexture.has_value()) {
+                size_t texIdx = trans.transmissionTexture->textureIndex;
+                material.gpuData.transmissionIndex = model->textureIndices[texIdx];
+                
+                auto& gltfTex = asset.textures[texIdx];
+                if (gltfTex.imageIndex.has_value()) {
+                    size_t imgIdx = gltfTex.imageIndex.value();
+                    if (imgIdx < loadedImages.size()) {
+                        material.transmissionTexture = loadedImages[imgIdx];
+                    }
+                }
+            }
+        }
+
+        // IOR
+        material.gpuData.ior = gltfMat.ior;
+
+        // Volume
+        if (gltfMat.volume) {
+            auto& vol = *gltfMat.volume;
+            material.gpuData.thicknessFactor = vol.thicknessFactor;
+            
+            if (vol.thicknessTexture.has_value()) {
+                size_t texIdx = vol.thicknessTexture->textureIndex;
+                material.gpuData.thicknessIndex = model->textureIndices[texIdx];
+                
+                auto& gltfTex = asset.textures[texIdx];
+                if (gltfTex.imageIndex.has_value()) {
+                    size_t imgIdx = gltfTex.imageIndex.value();
+                    if (imgIdx < loadedImages.size()) {
+                        material.thicknessTexture = loadedImages[imgIdx];
+                    }
+                }
+            }
         }
 
         if (gltfMat.alphaMode == fastgltf::AlphaMode::Mask) {

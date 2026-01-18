@@ -45,6 +45,8 @@ struct SceneData {
     float nearClip, farClip;     // Camera clips for cluster calculation
     float screenWidth, screenHeight;
     float iblIntensity;
+    int sceneColorIndex;
+    float padding[2]; // Ensure 16-byte alignment (104 + 8 = 112)
 };
 
 struct MaterialMetadata {

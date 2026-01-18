@@ -94,6 +94,9 @@ public:
     std::unique_ptr<Image> bloomImage;
     std::unique_ptr<Image> bloomBlurImage;
 
+    // Transmission
+    std::unique_ptr<Image> sceneColorImage; // Copy of Opaque Pass
+    
     // Cluster
     std::unique_ptr<Buffer> clusterBuffer;
     std::vector<std::unique_ptr<Buffer>> clusterGridBuffers;
@@ -187,6 +190,7 @@ private:
   uint32_t m_bloomTextureIndex;
   uint32_t m_bloomBlurTextureIndex;
   uint32_t m_shadowMapIndex;
+  uint32_t m_sceneColorTextureIndex;
   uint32_t m_ldrTextureIndex;
   uint32_t m_ssaoKernelBufferIndex;
   uint32_t m_clusterBufferIndex;

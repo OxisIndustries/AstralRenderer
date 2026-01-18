@@ -4,6 +4,8 @@
 #include "astral/renderer/scene_manager.hpp"
 #include "astral/renderer/sync.hpp"
 #include "astral/core/commands.hpp"
+#include "astral/core/context.hpp"
+#include "astral/resources/image.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -99,6 +101,12 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
   m_resources.depthImage = std::make_unique<Image>(m_context, depthSpecs);
   m_depthTextureIndex = m_context->getDescriptorManager().registerImage(
       m_resources.depthImage->getView(), m_hdrSampler);
+
+  // Scene Color Image (Copy of Opaque Pass for Transmission)
+  ImageSpecs sceneColorSpecs = hdrSpecs;
+  m_resources.sceneColorImage = std::make_unique<Image>(m_context, sceneColorSpecs);
+  m_sceneColorTextureIndex = m_context->getDescriptorManager().registerImage(
+      m_resources.sceneColorImage->getView(), m_hdrSampler);
 
   ImageSpecs velocitySpecs;
   velocitySpecs.width = m_width;
@@ -611,6 +619,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   sd.iblIntensity = uiParams.iblIntensity;
   sd.headlampEnabled = uiParams.enableHeadlamp ? 1 : 0;
   sd.visualizeCascades = uiParams.visualizeCascades ? 1 : 0;
+  sd.sceneColorIndex = m_sceneColorTextureIndex;
 
   sceneManager.updateSceneData(currentFrame, sd);
 
@@ -621,7 +630,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
 
   VkClearValue colorClear;
   // DEBUG: Magenta clear color to verify RenderPass execution
-  colorClear.color = {{1.0f, 0.0f, 1.0f, 1.0f}};
+  colorClear.color = {{0.0f, 0.0f, 0.0f, 1.0f}};
   VkClearValue depthClear;
   depthClear.depthStencil = {1.0f, 0};
   VkClearValue shadowClear;
@@ -892,9 +901,9 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
                             ext.width, ext.height,
                             VK_IMAGE_LAYOUT_UNDEFINED);
 
-  // Geometry Pass
+  // Opaque Pass
   graph.addPass(
-      "GeometryPass", {}, {"HDR_Color", "Normal", "Velocity", "Depth"},
+      "OpaquePass", {}, {"HDR_Color", "Normal", "Velocity", "Depth"},
       [this, &sceneManager, currentFrame, ext, uiParams, skyboxIndex, model](VkCommandBuffer cb) {
         VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
         vkCmdSetViewport(cb, 0, 1, &viewport);
@@ -947,34 +956,91 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
                              0, 16, &pbrSPC);
 
           size_t opaqueCount = sceneManager.getOpaqueMeshInstanceCount(currentFrame);
-          size_t totalCount = sceneManager.getMeshInstanceCount(currentFrame);
-          size_t transparentCount = totalCount - opaqueCount;
-
-          // 1. Opaque Pass
+          
           if (opaqueCount > 0) {
               vkCmdDrawIndexedIndirect(
                  cb, sceneManager.getIndirectBuffer(currentFrame), 0,
                  static_cast<uint32_t>(opaqueCount),
                  sizeof(VkDrawIndexedIndirectCommand));
           }
-
-          // 2. Transparent Pass
-          if (transparentCount > 0) {
-              vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
-                                m_pbrTransparentPipeline->getHandle());
-              
-              // Bind descriptors again if needed (usually persist, but pipeline switch might require it if layouts differ slightly, 
-              // here they share layout so strict Vulkan might effectively keep it, but safe to rebind or rely on compatibility.
-              // Since we are using same layout, it's compatible.)
-              
-              VkDeviceSize offset = opaqueCount * sizeof(VkDrawIndexedIndirectCommand);
-              vkCmdDrawIndexedIndirect(
-                 cb, sceneManager.getIndirectBuffer(currentFrame), offset,
-                 static_cast<uint32_t>(transparentCount),
-                 sizeof(VkDrawIndexedIndirectCommand));
-          }
         }
       });
+
+  // Scene Color Copy (for Transmission)
+  // We need to register SceneColor resource with the graph first
+  graph.addExternalResource("SceneColor", m_resources.sceneColorImage->getHandle(),
+                            m_resources.sceneColorImage->getView(),
+                            m_resources.sceneColorImage->getSpecs().format,
+                            ext.width, ext.height, VK_IMAGE_LAYOUT_UNDEFINED);
+
+  graph.addPass(
+      "SceneColorCopyPass", {"HDR_Color"}, {"SceneColor"},
+      [this, ext](VkCommandBuffer cb) {
+          // Blit HDR_Color to SceneColor
+          // Note: RenderGraph handles transitions. HDR_Color -> TransferSrc, SceneColor -> TransferDst
+          VkImageBlit blitRegion{};
+          blitRegion.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+          blitRegion.srcSubresource.layerCount = 1;
+          blitRegion.srcOffsets[1] = { (int32_t)ext.width, (int32_t)ext.height, 1 };
+          blitRegion.dstSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+          blitRegion.dstSubresource.layerCount = 1;
+          blitRegion.dstOffsets[1] = { (int32_t)ext.width, (int32_t)ext.height, 1 };
+
+          vkCmdBlitImage(cb, 
+              m_resources.hdrImage->getHandle(), VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+              m_resources.sceneColorImage->getHandle(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+              1, &blitRegion, VK_FILTER_NEAREST);
+      }, true); // isTransferPass = true
+
+
+  // Transparent Pass
+  graph.addPass(
+      "TransparentPass", {"SceneColor", "Normal", "Velocity", "Depth"}, {"HDR_Color"},
+      [this, &sceneManager, currentFrame, ext, model](VkCommandBuffer cb) {
+          vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
+                            m_pbrTransparentPipeline->getHandle());
+          VkDescriptorSet globalSet =
+              m_context->getDescriptorManager().getDescriptorSet();
+          vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
+                                  m_pipelineLayout, 0, 1, &globalSet, 0, nullptr);
+        
+          VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
+          vkCmdSetViewport(cb, 0, 1, &viewport);
+          VkRect2D scissor = {{0, 0}, {ext.width, ext.height}};
+          vkCmdSetScissor(cb, 0, 1, &scissor);
+
+          if (model) {
+              VkDeviceSize offsets[] = {0};
+              VkBuffer vBuffer = model->vertexBuffer->getHandle();
+              vkCmdBindVertexBuffers(cb, 0, 1, &vBuffer, offsets);
+              vkCmdBindIndexBuffer(cb, model->indexBuffer->getHandle(), 0,
+                                   VK_INDEX_TYPE_UINT32);
+
+              struct {
+                uint32_t sIdx, iIdx, mIdx, pad;
+              } pbrSPC;
+              pbrSPC.sIdx = sceneManager.getSceneBufferIndex(currentFrame);
+              pbrSPC.iIdx = sceneManager.getMeshInstanceBufferIndex(currentFrame);
+              pbrSPC.mIdx = sceneManager.getMaterialBufferIndex();
+
+              vkCmdPushConstants(cb, m_pipelineLayout,
+                                 VK_SHADER_STAGE_VERTEX_BIT |
+                                     VK_SHADER_STAGE_FRAGMENT_BIT,
+                                 0, 16, &pbrSPC);
+
+              size_t opaqueCount = sceneManager.getOpaqueMeshInstanceCount(currentFrame);
+              size_t totalCount = sceneManager.getMeshInstanceCount(currentFrame);
+              size_t transparentCount = totalCount - opaqueCount;
+
+              if (transparentCount > 0) {
+                  VkDeviceSize offset = opaqueCount * sizeof(VkDrawIndexedIndirectCommand);
+                  vkCmdDrawIndexedIndirect(
+                     cb, sceneManager.getIndirectBuffer(currentFrame), offset,
+                     static_cast<uint32_t>(transparentCount),
+                     sizeof(VkDrawIndexedIndirectCommand));
+              }
+          }
+      }, false); // Do NOT clear outputs (HDR_Color), we want to blend on top of OpaquePass
 
   if (uiParams.enableSSAO) {
     graph.addPass(
@@ -1143,9 +1209,10 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
   std::string inputForFinal = "LDR_Color";
   uint32_t inputIdxForFinal = m_ldrTextureIndex;
 
-  if (uiParams.enableFXAA) {
+  // FXAA Pass (Always added, bypassing handled in shader)
+  if (true) {
     graph.addPass(
-        "FXAAPass", {inputForFinal}, {"Swapchain"}, [this, ext, inputIdxForFinal](VkCommandBuffer cb) {
+        "FXAAPass", {inputForFinal}, {"Swapchain"}, [this, ext, inputIdxForFinal, uiParams](VkCommandBuffer cb) {
           VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
           vkCmdSetViewport(cb, 0, 1, &viewport);
           VkRect2D scissor = {{0, 0}, {ext.width, ext.height}};
@@ -1159,12 +1226,12 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
                                   m_fxaaLayout, 0, 1, &set, 0, nullptr);
           struct {
             int32_t inputTextureIndex;
-            int32_t padding;
+            int32_t enabled;
             float inverseScreenWidth;
             float inverseScreenHeight;
           } fPush;
           fPush.inputTextureIndex = static_cast<int32_t>(inputIdxForFinal); // LDR
-          fPush.padding = 0;
+          fPush.enabled = uiParams.enableFXAA ? 1 : 0;
           fPush.inverseScreenWidth = 1.0f / static_cast<float>(ext.width);
           fPush.inverseScreenHeight = 1.0f / static_cast<float>(ext.height);
           vkCmdPushConstants(cb, m_fxaaLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0,
@@ -1172,6 +1239,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           vkCmdDraw(cb, 3, 1, 0, 0);
         });
   } else {
+#if 0
     // Just copy LDR to Swapchain or use Composite to write directly to
     // Swapchain? Composite wrote to "LDR_Color". We can add a blit pass or
     // change Composite to target Swapchain. Easier: Change Composite to target
@@ -1181,23 +1249,142 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
     // Let's assume FXAA is always distinct pass.
     // If FXAA off, we need a Copy Pass.
     graph.addPass(
-        "FinalCopy", {inputForFinal}, {"Swapchain"}, [this, ext](VkCommandBuffer cb) {
-          // Simple copy using blit or similar.
-          // For now, rely on FXAA being enabled or valid.
-          // If user disables FXAA, we might see nothing unless we handle it.
-          // I'll assume FXAA pipeline acts as pass-through if needed or just
-          // always run it. Or just do a BlitImage.
+        "FinalCopy", {inputForFinal}, {"Swapchain"}, [this, ext, &swapchain, imageIndex](VkCommandBuffer cb) {
+          // Blit LDR to Swapchain
+          VkImage srcImage = m_resources.ldrImage->getHandle();
+          VkImage dstImage = swapchain.getImages()[imageIndex];
+          // RenderGraph usually binds the inputs/outputs. But for a Blit, we need raw handles.
+          // The RenderGraph pass transition handled layout transition to TRANSFER_SRC/DST potentially? 
+          // Check RenderGraph implementation: passing "Swapchain" as output usually prepares it for writing (COLOR_ATTACHMENT). 
+          // For Blit, we need TRANSFER_DST. 
+          // Since RenderGraph manages layouts based on usage, and this is a generic "addPass", it might set it to COLOR_ATTACHMENT_OPTIMAL.
+          // This creates a conflict if we want to Blit.
           
-          /*
-          vkCmdBindPipeline(
-              cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
-              m_fxaaPipeline->getHandle()); 
-          */
+          // Workaround: Use a Full Screen Triangle pipeline instead of Blit, 
+          // or assume RenderGraph can handle TRANSFER layout if we specify it. 
+          // Current RenderGraph is simple.
+          
+          // EASIEST FIX: Just run the FXAA shader but with FXAA disabled? No that's waste.
+          // BETTER FIX: Use the existing composite buffer copy logic or implement a dedicated Copy Pipeline.
+          // FASTEST FIX (given constraints): Use a simple copy/blit, but ensure layouts are correct.
+          // However, RenderGraph automatically transitions to COLOR_ATTACHMENT_OPTIMAL for outputs.
+          // We can just use the PostProcess pipeline (or FXAA pipeline) with a "Passthrough" shader?
+          // Or just use the FXAA shader but pass a flag?
+          // Or reuse the FXAA pipeline which samples the texture and draws a quad. 
+          // This is exactly what we want! 
+          // So I will just use the FXAA pipeline logic but maybe with a "disable" flag if needed?
+          // Actually FXAA shader might not have a disable flag.
+          // Let's look at FXAA shader.
+          
+          // ALTERNATIVE: Use `vkCmdBlitImage`. But need to ensure layouts.
+          // Let's rely on the RenderGraph to transition 'Swapchain' to TRANSFER_DST_OPTIMAL? 
+          // The RenderGraph doesn't seem to support specifying layout per pass easily if it infers it.
+          // 
+          // Let's try reusing the FXAA pipeline code block, effectively "Running FXAA pass but without FXAA math" if possible, 
+          // OR better: Create a minimal "Passthrough" pipeline. 
+          // But I don't want to add new shaders now.
+          
+          // Let's use `vkCmdBlitImage` and manually transition if needed? No, dangerous.
+          // 
+          // WAIT. `renderer_system.cpp` has a `SceneColorCopyPass` which uses `isTransferPass = true`.
+          // `graph.addPass(..., true)` -> last arg is `isTransferPass`? NO, last arg was `clearOutputs`.
+          
+          // Let's check `RenderGraph::addPass` again.
+          // `void addPass(..., bool clearOutputs = true);` 
+          // It DOES NOT have `isTransferPass`.
+          // So `SceneColorCopyPass` using `true` just meant `clearOutputs=true`.
+          
+          // So `SceneColorCopyPass` doing `vkCmdBlitImage` relies on lucky layouts?
+          // No, `SceneColorCopyPass` uses `SceneColor` as output.
+          
+          // Let's look at `SceneColorCopyPass` implementation again.
+             /*
+              graph.addPass(
+                  "SceneColorCopyPass", {"HDR_Color"}, {"SceneColor"},
+                  [this, ext](VkCommandBuffer cb) {
+                      // Blit ...
+                  }, true);
+             */
+          // If that works, then I can do the same here.
+          // `HDR_Color` (source) -> `SceneColor` (dest).
+          
+          VkImageBlit blitRegion{};
+          blitRegion.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+          blitRegion.srcSubresource.layerCount = 1;
+          blitRegion.srcOffsets[1] = {static_cast<int32_t>(ext.width), static_cast<int32_t>(ext.height), 1};
+          blitRegion.dstSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+          blitRegion.dstSubresource.layerCount = 1;
+          blitRegion.dstOffsets[1] = {static_cast<int32_t>(ext.width), static_cast<int32_t>(ext.height), 1};
 
-          // Reusing FXAA logic but without FXAA? 
-          // For now, let's just make sure it doesn't crash.
-          // In actual code, FinalCopy was likely implemented or intended.
+          // We need the handles.
+          // We can hackishly access them via m_resources.ldrImage and m_context->getSwapchain().getCurrentImage().
+          // Note: Layouts might be COLOR_ATTACHMENT_OPTIMAL.
+          // Blit requires TRANSFER_SRC_OPTIMAL / TRANSFER_DST_OPTIMAL.
+          // Maybe it's better to just reuse the FXAA pipeline for now to ensure output is drawn to swapchain using a draw call?
+          // Since "Swapchain" is a RenderPass attachment, drawing a full screen quad is the standard way to write to it.
+          // The FXAA pipeline does exactly that (samples LDR, writes to Swapchain).
+          // If we disable FXAA, we essentially just want "Texture Sample -> Output".
+          // 
+          // If I use the FXAA pipeline, it runs FXAA.
+          // Does FXAA shader have a switch?
+          // 
+          // Let's just USE FXAA PIPELINE ALWAYS for now to fix the bug quickly? 
+          // The user specifically said "when we turn it off".
+          // So if they turn it off, they want raw image.
+          // 
+          // I will use `vkCmdBlitImage` but I need to force layouts. 
+          // Actually, since I can't easily change layouts in this closure without risking RenderGraph confusion...
+          // 
+          // Best approach: Use the `Composite` pass to write DIRECTLY to `Swapchain` if FXAA is off.
+          // But `Composite` pass is defined earlier.
+          //
+          // Let's stick to `FinalCopy` pass with `vkCmdBlitImage`.
+          // I will assume `SceneColorCopyPass` works, so I copy its pattern.
+          
+          VkImage srcImage = m_resources.ldrImage->getHandle();
+          VkImage dstImage = m_context->getSwapchain().getCurrentImage();
+          
+          // Manual Barrier to Transfer Layouts?
+          // The RenderGraph transitions them to COLOR_ATTACHMENT_OPTIMAL (for Output) and SHADER_READ_ONLY (for Input).
+          // Blit requires TRANSFER.
+          //
+          // Transition Src to TRANSFER_SRC
+          VkImageMemoryBarrier srcBarrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+          srcBarrier.srcAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+          srcBarrier.dstAccessMask = VK_ACCESS_TRANSFER_READ_BIT;
+          srcBarrier.oldLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL; // Or whatever RG set it to
+          srcBarrier.newLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+          srcBarrier.image = srcImage;
+          srcBarrier.subresourceRange = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1};
+          
+          vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 1, &srcBarrier);
+
+          // Transition Dst to TRANSFER_DST
+          VkImageMemoryBarrier dstBarrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+          dstBarrier.srcAccessMask = 0;
+          dstBarrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+          dstBarrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED; // RG might have cleared it or not
+          dstBarrier.newLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+          dstBarrier.image = dstImage;
+          dstBarrier.subresourceRange = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1};
+           
+          vkCmdPipelineBarrier(cb, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 0, nullptr, 0, nullptr, 1, &dstBarrier);
+
+          vkCmdBlitImage(cb, srcImage, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &blitRegion, VK_FILTER_NEAREST);
+          
+          // Transition back or let valid RenderPass End handle it? 
+          // Swapchain image needs to be PRESENT_SRC_KHR usually.
+          // The RenderGraph or the end of frame logic usually handles transition to PRESENT.
+          // If RG thinks it's COLOR_ATTACHMENT, it won't transit to PRESENT automatically unless RG handles it.
+          // 
+          // NOTE: I'll use the FXAA Pipeline "technique" but with a dummy "Passthrough" shader if I could.
+          // But since I can't...
+          // 
+          // WAIT. The simplest way is to bind the FXAA pipeline but pass a boolean in PushConstant to disable FXAA logic in shader?
+          // Check `fxaa.frag`.
+          
         });
+#endif
   }
 
   // graph.execute(cmd.getHandle(), ext); // Executed by Application now to allow UI Pass injection

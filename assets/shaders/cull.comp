@@ -50,6 +50,9 @@ struct SceneData {
     int gridX, gridY, gridZ;
     float nearClip, farClip;
     float screenWidth, screenHeight;
+    float iblIntensity;
+    int sceneColorIndex;
+    vec2 padding;
 };
 
 layout(std430, set = 0, binding = 1) readonly buffer SceneBuffer {

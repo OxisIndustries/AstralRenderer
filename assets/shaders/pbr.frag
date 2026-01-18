@@ -53,6 +53,8 @@ struct SceneData {
   float nearClip, farClip;
   float screenWidth, screenHeight;
   float iblIntensity;
+  int sceneColorIndex;
+  vec2 padding;
 };
 
 struct ClusterGrid {
@@ -68,14 +70,20 @@ struct Material {
   float alphaCutoff;
   uint alphaMode;
   
+  float transmissionFactor;
+  float ior;
+  float thicknessFactor;
+  uint doubleSided;
+  
   int baseColorTextureIndex;
   int normalTextureIndex;
   int metallicRoughnessTextureIndex;
   int emissiveTextureIndex;
+  
   int occlusionTextureIndex;
-
-  uint doubleSided;
-  uint padding[2];
+  int transmissionTextureIndex;
+  int thicknessTextureIndex;
+  uint padding;
 };
 
 // Bindless Set #0
@@ -465,6 +473,53 @@ void main() {
 
   // HDR and Tonemapping
   vec3 color = ambient + lo + emissive;
+
+  // Transmission
+  float transmission = mat.transmissionFactor;
+  if (mat.transmissionTextureIndex != -1) {
+    transmission *= textureLod(textures[nonuniformEXT(mat.transmissionTextureIndex)], inUV, 0.0).r;
+  }
+
+  if (transmission > 0.0 && scene.sceneColorIndex != -1) {
+    vec2 screenUV = gl_FragCoord.xy / vec2(scene.screenWidth, scene.screenHeight);
+    
+    // Simple refraction based on normal and IOR
+    // real refraction requires depth tracing or raymarching, here we approximate offset
+    vec3 viewDir = normalize(scene.cameraPos.xyz - inWorldPos);
+    float ior = mat.ior;
+    if (ior == 0.0) ior = 1.5;
+    float eta = 1.0 / ior;
+    vec3 refracted = refract(-viewDir, N, eta);
+    vec2 offset = refracted.xy * (mat.thicknessFactor > 0.0 ? mat.thicknessFactor : 1.0) * 0.1;
+    
+    // Limits
+    screenUV += offset * (1.0 - roughness); 
+
+    vec3 transmittedColor = texture(textures[nonuniformEXT(scene.sceneColorIndex)], screenUV).rgb;
+
+    // Volume / Thickness (Beer's Law approximation)
+    if (mat.thicknessFactor > 0.0) {
+        vec3 attenuationColor = mat.baseColorFactor.rgb; // Use base color as attenuation hint
+        float thickness = mat.thicknessFactor; // Should sample thickness map if present
+         if (mat.thicknessTextureIndex != -1) {
+             thickness *= texture(textures[nonuniformEXT(mat.thicknessTextureIndex)], inUV).g;
+         }
+        vec3 absorption = exp(-((vec3(1.0) - attenuationColor) * thickness));
+        transmittedColor *= absorption;
+    }
+
+    // Blend: Linear interpolation for now (Replacing diffuse with transmission)
+    // To preserve specular, we should ideally add efficient specular, but here we mix.
+    // For physically correct, we should separate Diffuse and Specular lobes.
+    // Hack: Add specular on top? lo already has it.
+    // Let's assume color ~= Diffuse + Specular.
+    // We want (1-T)*Diffuse + T*Transmitted + Specular.
+    // Current 'color' is (Diffuse + Specular).
+    // So mix(color, transmitted, T) dampens specular.
+    // We will just mix for this pass.
+    
+    color = mix(color, transmittedColor, transmission);
+  }
 
   // Visualize Cascades
   if (scene.visualizeCascades == 1) {

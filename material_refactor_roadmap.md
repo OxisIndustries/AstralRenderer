@@ -98,15 +98,16 @@ struct MaterialGPU {
 
 ## Phase 4: Roadmap & Milestones
 
-| Milestone | Task | Estimated Effort |
-| :--- | :--- | :--- |
+| Milestone | Task | Estimated Effort | Status |
+| :--- | :--- | :--- | :--- |
 | **M1: Mipmaps** | Implement automatic mipmap generation in `Image`. | Low | ✅ Done |
 | **M2: Caching** | Implement `TextureCache` in `AssetManager`. update Loaders. | Medium | ✅ Done |
-| **M3: Mat Struct** | Update `Material` struct, SSBOs, and Shaders. | Medium |
-| **M4: Transparency** | Implement Basic Transparency (Sorting + Blend Pipeline). | High |
-| **M5: Adv. PBR** | Emissive, Clearcoat implementation. | High |
+| **M3: Mat Struct** | Update `Material` struct, SSBOs, and Shaders. | Medium | ✅ Done |
+| **M4: Transparency** | Implement Basic Transparency (Sorting + Blend Pipeline). | High | ✅ Done (Sorting Implemented) |
+| **M5: Adv. PBR** | Emissive, Transmission, Volume integration. | High | 🟡 Partial (Structs/Loaders Done) |
 
 
-## Immediate Next Steps
-1.  **Refactor `Material` struct** to match `MaterialGPU` layout.
-2.  Create `Material.hpp` to centralize material definitions.
+## Immediate Next Steps (Phase 3 Focus)
+1.  **Implement Transmission Logic (Shader):** The data is there, but the shader PBR logic doesn't use `transmissionFactor` yet. We need to implement the refraction math.
+2.  **Opaque Scene Copy:** Transmission requires reading the background. We need to add a render pass to copy the Opaque pass result to a `SceneColor` texture before the Transparent pass runs.
+3.  **Implement Volume Logic (Shader):** Use `thickness` and `attenuationColor` to simulate absorption in the PBR shader.

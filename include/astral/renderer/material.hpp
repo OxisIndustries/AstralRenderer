@@ -16,13 +16,20 @@ namespace astral {
 // Matches Shader Layout (std430 recommended for SSBO)
 // Matches Shader Layout (std430 recommended for SSBO)
 struct MaterialGPU {
-    glm::vec4 baseColorFactor{1.0f};
-    glm::vec4 emissiveFactor{0.0f, 0.0f, 0.0f, 1.0f}; // rgb: factor, a: strength
+    alignas(16) glm::vec4 baseColorFactor{1.0f};
+    alignas(16) glm::vec4 emissiveFactor{0.0f, 0.0f, 0.0f, 1.0f}; // rgb: factor, a: strength
 
     float metallicFactor{1.0f};
     float roughnessFactor{1.0f};
     float alphaCutoff{0.5f};
     uint32_t alphaMode{0};      // 0=Opaque, 1=Mask, 2=Blend
+    
+    // New PBR Fields
+    float transmissionFactor{0.0f};
+    float ior{1.5f};
+    float thicknessFactor{0.0f};
+    
+    uint32_t doubleSided{0};    // 0=False, 1=True
 
     // Texture Indices (Bindless array indices)
     int32_t baseColorIndex{-1};
@@ -31,9 +38,16 @@ struct MaterialGPU {
     int32_t emissiveIndex{-1};
 
     int32_t occlusionIndex{-1};
-    uint32_t doubleSided{0};    // 0=False, 1=True
-    uint32_t padding[2];        // Padding to align to 16-byte boundary. 
-                                // Size: 16+16+4+4+4+4 + 4*4 + 4+4+8 = 80 bytes.
+    int32_t transmissionIndex{-1};
+    int32_t thicknessIndex{-1};
+    
+    uint32_t padding;   // Padding to align to 16-byte boundary.
+                        // Size check:
+                        // 16 (Color) + 16 (Emissive) = 32
+                        // 4*4 (factors) = 16 -> 48
+                        // 4*3 (new factors) + 4 (doubleSided) = 16 -> 64
+                        // 4*4 (tex 1-4) = 16 -> 80
+                        // 4*3 (tex 5-7) + 4 (padding) = 16 -> 96 bytes. Perfect 16B alignment.
 };
 
 enum class AlphaMode : uint32_t {
@@ -55,6 +69,10 @@ struct Material {
     std::shared_ptr<Image> metallicRoughnessTexture;
     std::shared_ptr<Image> emissiveTexture;
     std::shared_ptr<Image> occlusionTexture;
+    
+    // New Textures
+    std::shared_ptr<Image> transmissionTexture;
+    std::shared_ptr<Image> thicknessTexture;
     
     // Samplers
     // In glTF, each texture can ideally have its own sampler.

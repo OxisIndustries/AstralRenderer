@@ -71,7 +71,9 @@ std::shared_ptr<Image> AssetManager::getOrLoadTexture(const std::filesystem::pat
         switch (type) {
             case TextureType::Normal: return m_defaultNormalTexture;
             case TextureType::MetallicRoughness:
-            case TextureType::Occlusion: return m_whiteTexture;
+            case TextureType::Occlusion:
+            case TextureType::Transmission: 
+            case TextureType::Thickness: return m_whiteTexture;
             case TextureType::Emissive: return m_blackTexture;
             case TextureType::Albedo:
             default: return m_errorTexture;
@@ -104,7 +106,15 @@ std::shared_ptr<Image> AssetManager::getOrLoadTexture(const std::filesystem::pat
     specs.width = static_cast<uint32_t>(width);
     specs.height = static_cast<uint32_t>(height);
     // Normals should be UNORM, others mostly SRGB.
-    specs.format = (type == TextureType::Normal) ? VK_FORMAT_R8G8B8A8_UNORM : VK_FORMAT_R8G8B8A8_SRGB;
+    // Transmission/Thickness are data maps, so use UNORM.
+    bool kIsDataMap = (type == TextureType::Normal || type == TextureType::Transmission || type == TextureType::Thickness || type == TextureType::MetallicRoughness || type == TextureType::Occlusion);
+    
+    // Note: MetallicRoughness/Occlusion are usually linear (UNORM), not sRGB! 
+    // The previous code had them as sRGB by default (via generic fallback), which is technically wrong for PBR data maps 
+    // but often ignored if engines treat them loosely.
+    // Let's force UNORM for all data maps explicitly now.
+    
+    specs.format = kIsDataMap ? VK_FORMAT_R8G8B8A8_UNORM : VK_FORMAT_R8G8B8A8_SRGB;
     specs.usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
 
     auto image = std::make_shared<Image>(m_context, specs);
