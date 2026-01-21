@@ -13,6 +13,9 @@
 
 namespace astral {
 
+class AssimpLoader; // forward decl if needed
+
+
 AssimpLoader::AssimpLoader(Context* context) : m_context(context) {
     // No default sampler creation needed here
 }
@@ -43,7 +46,9 @@ std::unique_ptr<Model> AssimpLoader::load(const std::filesystem::path& path, Sce
         aiProcess_GenSmoothNormals | 
         aiProcess_CalcTangentSpace |
         aiProcess_PreTransformVertices |
-        aiProcess_JoinIdenticalVertices
+        aiProcess_JoinIdenticalVertices |
+        aiProcess_FlipUVs |              // FBX uses bottom-left UV origin, Vulkan uses top-left
+        aiProcess_TransformUVCoords      // Apply any UV transforms embedded in the file
     );
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
@@ -96,7 +101,7 @@ std::unique_ptr<Model> AssimpLoader::load(const std::filesystem::path& path, Sce
                      aiString str;
                      aiMat->GetTexture(type, 0, &str);
                      std::filesystem::path texPath = directory / str.C_Str();
-                     int texIdx = loadTexture(texPath, model.get(), assetManager);
+                     int texIdx = loadTexture(texPath, model.get(), assetManager, directory);
                      if (texIdx >= 0) {
                         targetIndex = model->textureIndices[texIdx];
                         // Get the image pointer we just added/found
@@ -116,7 +121,19 @@ std::unique_ptr<Model> AssimpLoader::load(const std::filesystem::path& path, Sce
                  loadAndRegister(aiTextureType_DIFFUSE, material.gpuData.baseColorIndex, material.baseColorTexture);
                  
              loadAndRegister(aiTextureType_NORMALS, material.gpuData.normalIndex, material.normalTexture);
+             if (material.gpuData.normalIndex == -1)
+                 loadAndRegister(aiTextureType_HEIGHT, material.gpuData.normalIndex, material.normalTexture);
+             if (material.gpuData.normalIndex == -1)
+                 loadAndRegister(aiTextureType_NORMAL_CAMERA, material.gpuData.normalIndex, material.normalTexture);
              loadAndRegister(aiTextureType_METALNESS, material.gpuData.metallicRoughnessIndex, material.metallicRoughnessTexture);
+             if (material.gpuData.metallicRoughnessIndex == -1)
+                 loadAndRegister(aiTextureType_SPECULAR, material.gpuData.metallicRoughnessIndex, material.metallicRoughnessTexture);
+             if (material.gpuData.metallicRoughnessIndex == -1)
+                 loadAndRegister(aiTextureType_SHININESS, material.gpuData.metallicRoughnessIndex, material.metallicRoughnessTexture);
+             if (material.gpuData.metallicRoughnessIndex == -1)
+                 loadAndRegister(aiTextureType_UNKNOWN, material.gpuData.metallicRoughnessIndex, material.metallicRoughnessTexture);
+             if (material.gpuData.metallicRoughnessIndex == -1)
+                 loadAndRegister(aiTextureType_DIFFUSE_ROUGHNESS, material.gpuData.metallicRoughnessIndex, material.metallicRoughnessTexture);
              
              loadAndRegister(aiTextureType_EMISSIVE, material.gpuData.emissiveIndex, material.emissiveTexture);
              loadAndRegister(aiTextureType_AMBIENT_OCCLUSION, material.gpuData.occlusionIndex, material.occlusionTexture);
@@ -229,33 +246,189 @@ std::unique_ptr<Model> AssimpLoader::load(const std::filesystem::path& path, Sce
     return model;
 }
 
-int AssimpLoader::loadTexture(const std::filesystem::path& path, Model* model, AssetManager* assetManager) {
-    auto image = assetManager->getOrLoadTexture(path);
-    if (!image) {
-        return -1;
+int AssimpLoader::loadTexture(const std::filesystem::path& path, Model* model, AssetManager* assetManager, const std::filesystem::path& modelDir) {
+    // Strategy for finding textures:
+    // 1. Try absolute or relative path as given
+    // 2. Try in the same directory as the model
+    // 3. Try in a 'textures' subdirectory of the model's directory
+    // 4. Try in a sibling 'textures' directory (e.g. model in 'source', textures in 'textures')
+    // 5. Try in the parent directory
+    // 6. Try recursive search in model's parent directory tree
+
+    std::string filename = path.filename().string();
+    
+    std::vector<std::filesystem::path> pathsToTry;
+    pathsToTry.push_back(path); // 1. As is
+    
+    // If path is relative, try combining with model dir
+    if (path.is_relative()) {
+         pathsToTry.push_back(modelDir / path);
+    }
+
+    pathsToTry.push_back(modelDir / filename); // 2. Same dir
+    pathsToTry.push_back(modelDir / "textures" / filename); // 3. Subdirectory 'textures'
+    pathsToTry.push_back(modelDir / ".." / "textures" / filename); // 4. Sibling 'textures'
+    pathsToTry.push_back(modelDir / ".." / filename); // 5. Parent directory
+    
+    // 6. Additional search paths for nested structures
+    // Try to find 'textures' folder anywhere in parent hierarchy
+    std::filesystem::path searchRoot = modelDir.parent_path(); // Go up one level from source/
+    pathsToTry.push_back(searchRoot / filename);
+    pathsToTry.push_back(searchRoot / "textures" / filename);
+    
+    // 7. Try grandparent textures directory
+    if (searchRoot.has_parent_path()) {
+        std::filesystem::path grandparent = searchRoot.parent_path();
+        pathsToTry.push_back(grandparent / "textures" / filename);
+        pathsToTry.push_back(grandparent / filename);
+    }
+
+    std::shared_ptr<Image> image = nullptr;
+    std::filesystem::path foundPath;
+
+    spdlog::info("Looking for texture: {}", path.string());
+
+    for (const auto& tryPath : pathsToTry) {
+        try {
+             // Clean up path (normalization)
+             std::filesystem::path cleanPath = std::filesystem::weakly_canonical(tryPath);
+             spdlog::debug("Checking path: {}", cleanPath.string());
+             
+             if (std::filesystem::exists(cleanPath)) {
+                 image = assetManager->getOrLoadTexture(cleanPath);
+                 if (image) {
+                     foundPath = cleanPath;
+                     spdlog::info("Found texture at: {}", cleanPath.string());
+                     break; 
+                 }
+             }
+        } catch (const std::exception& e) {
+            spdlog::warn("Path check failed for '{}': {}", tryPath.string(), e.what());
+        } catch (...) {
+            spdlog::warn("Path check failed for '{}': Unknown error", tryPath.string());
+        }
     }
     
-    // Register with descriptor manager
-    // Use AssetManager for sampler
-    SamplerSpecs specs;
-    // Defaults: Linear, Repeat, Anisotropy 16x
-    specs.magFilter = VK_FILTER_LINEAR;
-    specs.minFilter = VK_FILTER_LINEAR;
-    specs.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
-    specs.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    specs.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    specs.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    specs.anisotropyEnable = true;
-    specs.maxAnisotropy = 16.0f;
+    // 8. If still not found, try recursive search in model's base directory
+    if (!image) {
+        try {
+            std::filesystem::path baseDir = modelDir.parent_path(); // e.g. m1897-trenchgun/
+            if (std::filesystem::exists(baseDir) && std::filesystem::is_directory(baseDir)) {
+                spdlog::debug("Searching recursively in: {}", baseDir.string());
+                for (const auto& entry : std::filesystem::recursive_directory_iterator(baseDir)) {
+                    if (entry.is_regular_file() && entry.path().filename() == filename) {
+                        image = assetManager->getOrLoadTexture(entry.path());
+                        if (image) {
+                            foundPath = entry.path();
+                            spdlog::info("Found texture via recursive search: {}", foundPath.string());
+                            break;
+                        }
+                    }
+                }
+            }
+        } catch (const std::exception& e) {
+            spdlog::debug("Recursive search failed: {}", e.what());
+        }
+    }
     
-    VkSampler sampler = assetManager->getSampler(specs);
+    // 9. Fuzzy matching - try to find textures with similar suffixes
+    // e.g., "Cartridge_low_Cartridge_BaseColor.png" -> look for "*BaseColor.png" or "*_BaseColor.png"
+    if (!image) {
+        try {
+            // Extract texture type suffix from filename
+            std::vector<std::string> textureSuffixes = {"BaseColor", "Diffuse", "Normal", "Metallic", "Roughness", "MetallicRoughness", "Occlusion", "Emissive", "Height"};
+            std::string matchSuffix;
+            for (const auto& suffix : textureSuffixes) {
+                if (filename.find(suffix) != std::string::npos) {
+                    matchSuffix = suffix;
+                    break;
+                }
+            }
+            
+            if (!matchSuffix.empty()) {
+                std::filesystem::path baseDir = modelDir.parent_path();
+                std::filesystem::path texturesDir = baseDir / "textures";
+                
+                if (std::filesystem::exists(texturesDir) && std::filesystem::is_directory(texturesDir)) {
+                    spdlog::debug("Fuzzy search for *{}.png in {}", matchSuffix, texturesDir.string());
+                    
+                    // Try to find a file with matching suffix and extension
+                    std::string extension = path.extension().string();
+                    for (const auto& entry : std::filesystem::directory_iterator(texturesDir)) {
+                        if (!entry.is_regular_file()) continue;
+                        
+                        std::string entryName = entry.path().filename().string();
+                        // Check if this file ends with the same suffix + extension
+                        // e.g., looking for "BaseColor" in "Cartridge_BaseColor.png"
+                        if (entryName.find(matchSuffix) != std::string::npos && 
+                            entry.path().extension() == path.extension()) {
+                            // Additional check: first meaningful word should match
+                            // "Cartridge_low_Cartridge_BaseColor" should match "Cartridge_BaseColor"
+                            std::string searchName = path.stem().string();
+                            std::string candidateName = entry.path().stem().string();
+                            
+                            // Simple heuristic: check if candidate contains parts of search name
+                            // Split by underscore and check for common parts
+                            bool likelyMatch = false;
+                            
+                            // Find the first meaningful word (before _low_ or similar)
+                            size_t pos = searchName.find("_low_");
+                            if (pos == std::string::npos) pos = searchName.find("_Low_");
+                            if (pos == std::string::npos) pos = searchName.find("_");
+                            
+                            std::string searchPrefix = (pos != std::string::npos) ? searchName.substr(0, pos) : searchName;
+                            
+                            if (!searchPrefix.empty() && candidateName.find(searchPrefix) != std::string::npos) {
+                                likelyMatch = true;
+                            }
+                            
+                            if (likelyMatch) {
+                                image = assetManager->getOrLoadTexture(entry.path());
+                                if (image) {
+                                    foundPath = entry.path();
+                                    spdlog::info("Found texture via fuzzy match: {} -> {}", filename, foundPath.string());
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (const std::exception& e) {
+            spdlog::debug("Fuzzy search failed: {}", e.what());
+        }
+    }
 
-    uint32_t texIdx = m_context->getDescriptorManager().registerImage(image->getView(), sampler);
+    if (!image) {
+        spdlog::warn("Failed to find texture '{}'. Searched {} locations + recursive + fuzzy.", path.string(), pathsToTry.size());
+        return -1;
+    } 
+    // else, image found, proceed
     
-    model->images.push_back(image);
-    model->textureIndices.push_back(texIdx);
-    
-    return static_cast<int>(model->textureIndices.size() - 1);
+    try {
+        // Register with descriptor manager
+        SamplerSpecs specs;
+        specs.magFilter = VK_FILTER_LINEAR;
+        specs.minFilter = VK_FILTER_LINEAR;
+        specs.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
+        specs.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+        specs.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+        specs.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+        specs.anisotropyEnable = true;
+        specs.maxAnisotropy = 16.0f;
+        
+        VkSampler sampler = assetManager->getSampler(specs);
+
+        uint32_t texIdx = m_context->getDescriptorManager().registerImage(image->getView(), sampler);
+        
+        model->images.push_back(image);
+        model->textureIndices.push_back(texIdx);
+        
+        return static_cast<int>(model->textureIndices.size() - 1);
+    } catch (const std::exception& e) {
+        spdlog::error("Error registering texture: {}", e.what());
+        return -1;
+    }
 }
 
 } // namespace astral

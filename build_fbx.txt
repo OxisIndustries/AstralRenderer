@@ -1,0 +1,13 @@
+﻿.NET Framework i├ğin MSBuild s├╝r├╝m 18.0.5+e22287bf1
+
+  glm.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\glm.lib
+  spdlog.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\spdlog.lib
+  glfw.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\glfw3.lib
+  fastgltf.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\fastgltf.lib
+  VulkanMemoryAllocator.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\VulkanMemoryAllocator.lib
+  zlibstatic.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\zlibstatic.lib
+  assimp.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\assimp-vc145-mt.lib
+  astral_renderer.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\astral_renderer.lib
+  fbx_viewer.cpp
+  AstralFbx.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\bin\Release\AstralFbx.exe
+  Copying assets for AstralFbx

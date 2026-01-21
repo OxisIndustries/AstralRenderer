@@ -24,7 +24,7 @@ public:
 private:
     Context* m_context;
 
-    int loadTexture(const std::filesystem::path& path, Model* model, AssetManager* assetManager);
+    int loadTexture(const std::filesystem::path& path, Model* model, AssetManager* assetManager, const std::filesystem::path& modelDir);
 };
 
 } // namespace astral

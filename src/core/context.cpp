@@ -50,57 +50,107 @@ Context::~Context() {
 }
 
 void Context::createInstance(const std::vector<const char*>& requiredExtensions) {
-    if (m_enableValidationLayers) {
-        uint32_t layerCount;
-        vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
-        std::vector<VkLayerProperties> availableLayers(layerCount);
-        vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+    spdlog::info("createInstance: Starting instance creation");
+    
+    try {
+        spdlog::info("createInstance: Validation layers enabled: {}", m_enableValidationLayers);
+        
+        if (m_enableValidationLayers) {
+            spdlog::info("createInstance: Checking validation layers");
+            uint32_t layerCount;
+            vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+            std::vector<VkLayerProperties> availableLayers(layerCount);
+            vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+            
+            spdlog::info("createInstance: Found {} available layers", layerCount);
+            for (const auto& layer : availableLayers) {
+                spdlog::debug("  Available layer: {}", layer.layerName);
+            }
 
-        for (const char* layerName : m_validationLayers) {
-            bool layerFound = false;
-            for (const auto& layerProperties : availableLayers) {
-                if (strcmp(layerName, layerProperties.layerName) == 0) {
-                    layerFound = true;
+            for (const char* layerName : m_validationLayers) {
+                bool layerFound = false;
+                for (const auto& layerProperties : availableLayers) {
+                    if (strcmp(layerName, layerProperties.layerName) == 0) {
+                        layerFound = true;
+                        break;
+                    }
+                }
+                if (!layerFound) {
+                    spdlog::error("createInstance: Validation layer not found: {}", layerName);
+                    throw std::runtime_error("Validation layers requested, but not available!");
+                }
+                spdlog::info("createInstance: Validation layer found: {}", layerName);
+            }
+        }
+
+        spdlog::info("createInstance: Setting up application info");
+        VkApplicationInfo appInfo{};
+        appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+        appInfo.pApplicationName = "Astral Renderer";
+        appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+        appInfo.pEngineName = "Astral Engine";
+        appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
+        appInfo.apiVersion = VK_API_VERSION_1_3;
+
+        VkInstanceCreateInfo createInfo{};
+        createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+        createInfo.pApplicationInfo = &appInfo;
+
+        auto extensions = requiredExtensions;
+        spdlog::info("createInstance: Required extensions from window: {}", extensions.size());
+        for (const auto& ext : extensions) {
+            spdlog::info("  Extension: {}", ext);
+        }
+        
+        if (m_enableValidationLayers) {
+            extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+            spdlog::info("  Extension: {} (debug)", VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+        }
+        
+        // Check if extensions are supported
+        uint32_t extensionCount;
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+        std::vector<VkExtensionProperties> availableExtensions(extensionCount);
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, availableExtensions.data());
+        
+        spdlog::info("createInstance: Available instance extensions: {}", extensionCount);
+        for (const auto& ext : extensions) {
+            bool found = false;
+            for (const auto& available : availableExtensions) {
+                if (strcmp(ext, available.extensionName) == 0) {
+                    found = true;
                     break;
                 }
             }
-            if (!layerFound) {
-                throw std::runtime_error("Validation layers requested, but not available!");
+            if (!found) {
+                spdlog::error("createInstance: Required extension not available: {}", ext);
             }
         }
+        
+        createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
+        createInfo.ppEnabledExtensionNames = extensions.data();
+
+        if (m_enableValidationLayers) {
+            createInfo.enabledLayerCount = static_cast<uint32_t>(m_validationLayers.size());
+            createInfo.ppEnabledLayerNames = m_validationLayers.data();
+        } else {
+            createInfo.enabledLayerCount = 0;
+        }
+
+        spdlog::info("createInstance: Calling vkCreateInstance...");
+        VkResult result = vkCreateInstance(&createInfo, nullptr, &m_instance);
+        spdlog::info("createInstance: vkCreateInstance returned {}", static_cast<int>(result));
+        
+        if (result != VK_SUCCESS) {
+            spdlog::error("createInstance: vkCreateInstance failed with result: {}", static_cast<int>(result));
+            throw std::runtime_error("Failed to create Vulkan instance!");
+        }
+        
+        spdlog::info("Vulkan Instance created successfully (API 1.3)");
+    } catch (const std::exception& e) {
+        spdlog::error("createInstance: Exception caught: {}", e.what());
+        throw;
     }
-
-    VkApplicationInfo appInfo{};
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = "Astral Renderer";
-    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = "Astral Engine";
-    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_3;
-
-    VkInstanceCreateInfo createInfo{};
-    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    createInfo.pApplicationInfo = &appInfo;
-
-    auto extensions = requiredExtensions;
-    if (m_enableValidationLayers) {
-        extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
-    }
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
-    createInfo.ppEnabledExtensionNames = extensions.data();
-
-    if (m_enableValidationLayers) {
-        createInfo.enabledLayerCount = static_cast<uint32_t>(m_validationLayers.size());
-        createInfo.ppEnabledLayerNames = m_validationLayers.data();
-    } else {
-        createInfo.enabledLayerCount = 0;
-    }
-
-    if (vkCreateInstance(&createInfo, nullptr, &m_instance) != VK_SUCCESS) {
-        throw std::runtime_error("Failed to create Vulkan instance!");
-    }
-    
-    spdlog::info("Vulkan Instance created successfully (API 1.3)");
 }
 
 void Context::setupDebugMessenger() {

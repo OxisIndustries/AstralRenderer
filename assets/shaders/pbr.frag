@@ -302,6 +302,10 @@ void main() {
       if (alpha < mat.alphaCutoff) {
           discard;
       }
+  } else if (mat.alphaMode == 2) { // BLEND
+      if (alpha < 0.01) {
+          discard;
+      }
   }
 
   // Alpha Blending logic (if supported) not really possible in deferred/forward without sorting, 

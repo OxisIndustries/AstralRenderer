@@ -357,12 +357,27 @@ void AstralApp::run() {
     m_sceneManager->clearMeshInstances(m_currentFrame);
     // Re-add instances
     if (m_model) {
-      for (const auto &mesh : m_model->meshes) {
-        for (const auto &primitive : mesh.primitives) {
-          m_sceneManager->addMeshInstance(
-              m_currentFrame, glm::mat4(1.0f), primitive.materialIndex,
-              primitive.indexCount, primitive.firstIndex, 0,
-              primitive.boundingCenter, primitive.boundingRadius);
+      if (!m_model->linearNodes.empty()) {
+        for (auto *node : m_model->linearNodes) {
+          if (node->meshIndex != -1) {
+            const auto &mesh = m_model->meshes[node->meshIndex];
+            for (const auto &primitive : mesh.primitives) {
+              m_sceneManager->addMeshInstance(
+                  m_currentFrame, node->matrix, primitive.materialIndex,
+                  primitive.indexCount, primitive.firstIndex, 0,
+                  primitive.boundingCenter, primitive.boundingRadius);
+            }
+          }
+        }
+      } else {
+        // Fallback for models without hierarchy (e.g. pre-transformed Assimp models)
+        for (const auto &mesh : m_model->meshes) {
+          for (const auto &primitive : mesh.primitives) {
+            m_sceneManager->addMeshInstance(
+                m_currentFrame, glm::mat4(1.0f), primitive.materialIndex,
+                primitive.indexCount, primitive.firstIndex, 0,
+                primitive.boundingCenter, primitive.boundingRadius);
+          }
         }
       }
     }

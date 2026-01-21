@@ -469,6 +469,50 @@ std::unique_ptr<Model> GltfLoader::load(const std::filesystem::path& path, Scene
         model->meshes.push_back(mesh);
     }
 
+    // 4. Node Hierarchy
+    std::function<void(uint32_t, Model::Node*, glm::mat4)> loadNode;
+    loadNode = [&](uint32_t nodeIdx, Model::Node* parent, glm::mat4 parentTransform) {
+        auto& gltfNode = asset.nodes[nodeIdx];
+        auto node = std::make_unique<Model::Node>();
+        node->parent = parent;
+        node->name = gltfNode.name.c_str();
+
+        // Node transform
+        glm::mat4 localTransform = glm::mat4(1.0f);
+        if (auto* trs = std::get_if<fastgltf::TRS>(&gltfNode.transform)) {
+            glm::mat4 t = glm::translate(glm::mat4(1.0f), glm::make_vec3(&(*trs).translation[0]));
+            glm::mat4 r = glm::mat4_cast(glm::quat(trs->rotation[3], trs->rotation[0], trs->rotation[1], trs->rotation[2]));
+            glm::mat4 s = glm::scale(glm::mat4(1.0f), glm::make_vec3(&(*trs).scale[0]));
+            localTransform = t * r * s;
+        } else if (auto* mat = std::get_if<fastgltf::math::fmat4x4>(&gltfNode.transform)) {
+            localTransform = glm::make_mat4(mat->data());
+        }
+        
+        node->matrix = parentTransform * localTransform;
+
+        if (gltfNode.meshIndex.has_value()) {
+            node->meshIndex = static_cast<int32_t>(gltfNode.meshIndex.value());
+        }
+
+        Model::Node* nodePtr = node.get();
+        model->linearNodes.push_back(nodePtr);
+
+        for (auto& childIdx : gltfNode.children) {
+            loadNode(static_cast<uint32_t>(childIdx), nodePtr, nodePtr->matrix);
+        }
+
+        if (parent) {
+            parent->children.push_back(std::move(node));
+        } else {
+            model->nodes.push_back(std::move(node));
+        }
+    };
+
+    auto& scene = asset.scenes[asset.defaultScene ? *asset.defaultScene : 0];
+    for (auto& nodeIdx : scene.nodeIndices) {
+        loadNode(static_cast<uint32_t>(nodeIdx), nullptr, glm::mat4(1.0f));
+    }
+
     // GPU Buffer'larını yarat
     model->vertexBuffer = std::make_unique<Buffer>(
         m_context,

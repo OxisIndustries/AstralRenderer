@@ -1,0 +1,13 @@
+﻿.NET Framework i├ğin MSBuild s├╝r├╝m 18.0.5+e22287bf1
+
+  VulkanMemoryAllocator.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\VulkanMemoryAllocator.lib
+  glfw.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\glfw3.lib
+  fastgltf.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\fastgltf.lib
+  glm.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\glm.lib
+  zlibstatic.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\zlibstatic.lib
+  spdlog.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\spdlog.lib
+  assimp.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\assimp-vc145-mt.lib
+  application.cpp
+  assimp_loader.cpp
+  camera.cpp
+  astral_renderer.vcxproj -> C:\Users\tpoyr\OneDrive\Desktop\inkbytefo_projects\AstralRenderer\build\lib\Release\astral_renderer.lib

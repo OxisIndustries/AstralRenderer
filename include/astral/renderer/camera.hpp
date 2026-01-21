@@ -37,7 +37,7 @@ private:
 
     float m_yaw{-90.0f};
     float m_pitch{0.0f};
-    float m_speed{25.0f};
+    float m_speed{75.0f};
     float m_sensitivity{0.1f};
 
     glm::mat4 m_view;
