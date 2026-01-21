@@ -12,6 +12,7 @@
 #include "astral/renderer/swapchain.hpp"
 #include "astral/renderer/sync.hpp"
 #include "astral/renderer/ui_manager.hpp"
+#include "astral/core/performance_monitor.hpp"
 
 #include <memory>
 #include <vector>
@@ -58,6 +59,7 @@ protected:
 
   // Renderer
   std::unique_ptr<RendererSystem> m_renderer;
+  std::unique_ptr<PerformanceMonitor> m_perfMonitor;
 
   // Scene
   Camera m_camera;

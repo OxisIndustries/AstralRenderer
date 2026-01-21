@@ -8,9 +8,9 @@
     "renderer": {
         "bloomStrength": 0.03999999910593033,
         "enableFXAA": true,
-        "enableSSAO": false,
+        "enableSSAO": true,
         "exposure": 0.8700000047683716,
-        "gamma": 2.200000047683716,
+        "gamma": 2.009999990463257,
         "iblIntensity": 1.0,
         "pcfRange": 2,
         "shadowBias": 0.0020000000949949026,

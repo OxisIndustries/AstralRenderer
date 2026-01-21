@@ -28,28 +28,35 @@ vec3 BrightExtraction(vec3 color) {
     return color * contribution;
 }
 
-// Optimized 9-tap Gaussian blur (2nd pass needs to be higher quality)
+// Optimized 9-tap Gaussian blur
+// 3 iterations of this approximates a much larger Gaussian.
 vec3 Blur(bool horizontal) {
     vec2 texSize = textureSize(textures[nonuniformEXT(pc.inputTextureIndex)], 0);
     vec2 offset = (horizontal ? vec2(1.0 / texSize.x, 0.0) : vec2(0.0, 1.0 / texSize.y));
     
+    // Weights for 9-tap. (Standard Gaussian sigma ~ 2.0 or so)
     float weights[5] = float[](0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
     
     vec3 result = texture(textures[nonuniformEXT(pc.inputTextureIndex)], inUV).rgb * weights[0];
     for(int i = 1; i < 5; ++i) {
-        result += texture(textures[nonuniformEXT(pc.inputTextureIndex)], inUV + offset * i).rgb * weights[i];
-        result += texture(textures[nonuniformEXT(pc.inputTextureIndex)], inUV - offset * i).rgb * weights[i];
+        result += texture(textures[nonuniformEXT(pc.inputTextureIndex)], inUV + offset * float(i)).rgb * weights[i];
+        result += texture(textures[nonuniformEXT(pc.inputTextureIndex)], inUV - offset * float(i)).rgb * weights[i];
     }
     return result;
 }
 
 void main() {
     if (pc.mode == 0) {
+        // Bright Pass
         vec3 color = texture(textures[nonuniformEXT(pc.inputTextureIndex)], inUV).rgb;
         outColor = vec4(BrightExtraction(color), 1.0);
     } else if (pc.mode == 1) {
+        // Horizontal Blur
         outColor = vec4(Blur(true), 1.0);
-    } else {
+    } else if (pc.mode == 2) {
+        // Vertical Blur
         outColor = vec4(Blur(false), 1.0);
+    } else {
+        outColor = vec4(0.0);
     }
 }

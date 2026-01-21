@@ -61,6 +61,8 @@ void AstralApp::init() {
   m_assetManager->registerLoader(std::make_unique<GltfLoader>(m_context.get()));
   m_assetManager->registerLoader(std::make_unique<AssimpLoader>(m_context.get()));
 
+  m_perfMonitor = std::make_unique<PerformanceMonitor>();
+
   // Renderer System Init
   m_renderer = std::make_unique<RendererSystem>(
       m_context.get(), m_swapchain.get(), specs.width, specs.height);
@@ -126,6 +128,12 @@ void AstralApp::run() {
     m_lastFrameTime = currentTime;
 
     handleInput(deltaTime);
+    
+    // Performance Monitor Update
+    if (m_perfMonitor) {
+        m_perfMonitor->update(deltaTime);
+    }
+
     updateUI(deltaTime);
 
     // Update Scene Data
@@ -138,6 +146,8 @@ void AstralApp::run() {
     sd.cameraPos = glm::vec4(m_camera.getPosition(), 1.0f);
 
     // TAA Jitter (Simple Halton)
+    // TAA Jitter (Simple Halton) - DISABLED for now as full TAA resolve is not active
+    /*
     auto halton = [](int index, int base) {
       float f = 1.0f, r = 0.0f;
       while (index > 0) {
@@ -154,6 +164,8 @@ void AstralApp::run() {
     sd.jitter = jitter;
     sd.proj[2][0] += jitter.x;
     sd.proj[2][1] += jitter.y;
+    */
+    sd.jitter = glm::vec2(0.0f);
     sd.viewProj = sd.proj * sd.view;
 
     if (m_firstFrame) {
@@ -475,6 +487,11 @@ void AstralApp::handleInput(float deltaTime) {
 
 void AstralApp::updateUI(float deltaTime) {
   m_uiManager->beginFrame();
+  
+  // Render Performance Monitor in its own window
+  if (m_perfMonitor) {
+      m_perfMonitor->renderUI();
+  }
 
   ImGui::SetNextWindowSize(ImVec2(400, 600), ImGuiCond_FirstUseEver);
   ImGui::Begin("Renderer Controls", nullptr, ImGuiWindowFlags_NoScrollbar);
@@ -482,7 +499,8 @@ void AstralApp::updateUI(float deltaTime) {
   if (ImGui::BeginTabBar("RendererTabs")) {
     if (ImGui::BeginTabItem("Main")) {
       ImGui::TextColored(ImVec4(0.0f, 1.0f, 1.0f, 1.0f), "Performance");
-      ImGui::Text("FPS: %.1f (%.3f ms)", 1.0f / deltaTime, deltaTime * 1000.0f);
+      // Performance Monitor is now in a separate window "Performance Statistics"
+      ImGui::TextDisabled("See Performance Statistics window");
       ImGui::Separator();
 
       ImGui::TextColored(ImVec4(0.0f, 1.0f, 1.0f, 1.0f), "Camera & Tonemaping");

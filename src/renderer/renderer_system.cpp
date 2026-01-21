@@ -414,7 +414,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
 
   VkPushConstantRange ssaoPushRange = {};
   ssaoPushRange.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
-  ssaoPushRange.size = 24;
+  ssaoPushRange.size = 32; // Increased to 32 to add 'power'
   VkPipelineLayoutCreateInfo ssaoLayoutInfo = {
       VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO};
   ssaoLayoutInfo.pushConstantRangeCount = 1;
@@ -435,7 +435,7 @@ void RendererSystem::initializePipelines(VkDescriptorSetLayout *setLayouts,
 
   VkPushConstantRange ssaoBlurPush = {};
   ssaoBlurPush.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
-  ssaoBlurPush.size = sizeof(int);
+  ssaoBlurPush.size = 16; // Increased to 16 to add depth index
   VkPipelineLayoutCreateInfo ssaoBlurLayoutInfo = {
       VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO};
   ssaoBlurLayoutInfo.pushConstantRangeCount = 1;
@@ -1060,6 +1060,8 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           struct {
             uint32_t nI, dI, nsI, kI;
             float r, b;
+            float power;
+            float pad;
           } ssaoSPC;
           ssaoSPC.nI = m_normalTextureIndex;
           ssaoSPC.dI = m_depthTextureIndex;
@@ -1067,8 +1069,9 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           ssaoSPC.kI = m_ssaoKernelBufferIndex;
           ssaoSPC.r = uiParams.ssaoRadius;
           ssaoSPC.b = uiParams.ssaoBias;
+          ssaoSPC.power = 2.5f; // Hardcoded intensity for now, can be added to UI
           vkCmdPushConstants(cb, m_ssaoLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0,
-                             24, &ssaoSPC);
+                             32, &ssaoSPC);
           vkCmdDraw(cb, 3, 1, 0, 0);
         });
     graph.addPass(
@@ -1085,9 +1088,17 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
                                   m_ssaoBlurLayout, 0, 1, &globalSet, 0,
                                   nullptr);
-          int mode = 0; // vertical/horizontal? Or just single pass? No, just push const size=4.
+          struct {
+             int inputIdx;
+             int depthIdx;
+             float sharp;
+             float pad;
+          } bPush;
+          bPush.inputIdx = m_ssaoTextureIndex;
+          bPush.depthIdx = m_depthTextureIndex;
+          bPush.sharp = 0.0f; // Not used yet
           vkCmdPushConstants(cb, m_ssaoBlurLayout, VK_SHADER_STAGE_FRAGMENT_BIT,
-                             0, 4, &mode);
+                             0, 16, &bPush);
           vkCmdDraw(cb, 3, 1, 0, 0);
         });
   }
@@ -1112,43 +1123,89 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           float t, s;
         } bPush;
         bPush.idx = m_hdrTextureIndex;
-        bPush.mode = 0;
+        bPush.mode = 0; // Bright Extraction
         bPush.t = uiParams.bloomThreshold;
         bPush.s = uiParams.bloomSoftness;
         vkCmdPushConstants(cb, m_bloomLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0,
                            16, &bPush);
         vkCmdDraw(cb, 3, 1, 0, 0);
       });
-  graph.addPass(
-      "BloomBlurPass", {"Bloom_Base"}, {"Bloom_Blur"}, [this](VkCommandBuffer cb) {
-        VkViewport viewport = {0.0f, 0.0f, (float)m_width / 4.0f, (float)m_height / 4.0f, 0.0f, 1.0f};
-        vkCmdSetViewport(cb, 0, 1, &viewport);
-        VkRect2D scissor = {{0, 0}, {m_width / 4, m_height / 4}};
-        vkCmdSetScissor(cb, 0, 1, &scissor);
 
-        vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
-                          m_bloomPipeline->getHandle());
-        VkDescriptorSet set =
-            m_context->getDescriptorManager().getDescriptorSet();
-        vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
-                                m_bloomLayout, 0, 1, &set, 0, nullptr);
-        struct {
-          uint32_t idx;
-          uint32_t mode;
-          float t, s;
-        } bPush;
-        bPush.idx = m_bloomTextureIndex;
-        bPush.mode = 1;
-        bPush.t = 0;
-        bPush.s = 0;
-        vkCmdPushConstants(cb, m_bloomLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0,
-                           16, &bPush);
-        vkCmdDraw(cb, 3, 1, 0, 0);
-      });
+  // Ping-Pong Blur (3 Iterations)
+  // Base -> Blur (Horz) -> Base (Vert) -> Blur (Horz) -> Base (Vert) ...
+  // Final result should be in Bloom_Base (if even number of total steps)
+  // Actually simpler: Input is Base.
+  // Loop:
+  //   1. Horz: Read Base, Write Blur.
+  //   2. Vert: Read Blur, Write Base.
+  // Final result is in Base.
+  
+  for (int i = 0; i < 3; ++i) {
+      std::string passNameH = "BloomBlurPassH_" + std::to_string(i);
+      std::string passNameV = "BloomBlurPassV_" + std::to_string(i);
+      
+      // Horizontal Pass: Base -> Blur
+      graph.addPass(
+          passNameH, {"Bloom_Base"}, {"Bloom_Blur"}, [this](VkCommandBuffer cb) {
+            VkViewport viewport = {0.0f, 0.0f, (float)m_width / 4.0f, (float)m_height / 4.0f, 0.0f, 1.0f};
+            vkCmdSetViewport(cb, 0, 1, &viewport);
+            VkRect2D scissor = {{0, 0}, {m_width / 4, m_height / 4}};
+            vkCmdSetScissor(cb, 0, 1, &scissor);
+
+            vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
+                              m_bloomPipeline->getHandle());
+            VkDescriptorSet set =
+                m_context->getDescriptorManager().getDescriptorSet();
+            vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
+                                    m_bloomLayout, 0, 1, &set, 0, nullptr);
+            struct {
+              uint32_t idx;
+              uint32_t mode;
+              float t, s;
+            } bPush;
+            bPush.idx = m_bloomTextureIndex; // Bloom_Base
+            bPush.mode = 1; // Horizontal
+            bPush.t = 0;
+            bPush.s = 0;
+            vkCmdPushConstants(cb, m_bloomLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0,
+                               16, &bPush);
+            vkCmdDraw(cb, 3, 1, 0, 0);
+          });
+
+      // Vertical Pass: Blur -> Base
+      graph.addPass(
+          passNameV, {"Bloom_Blur"}, {"Bloom_Base"}, [this](VkCommandBuffer cb) {
+            VkViewport viewport = {0.0f, 0.0f, (float)m_width / 4.0f, (float)m_height / 4.0f, 0.0f, 1.0f};
+            vkCmdSetViewport(cb, 0, 1, &viewport);
+            VkRect2D scissor = {{0, 0}, {m_width / 4, m_height / 4}};
+            vkCmdSetScissor(cb, 0, 1, &scissor);
+
+            vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
+                              m_bloomPipeline->getHandle());
+            VkDescriptorSet set =
+                m_context->getDescriptorManager().getDescriptorSet();
+            vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_GRAPHICS,
+                                    m_bloomLayout, 0, 1, &set, 0, nullptr);
+            struct {
+              uint32_t idx;
+              uint32_t mode;
+              float t, s;
+            } bPush;
+            bPush.idx = m_bloomBlurTextureIndex; // Bloom_Blur
+            bPush.mode = 2; // Vertical
+            bPush.t = 0;
+            bPush.s = 0;
+            vkCmdPushConstants(cb, m_bloomLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0,
+                               16, &bPush);
+            vkCmdDraw(cb, 3, 1, 0, 0);
+          });
+  }
 
   // Composite
+  // Note: SSAO_Blur is also used.
+  // Input for Bloom in Composite is now Bloom_Base (result of last vertical pass)
   graph.addPass(
-      "CompositePass", {"HDR_Color", "Bloom_Blur", "SSAO_Blur"}, {"LDR_Color"},
+      "CompositePass", {"HDR_Color", "Bloom_Base", "SSAO_Blur"}, {"LDR_Color"},
       [this, ext, uiParams](VkCommandBuffer cb) {
         VkViewport viewport = {0.0f, 0.0f, (float)ext.width, (float)ext.height, 0.0f, 1.0f};
         vkCmdSetViewport(cb, 0, 1, &viewport);
@@ -1168,7 +1225,7 @@ void RendererSystem::render(CommandBuffer &cmd, RenderGraph &graph,
           uint32_t es;
         } cPush;
         cPush.h = m_hdrTextureIndex;
-        cPush.b = m_bloomBlurTextureIndex; // Blur result
+        cPush.b = m_bloomTextureIndex; // Bloom_Base holds final result now
         cPush.s = m_ssaoBlurTextureIndex;
         cPush.exp = uiParams.exposure;
         cPush.bs = uiParams.bloomStrength;

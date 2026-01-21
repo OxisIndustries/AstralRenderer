@@ -59,6 +59,7 @@ set(ASTRAL_CORE_SOURCES
     src/core/config.cpp
     src/core/vma_implementation.cpp
     src/core/commands.cpp
+    src/core/performance_monitor.cpp
     src/application.cpp
 )
 
